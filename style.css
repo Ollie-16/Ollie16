@@ -1,0 +1,678 @@
+/* ==========================================================================
+   1. FONTS & DESIGN SYSTEM VARIABLES
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap');
+
+:root {
+    /* Color Palette */
+    --bg-color: #0a0a0a;          /* Deep, rich charcoal black */
+    --card-bg: #121212;           /* Slightly lighter black for containers */
+    --text-primary: #f5f5f7;      /* Clean off-white */
+    --text-muted: #86868b;         /* Apple-style muted grey for secondary text */
+    --accent-color: #d4af37;      /* Muted classic gold accent */
+    --border-color: #262626;      /* Subtle grid and structural lines */
+
+    /* Typography Stacks */
+    --font-editorial: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+
+    /* Spacing & Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   2. SYSTEM RESET (Standard Developer Best Practice)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Native smooth-scrolling when clicking nav links */
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   3. HEADER & NAVIGATION (Minimalist Branding)
+   ========================================================================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4%;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    background-color: rgba(10, 10, 10, 0.85); /* Frosty glass effect */
+    backdrop-filter: blur(12px);
+    z-index: 100;
+}
+
+header .logo {
+    font-family: var(--font-editorial);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+header nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+}
+
+header nav a:hover {
+    color: var(--text-primary);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   4. LAYOUT & SECTIONS (Generous Spacing)
+   ========================================================================== */
+main {
+    flex-grow: 1;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 4%;
+}
+
+section {
+    padding: 8rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* ==========================================================================
+   5. HERO SECTION (Editorial Focus)
+   ========================================================================== */
+#hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 60vh;
+    padding-top: 4rem;
+}
+
+#hero h1 {
+    font-family: var(--font-editorial);
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive sizing: scales with screen */
+    line-height: 1.1;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    max-width: 900px;
+}
+
+#hero p {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   6. SELECTED WORKS GRID & PREMIUM CARDS
+   ========================================================================== */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+#work h2 {
+    font-family: var(--font-editorial);
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.archive-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 3.5rem;
+}
+
+/* Individual Portfolio Card */
+.work-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    background-color: transparent;
+}
+
+/* Media Container: Forces a strict vertical/horizontal ratio depending on configuration */
+.media-container {
+    position: relative; /* Allows camera tag to be pinned inside this container */
+    width: 100%;
+    background-color: var(--card-bg);
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+}
+
+/* Base Image and Video styles */
+.media-container img,
+.media-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Perfectly crops files to fit the box without distortion */
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover Zoom Effect */
+.work-card:hover .media-container img,
+.work-card:hover .media-container video {
+    transform: scale(1.04); /* Smooth, premium, slow zoom */
+}
+
+/* Minimalist Camera Overlay Tag */
+.camera-tag {
+    position: absolute;
+    bottom: 1.2rem;
+    right: 1.2rem;
+    background-color: rgba(10, 10, 10, 0.75); /* Dark background with blur */
+    backdrop-filter: blur(8px);
+    color: var(--text-primary);
+    font-size: 0.72rem;
+    font-family: var(--font-sans);
+    letter-spacing: 0.05em;
+    padding: 0.45rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.8;
+    transition: var(--transition-smooth);
+    pointer-events: none; /* Mouse movements pass through directly to the container */
+    z-index: 5;
+}
+
+/* Highlight Tag on hover */
+.work-card:hover .camera-tag {
+    opacity: 1;
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+/* Details beneath each layout card */
+.card-details h3 {
+    font-family: var(--font-editorial);
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+}
+
+.card-details p {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   7. CATEGORIZED GRIDS (Aspect Ratio Controls)
+   ========================================================================== */
+.category-block {
+    margin-bottom: 6rem;
+}
+
+/* Portrait Grid: Keeps images at a sharp, editorial 4:5 vertical look */
+.grid-portrait .media-container {
+    aspect-ratio: 4 / 5;
+}
+
+/* Landscape Grid: Keeps landscape and travel content at a cinematic 16:9 look */
+.grid-landscape .media-container {
+    aspect-ratio: 16 / 9;
+}
+
+/* ==========================================================================
+   8. CENTERED ABOUT SECTION (Editorial Style)
+   ========================================================================== */
+.about-container-centered {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-container-centered .eyebrow {
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+}
+
+.about-container-centered h2 {
+    font-family: var(--font-editorial);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 3.5rem;
+}
+
+/* Centered Portrait Frame */
+.about-portrait-centered {
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 16 / 10; /* Modern, wide editorial profile crop */
+    background-color: var(--card-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    margin-bottom: 4rem;
+}
+
+.about-portrait-centered img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Elegant narrative spacing - lines follow each other gracefully */
+.about-text-centered {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.about-text-centered .lead {
+    font-size: 1.35rem;
+    color: var(--text-primary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.about-text-centered p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 1.8rem;
+    font-size: 1.05rem;
+}
+
+/* Centered Skills Readout */
+.skills-grid-centered {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 5rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 4rem;
+    width: 100%;
+    text-align: left;
+}
+
+.skill-category h3 {
+    font-family: var(--font-editorial);
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.skill-category ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.skill-category li {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.skill-category li::before {
+    content: "—"; /* Elegant editorial list dash */
+    color: var(--accent-color);
+}
+
+/* ==========================================================================
+   9. BRAND CONNECT DOCK (Immediate Call To Actions)
+   ========================================================================== */
+#connect-dock-section {
+    background-color: rgba(15, 15, 15, 0.4);
+    border-bottom: 1px solid var(--border-color);
+    padding: 6rem 0;
+}
+
+.connect-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.connect-header h2 {
+    font-family: var(--font-editorial);
+    font-size: 2.8rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.connect-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 550px;
+    margin: 0 auto 3.5rem auto;
+    line-height: 1.6;
+}
+
+.social-dock {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Clean horizontal dock on desktop */
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem; /* Creates perfect space between logo and text label */
+    padding: 1.2rem 1.5rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: var(--transition-smooth);
+}
+
+.social-btn i {
+    font-size: 1.15rem; /* Makes the platform logos stand out beautifully */
+}
+
+/* Hover States for Clean App Logos */
+.whatsapp-btn:hover {
+    border-color: #25D366;
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.15);
+    color: #25D366;
+}
+
+.instagram-btn:hover {
+    border-color: #E1306C;
+    box-shadow: 0 0 20px rgba(225, 48, 108, 0.15);
+    color: #E1306C;
+}
+
+.linkedin-btn:hover {
+    border-color: #0077B5;
+    box-shadow: 0 0 20px rgba(0, 119, 181, 0.15);
+    color: #0077B5;
+}
+
+.email-btn:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+    color: var(--accent-color);
+}
+
+/* ==========================================================================
+   10. MINIMAL DATA-CAPTURE BLOCK (Footer layout)
+   ========================================================================== */
+#contact {
+    display: block; /* Custom layout override */
+    padding: 8rem 0;
+}
+
+.contact-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+}
+
+/* Flex layout forces physical stacking, preventing vertical overlapping */
+.footer-headline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem; /* Clean, reliable vertical space between head and paragraph */
+    text-align: left;
+}
+
+.footer-headline h2 {
+    font-family: var(--font-editorial);
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 1.25; /* Prevents overlap if the heading wraps to 2 lines */
+    margin: 0;
+    display: block;
+}
+
+.footer-headline p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    display: block;
+}
+
+#newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+#newsletter-form input[type="email"] {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 1.2rem 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+#newsletter-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--text-primary);
+    box-shadow: 0 0 15px rgba(245, 245, 247, 0.05);
+}
+
+#newsletter-form button {
+    background-color: var(--text-primary);
+    color: var(--bg-color);
+    border: none;
+    padding: 1.2rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: var(--transition-smooth);
+}
+
+#newsletter-form button:hover {
+    background-color: var(--accent-color);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+}
+
+/* ==========================================================================
+   11. LIGHTBOX POPUP SYSTEM
+   ========================================================================== */
+.lightbox {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* Stays above everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 10, 10, 0.95); /* Deep dark background */
+    backdrop-filter: blur(15px);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* Active class applied via JS to trigger smooth fade-in */
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    animation: zoomIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Animations for premium feel */
+@keyframes zoomIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Lightbox Close Button */
+.lightbox-close {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    color: var(--text-primary);
+    font-size: 2.5rem;
+    font-weight: 200;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    user-select: none;
+}
+
+.lightbox-close:hover {
+    color: var(--accent-color);
+    transform: rotate(90deg);
+}
+
+/* ==========================================================================
+   12. FOOTER
+   ========================================================================== */
+footer {
+    border-top: 1px solid var(--border-color);
+    padding: 3rem 4%;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   13. RESPONSIVE DESIGN (Mobile & Tablet Adjustments)
+   ========================================================================== */
+
+/* This rule triggers only on screens that are 768px wide or smaller */
+@media (max-width: 768px) {
+    
+    /* 1. Adjust Spacing: Massive 8rem padding is too big for mobile screens */
+    section {
+        padding: 4rem 0;
+    }
+
+    /* 2. Stack the Header: Let logo and nav stack beautifully if space is tight */
+    header {
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 1.5rem 4%;
+        text-align: center;
+    }
+
+    header nav ul {
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
+    /* 3. Collapse Grid Layouts: Force the 2-column contact section to stack vertically */
+    #contact {
+        padding: 4rem 0;
+    }
+
+    /* 4. Fine-tune the Form elements for fat-finger mobile tapping */
+    #newsletter-form input[type="email"],
+    #newsletter-form button {
+        padding: 1rem 1.2rem;
+        font-size: 0.95rem;
+    }
+    
+    /* 5. Centered About & Connected Social Dock Mobile Styling */
+    .about-portrait-centered {
+        aspect-ratio: 4 / 3; /* Tighter block layout for mobile phones */
+        margin-bottom: 2.5rem;
+    }
+
+    .skills-grid-centered {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        margin-top: 3.5rem;
+        padding-top: 3rem;
+    }
+
+    .social-dock {
+        grid-template-columns: 1fr; /* Stacks to 1 column on phones for easy mobile clicking */
+        gap: 1rem;
+    }
+
+    .contact-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .footer-headline {
+        align-items: center;
+        text-align: center;
+    }
+}

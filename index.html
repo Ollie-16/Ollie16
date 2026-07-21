@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ollie16 //Creative Growth Director</title>
+    
+    <!-- External Typography & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Link to your separate Premium Lookbook Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Robust fallback styles so the workspace preview looks identical even if style.css is compiling */
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #121212;
+            --text-primary: #f5f5f7;
+            --text-muted: #86868b;
+            --accent-color: #d4af37;
+            --border-color: #262626;
+            --font-editorial: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        /* Smooth Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #262626;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Ambient Glow Backdrop */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.15;
+            background: radial-gradient(circle at 10% 20%, rgba(20, 45, 30, 0.4) 0%, rgba(0,0,0,0) 60%),
+                        radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.12) 0%, rgba(0,0,0,0) 50%);
+        }
+
+        /* Status Light Animation */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+        }
+        .status-dot::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            background-color: #10b981;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: ping 1.5s ease-in-out infinite;
+        }
+        @keyframes ping {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        /* Interactive guidance info box */
+        .info-console {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            max-width: 800px;
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+        }
+        .info-console i {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+        }
+        .info-console h3 {
+            font-family: var(--font-editorial);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        .info-console p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Interactive Grid Preset Selectors */
+        .preset-toggles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .preset-btn {
+            background-color: #1a1a1a;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .preset-btn.active, .preset-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--text-primary);
+            background-color: #222;
+        }
+
+        /* Interactive Brain Node Panel Styles */
+        .brain-panel {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3.5rem;
+            margin-top: 4rem;
+        }
+        @media (max-width: 992px) {
+            .brain-panel {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+        .nodes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+        }
+        @media (max-width: 576px) {
+            .nodes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .node-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+        .node-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+        .node-card.active {
+            border-color: var(--accent-color);
+            background: linear-gradient(135deg, #121212 0%, #171d18 100%);
+        }
+        .node-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        .node-card.active .node-meta {
+            color: var(--accent-color);
+        }
+        .node-card h4 {
+            font-family: var(--font-editorial);
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+        .node-card p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+        .display-board {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        .display-board::before {
+            content: 'SYSTEM ACTIVE';
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.65rem;
+            color: #10b981;
+            letter-spacing: 0.1em;
+            opacity: 0.85;
+        }
+        .display-code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .display-title {
+            font-family: var(--font-editorial);
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .display-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        .display-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .display-tag {
+            background-color: #0a0a0a;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.7rem;
+            padding: 0.3rem 0.65rem;
+            border-radius: 2px;
+        }
+        
+        /* Modern Video Controls Overlays */
+        .video-overlay-ctrl {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        .vid-btn {
+            background-color: rgba(10,10,10,0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-primary);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .vid-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        /* Success screen on submission */
+        .feedback-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+            z-index: 10;
+        }
+        .feedback-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .feedback-overlay i {
+            font-size: 3.5rem;
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+        .feedback-overlay h3 {
+            font-family: var(--font-editorial);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .feedback-overlay p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            max-width: 320px;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Multi-Slide Media Overrides */
+        .media-container.multi-slide {
+            position: relative;
+        }
+        
+        .media-container.multi-slide img,
+        .media-container.multi-slide video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .media-container.multi-slide .slide-item.active {
+            opacity: 1;
+            z-index: 2;
+            pointer-events: auto;
+        }
+
+        /* Elegant Minimalist Slide Navigation */
+        .slide-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            z-index: 10;
+            transition: var(--transition-smooth);
+        }
+
+        .media-container:hover .slide-nav {
+            opacity: 0.8;
+        }
+
+        .slide-nav:hover {
+            background: rgba(10, 10, 10, 0.9);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            opacity: 1 !important;
+        }
+
+        .slide-nav.prev {
+            left: 1rem;
+        }
+
+        .slide-nav.next {
+            right: 1rem;
+        }
+
+        /* Minimalist Balenciaga-Style Indicator Dashes */
+        .slide-indicators {
+            position: absolute;
+            bottom: 1.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.4rem;
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        .indicator-dash {
+            width: 16px;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.25);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .indicator-dash.active, .indicator-dash:hover {
+            background-color: var(--accent-color);
+            width: 28px;
+        }
+    </style>
+</head>
+<body class="spark-widget-shell antialiased">
+
+    <!-- Ambient Glow Backgrounds -->
+    <div class="ambient-glow"></div>
+
+    <header>
+        <div class="logo">
+            <span>Creative Growth Director</span>
+            <div style="font-family: 'Fira Code', monospace; font-size: 0.6rem; color: var(--accent-color); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem;">Multidisciplinary Console</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Intro</a></li>
+                <li><a href="#work">Media</a></li>
+                <li><a href="#about">The Archetypes</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div style="display: flex; align-items: center; gap: 0.6rem; font-family: 'Fira Code', monospace; font-size: 0.72rem; color: #10b981;">
+            <span class="status-dot"></span> LIVE 
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <span class="archive-subtitle" style="color: var(--accent-color); margin-bottom: 1rem; display: block;">// INTEGRATED OPERATIONS COMMAND</span>
+            <h1>Speaking silently through <span class="italic" style="color: var(--accent-color); font-style: italic;">Creative Direction</span>, photography,editor, digital marketing and growth.</h1>
+            <p>Welcome, Pleasure to connect. Im connecting all my talents and skills together in love, passion and knowledge..</p>
+            <p>I don't just create content to look pretty, I build digital assets that capture first party data and drive trackable revenue with Positive Metric.</p>
+            <p>As a dual threat digital marketer, I bridge the gap between high-end visual storytelling and technical performance architecture. </p> 
+
+            <!-- Creative Console Guidances -->
+            <div class="info-console">
+                <i class="material-icons">architecture</i>
+                <div>
+                    <h3>Editorial Fluid-Aspect Matrix</h3>
+                    <p>Standard static layouts routinely stretch, crop, or blur fine fashion photography and cinematic visual tracks. Below, click through the dynamic grid overrides to optimize for standard seamlessly.</p>
+                    <div class="preset-toggles">
+                        <button onclick="toggleGridPreset('edt')" id="btn-edt" class="preset-btn active">16 EDT</button>
+                        <button onclick="toggleGridPreset('cinematic')" id="btn-cinematic" class="preset-btn">Cinematic Grid </button>
+                        <button onclick="toggleGridPreset('portrait')" id="btn-portrait" class="preset-btn">Portrait Focus</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work">
+        <div class="section-header">
+            <h2>Selected Narrative Series</h2>
+            <span class="archive-subtitle">Index 01 // 16 EDT</span>
+        </div>
+<!-- Elegant Editorial Header + Integrated CTA -->
+<div class="flex flex-col md:flex-row md:items-end justify-between border-b border-[#262626] pb-4 mb-10 gap-4">
+  <div>
+    <span class="text-[10px] font-mono uppercase tracking-[0.3em] text-[#d4af37] block mb-1">Tap any frame to expand series</span>
+    <h4 class="text-2xl md:text-3xl font-serif text-[#f5f5f7] tracking-tight" style="text-align: center;">16 EDT</h4>
+  </div>
+</div>
+
+        <!-- Categorized block showing high-fidelity media cards -->
+        <div class="category-block">
+            <div id="media-grid-container" class="work-grid grid-portrait">
+                
+                <!-- Card 1: Editorial Portrait (Now with Multi-Image Slider) -->
+                <div class="work-card">
+                    <div class="media-container">
+                        <img src="images/portrait-01.jpg" alt="Sartorial Model Editorial 1">
+                        <img src="images/portrait-02.jpg" alt="Sartorial Model Editorial 2">
+                        <img src="images/portrait-03.jpg" alt="Sartorial Model Editorial 3">
+                        <img src="images/portrait-04.jpg" alt="Sartorial Model Editorial 4">
+                        <img src="images/portrait-05.jpg" alt="Sartorial Model Editorial 5">
+                        <img src="images/portrait-06.jpg" alt="Sartorial Model Editorial 6">
+                        <img src="images/portrait-07.jpg" alt="Sartorial Model Editorial 7">
+                        <img src="images/portrait-08.jpg" alt="Sartorial Model Editorial 8">
+                        <img src="images/portrait-09.jpg" alt="Sartorial Model Editorial 9">
+                        <img src="images/portrait-10.jpg" alt="Sartorial Model Editorial 10">
+                        <img src="images/portrait-11.jpg" alt="Sartorial Model Editorial 11">
+                        <div class="camera-tag">Click to Enlarge/ Scroll</div>
+                    </div>
+                    <div class="card-details">
+                        <h3>Anusha</h3>
+                        <p>VISUAL</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Cinematic Video Frame (Now supports mixed multi-media slider with video + images) -->
+                <div class="work-card">
+                    <div class="media-container" style="aspect-ratio: 16/9;">
+                        <video id="fashion-reel" loop muted playsinline autoplay>
+                            <source src="videos/cinematic-01.mp4" type="video/mp4">
+                        </video>
+                        <img src="images/cinematic-01.jpg" alt="Moving Texture Portrait Slide">
+                        <img src="images/cinematic-02.jpg" alt="Moving Texture Studio Slide">
+                        <div class="camera-tag">Click to Enlarge/ Scroll</div>
+                        <div class="video-overlay-ctrl">
+                            <button onclick="toggleMediaSound(event)" class="vid-btn"><i class="material-icons" style="font-size: 16px;">volume_off</i></button>
+                        </div>
+                    </div>
+                    <div class="card-details">
+                        <h3>YAS Marina</h3>
+                        <p>MOTION LIGHT DIRECTION</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Cinematic Landscape Photo (Now dual-image mini-slider) -->
+                <div class="work-card">
+                    <div class="media-container" style="aspect-ratio: 3/2;">
+                        <img src="images/landscape-01.jpg" alt="Whispering Wilds Landscape 1">
+                        <img src="images/landscape-02.jpg" alt="Whispering Wilds Landscape 2">
+                        <img src="images/landscape-03.jpg" alt="Whispering Wilds Landscape 3">
+                        <img src="images/landscape-04.jpg" alt="Whispering Wilds Landscape 4">
+                        <img src="images/landscape-05.jpg" alt="Whispering Wilds Landscape 5">
+                        <div class="camera-tag">Click to Enlarge/ Scroll</div>
+                    </div>
+                    <div class="card-details">
+                        <h3>Sun sets, </h3>
+                        <p>LANDSCAPE & COLOR GRADING</p>
+                    </div>
+                </div>
+
+
+<!-- WORK CARD: 4-Photo Series -->
+<article class="work-card grid-portrait cursor-pointer group">
+  <div class="media-container relative overflow-hidden rounded-lg bg-[#121212] aspect-[4/5]">
+    
+    <!-- Slide 1 (Default Active Cover) -->
+    <img 
+      src="images/woods-01.jpg" 
+      alt="Woods Frame 1" 
+      class="active w-full h-full object-cover transition-all duration-500 block"
+    />
+
+    <!-- Slide 2 -->
+    <img 
+      src="images/woods-02.jpg" 
+      alt="Woods Frame 2" 
+      class="w-full h-full object-cover transition-all duration-500 hidden"
+    />
+
+    <!-- Slide 3 -->
+    <img 
+      src="images/woods-03.jpg" 
+      alt="Woods Frame 3" 
+      class="w-full h-full object-cover transition-all duration-500 hidden"
+    />
+
+    <!-- Slide 4 -->
+    <img 
+      src="images/woods-04.jpg" 
+      alt="Woods Frame 4" 
+      class="w-full h-full object-cover transition-all duration-500 hidden"
+    />
+
+    <!-- Overlay Tag -->
+    <div class="camera-tag absolute bottom-3 right-3 bg-black/70 backdrop-blur-md text-[10px] font-mono px-3 py-1 rounded-full text-[#f5f5f7] border border-white/10 z-10">
+      woods series
+    </div>
+  </div>
+
+  <div class="card-info mt-3">
+    <h3 class="card-title text-lg font-serif text-[#f5f5f7]">Woods</h3>
+    <p class="card-category text-xs font-mono text-[#86868b] uppercase tracking-widest mt-1">Streetwear & Visual Direction</p>
+  </div>
+</article>
+
+
+            </div>
+        </div>
+
+
+            <!-- Case Study Conclusion Block matching Premium styling layouts -->
+            <div style="background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 2.5rem; border-radius: 4px; display: flex; flex-direction: column; gap: 1.5rem; margin-top: 3rem;">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <span class="archive-subtitle" style="color: var(--accent-color); margin-bottom: 0.5rem; display: block;">INTEGRATED CAPSTONE </span>
+                        <h3 style="font-family: var(--font-editorial); font-size: 1.8rem; font-weight: 400; color: var(--text-primary);">Sartorial Silence Curation</h3>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                        <span class="display-tag">Audit</span>
+                        <span class="display-tag">Strategy</span>
+                        <span class="display-tag">Blue Print</span>
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; max-width: 900px; margin: 0;">My expertise lies in designing stunning, aesthetic content Photography, Videography. Post Production and immediately wrapping it in robust technical infrastructure including Server-Side Google Tag Manager and CRM (Klaviyo) flow automation.</p>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; max-width: 900px; margin: 0;">By converting anonymous physical foot traffic (via captive portals) into high retention digital profiles, I help premium brands lower their Customer Acquisition Cost CAC and maximize Customer Lifetime Value LTV. Dive in Agile and Lean Marketing methodology, visualizing, working in fast paced environments along with AI tools.</p>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; max-width: 900px; margin: 0;">Visual Direction: High fashion, minimalist, and streetwear aesthetic curation with pro grade editing Adobe. Technical Execution:1st-party cookie enforcement, server-side data routing, and GA4 custom event tracking. Retention Systems:Advanced lifecycle email and SMS workflows optimized for high-ticket hospitality, luxury retail, and F&B brands and <strong>THATS NOT All.</strong> </p>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; max-width: 900px; margin: 0;">Let's build a digital creative hub.Thrive For Greatness TFG. Contact Me Now.</p>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="about-container-centered">
+                <span class="eyebrow">OPERATIONAL PROFILE ARCHETYPES</span>
+                <h2>Sartorial Architecture</h2>
+                
+                <div class="about-portrait-centered">
+                    <!-- High end cinematic loop serving as visual self-introduction -->
+                    <div style="width: 100%; height: 100%; position: relative;">
+                        <video id="about" loop muted playsinline autoplay style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65);">
+                            <source src="videos/reel1.mp4" type="video/mp4">
+                        </video>
+                        <div style="position: absolute; bottom: 2rem; left: 2rem; text-align: left;">
+                            <span class="archive-subtitle" style="color: var(--accent-color);">CREATIVE GROWTH DIRECTOR</span>
+                            <h4 style="font-family: var(--font-editorial); font-size: 1.5rem; color: var(--text-primary); font-weight: 400; margin-top: 0.4rem;">OLLIE16 BOOK ME NOW</h4>
+                              <button onclick="toggleMediaSound(event)" class="vid-btn"><i class="material-icons" style="font-size: 16px;">volume_off</i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-text-centered">
+                    <p class="lead">I don't just make pretty content,"No thats vernity"</p>
+                    <p>I Audit, Map out, Clearly understand my customers AIDA and bridge the gap to Engage and focus on Positive metrics. ROI</p>
+                </div>
+            </div>
+
+            <!-- Interactive Skills Console -->
+            <div class="brain-panel">
+                <div class="nodes-grid">
+                    
+                    <!-- Node 1 -->
+                    <div class="node-card active" onclick="syncArchetypeNode('photography', this)">
+                        <div class="node-meta">
+                            <span>01</span>
+                            <i class="material-icons" style="font-size: 14px;">photo_camera</i>
+                        </div>
+                        <h4>Photography</h4>
+                        <p>Composition, color science, and editorial lighting.</p>
+                    </div>
+
+                    <!-- Node 2 -->
+                    <div class="node-card" onclick="syncArchetypeNode('programming', this)">
+                        <div class="node-meta">
+                            <span>02</span>
+                            <i class="material-icons" style="font-size: 14px;">code</i>
+                        </div>
+                        <h4>Programming</h4>
+                        <p>High-fidelity interactions, clean layouts, and logic maps.</p>
+                    </div>
+
+                    <!-- Node 3 -->
+                    <div class="node-card" onclick="syncArchetypeNode('cinematography', this)">
+                        <div class="node-meta">
+                            <span>03</span>
+                            <i class="material-icons" style="font-size: 14px;">movie_filter</i>
+                        </div>
+                        <h4>Cinematography</h4>
+                        <p>Narrative direction, set blocking, and spatial curation.</p>
+                    </div>
+
+                    <!-- Node 4 -->
+                    <div class="node-card" onclick="syncArchetypeNode('modeling', this)">
+                        <div class="node-meta">
+                            <span>04</span>
+                            <i class="material-icons" style="font-size: 14px;">accessibility_new</i>
+                        </div>
+                        <h4>Visualizing</h4>
+                        <p>From problem solving and beyond.</p>
+                    </div>
+
+                </div>
+
+                <!-- Synchronizer display outputs -->
+                <div class="display-board">
+                    <div>
+                        <div id="sync-code" class="display-code">TFG</div>
+                        <h3 id="sync-title" class="display-title">Ollie Trevor @Ollie16</h3>
+                        <p id="sync-desc" class="display-desc">Am a 21 year old multi talented creator, Passionate and developing skills in path of my direction to help the world. I'm deeply inspired by Apples Marketing Strategy </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="connect-dock-section">
+            <div class="connect-inner">
+                <div class="connect-header">
+                    <h2>Bridge the Gap</h2>
+                    <p>Immediately initialize an operational sync or consult directly on high end creative briefs. <strong>Book Me Now</strong></p>
+                </div>
+                
+                <div class="social-dock">
+                    <a href="https://wa.me/+971502669024" target="_blank" class="social-btn whatsapp-btn">
+                        <i class="material-icons">chat</i>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="https://www.instagram.com/16edt?igsh=MWJqYnZzN3Ztb2o3YQ==" target="_blank" class="social-btn instagram-btn">
+                        <i class="material-icons">camera_alt</i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ollie16trevor" target="_blank" class="social-btn linkedin-btn">
+                        <i class="material-icons">work</i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="mailto:keiantrevorkaweesa@gmail.com" class="social-btn email-btn">
+                        <i class="material-icons">alternate_email</i>
+                        <span>Email Command</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="contact-footer-grid">
+                <div class="footer-headline">
+                    <h2>Connect the Matrices</h2>
+                    <p>Briefing details sent here, route instantly to my creative hub. Let us design structure, and visualize beauty.</p>
+                </div>
+
+                <div style="position: relative; width: 100%;">
+                    <form id="newsletter-form" onsubmit="handleMatrixConnect(event)">
+                        <input type="email" id="matrix-email" required placeholder="Enter email command..." aria-label="Email address for operations contact">
+                        <button type="submit">16 HUB</button>
+                    </form>
+
+                    <!-- Feedback screen built on success -->
+                    <div id="form-success" class="feedback-overlay">
+                        <i class="material-icons">check_circle_outline</i>
+                        <h3>Matrix Sync Engaged</h3>
+                        <p>Your address coordinates have bypassed system firewalls and connected successfully. Anticipate correspondence in 12 hours.</p>
+                        <button onclick="dismissFeedback()" class="preset-btn" style="border-color: var(--accent-color); color: var(--accent-color);">Reopen Console</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 OLLIE 16 // ALL OPERATIONS REGISTERED GLOBALLY // SPEAKING SILENTLY, THRIVING FOR GREATNESS</p>
+    </footer>
+
+    <div id="portfolio-lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <div id="lightbox-content-wrapper" style="position: relative;" onclick="event.stopPropagation()">
+            <!-- Media content (img/video) will be injected dynamically here -->
+        </div>
+    </div>
+
+    <script>
+        // Interactive Archetype Data Set
+        const archetypeNodes = {
+            photography: {
+                code: "ACT_01 // PHOTO_MATRIX",
+                title: "Editorial Photography",
+                desc: "Capturing organic structures, fashion details, and muted landscapes. Fully designed to maintain absolute visual integrity with standard 1280x853 compositions, avoiding sloppy automatic crop layouts.",
+                tags: ["COLOR GRADING", "SARTORIAL LIGHTING", "EDITORIAL DIRECTION", "RAW FRAMING"]
+            },
+            programming: {
+                code: "ACT_02 // SYSTEM_DEVELOPMENT",
+                title: "Layout Development",
+                desc: "Developing ultra-fast interfaces, custom database grids, and interactive layouts. Translates complex design strategies directly into pixel-perfect, clean, structured visual frameworks.",
+                tags: ["CLEAN MARKUP", "TAILWIND UTILITIES", "INTERACTION ENGINES", "AESTHETIC SCHEMAS"]
+            },
+            cinematography: {
+                code: "ACT_03 // MOTION_CURATION",
+                title: "Cinematography",
+                desc: "Directing cinematic narrative tempos, block light setups, and behind-the-scenes blockages. Bridging static fashion concepts with moving, atmospheric, natural video elements.",
+                tags: ["TEMPO CONTROL", "SET DESIGN", "BLOCKING PROTOCOLS", "ORGANIC VISUALS"]
+            },
+            modeling: {
+                code: "ACT_04 // ANATOMICAL_CANVAS",
+                title: "Fashion Modeling",
+                desc: "Performing as the physical architectural canvas. Applying bodily geometry, emotional tones, and physical dynamics to bring highly abstract creative briefs to life on camera.",
+                tags: ["SARTORIAL SHAPE", "EDITORIAL POSING", "NARRATIVE EXPRESSION", "HIGH STAGE PRESENCE"]
+            }
+        };
+
+        // Node Syncer
+        function syncArchetypeNode(key, element) {
+            // Unhighlight all node cards
+            document.querySelectorAll('.node-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            // Highlight active clicked card
+            element.classList.add('active');
+
+            // Load and animate content into our display panel
+            const data = archetypeNodes[key];
+            if (data) {
+                document.getElementById('sync-code').textContent = data.code;
+                document.getElementById('sync-title').textContent = data.title;
+                document.getElementById('sync-desc').textContent = data.desc;
+
+                const tagsContainer = document.getElementById('sync-tags');
+                tagsContainer.innerHTML = '';
+                data.tags.forEach(tag => {
+                    const span = document.createElement('span');
+                    span.className = 'display-tag';
+                    span.textContent = tag;
+                    tagsContainer.appendChild(span);
+                });
+            }
+        }
+
+        // Responsive Aspect-Ratio Preset Toggles (No Crop solutions)
+    function toggleGridPreset(presetType) {
+        const container = document.getElementById('media-grid-container');
+        const cards = container.querySelectorAll('.work-card .media-container');
+
+        // Reset dynamic preset buttons
+        document.querySelectorAll('.preset-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // Set current preset active style
+        document.getElementById('btn-' + presetType).classList.add('active');
+
+        // Strip existing overrides
+        container.className = 'work-grid';
+
+        cards.forEach((card, idx) => {
+            card.removeAttribute('style'); // Strip custom hardcoded height aspects
+            
+            if (presetType === 'masonry') {
+                // Restore optimal varied editorial aspects
+                container.classList.add('grid-portrait');
+                if (idx === 1) card.style.aspectRatio = "16/9";
+                if (idx === 2) card.style.aspectRatio = "3/2";
+            } else if (presetType === 'cinematic') {
+                // Force cinematic proportions across all containers
+                container.classList.add('grid-landscape');
+            } else if (presetType === 'portrait') {
+                // Force vertical portrait ratios across all containers
+                container.classList.add('grid-portrait');
+            }
+        });
+    }
+
+    // Interactive Sound Toggle for inline videos
+    function toggleMediaSound(event) {
+        event.stopPropagation(); // Avoid triggering lightbox clicks
+        const button = event.currentTarget;
+        const container = button.closest('.about-portrait-centered, .media-container');
+        const video = container.querySelector('video.active') || container.querySelector('video');
+        if (!video) return;
+        
+        const icon = button.querySelector('i');
+        if (video.muted) {
+            video.muted = false;
+            icon.textContent = 'volume_up';
+        } else {
+            video.muted = true;
+            icon.textContent = 'volume_off';
+        }
+    }
+
+    // Stateful Multi-Slide Carousels
+    function initSlideshows() {
+        const containers = document.querySelectorAll('.media-container');
+        containers.forEach((container, cardIdx) => {
+            const items = container.querySelectorAll('img, video');
+            if (items.length <= 1) {
+                // Standard Single Item: Bind simple click-to-lightbox behavior
+                container.onclick = () => {
+                    const single = items[0];
+                    if (single) {
+                        const type = single.tagName.toLowerCase() === 'video' ? 'video' : 'image';
+                        openLightboxForElement(single, type);
+                    }
+                };
+                return;
+            }
+
+            // Multiple Items! Let's convert this into an editorial slideshow
+            container.classList.add('multi-slide');
+            
+            let activeIndex = 0;
+
+            // Structure current children
+            items.forEach((item, index) => {
+                item.classList.add('slide-item');
+                if (index === 0) item.classList.add('active');
+                else item.classList.remove('active');
+            });
+
+            // Generate Arrow Controls
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'slide-nav prev';
+            prevBtn.setAttribute('aria-label', 'Previous slide');
+            prevBtn.innerHTML = '<i class="material-icons">chevron_left</i>';
+            
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'slide-nav next';
+            nextBtn.setAttribute('aria-label', 'Next slide');
+            nextBtn.innerHTML = '<i class="material-icons">chevron_right</i>';
+
+            // Generate Balenciaga-style trackers
+            const indicators = document.createElement('div');
+            indicators.className = 'slide-indicators';
+            items.forEach((_, index) => {
+                const dash = document.createElement('span');
+                dash.className = `indicator-dash ${index === 0 ? 'active' : ''}`;
+                dash.onclick = (e) => {
+                    e.stopPropagation();
+                    goToSlide(index);
+                };
+                indicators.appendChild(dash);
+            });
+
+            container.appendChild(prevBtn);
+            container.appendChild(nextBtn);
+            container.appendChild(indicators);
+
+            function goToSlide(newIndex) {
+                items[activeIndex].classList.remove('active');
+                indicators.children[activeIndex].classList.remove('active');
+                
+                if (items[activeIndex].tagName.toLowerCase() === 'video') {
+                    items[activeIndex].pause();
+                }
+
+                activeIndex = (newIndex + items.length) % items.length;
+                
+                items[activeIndex].classList.add('active');
+                indicators.children[activeIndex].classList.add('active');
+
+                if (items[activeIndex].tagName.toLowerCase() === 'video') {
+                    items[activeIndex].play().catch(() => {});
+                }
+            }
+
+            prevBtn.onclick = (e) => {
+                e.stopPropagation();
+                goToSlide(activeIndex - 1);
+            };
+
+            nextBtn.onclick = (e) => {
+                e.stopPropagation();
+                goToSlide(activeIndex + 1);
+            };
+
+            // Open lightbox on clicking the active slide item (excluding button elements)
+            container.onclick = (e) => {
+                if (e.target.closest('.slide-nav') || e.target.closest('.slide-indicators') || e.target.closest('.video-overlay-ctrl') || e.target.closest('.vid-btn')) {
+                    return;
+                }
+                const activeMedia = items[activeIndex];
+                const type = activeMedia.tagName.toLowerCase() === 'video' ? 'video' : 'image';
+                openLightboxForElement(activeMedia, type);
+            };
+        });
+    }
+
+    // Dedicated helper to open Lightbox on slides
+    function openLightboxForElement(mediaElement, type) {
+        const lightbox = document.getElementById('portfolio-lightbox');
+        const wrapper = document.getElementById('lightbox-content-wrapper');
+        wrapper.innerHTML = ''; // Reset
+
+        if (type === 'image') {
+            const img = document.createElement('img');
+            img.src = mediaElement.src;
+            img.className = 'lightbox-content';
+            img.alt = mediaElement.alt || 'Portfolio Slider Zoom View';
+            wrapper.appendChild(img);
+        } else if (type === 'video') {
+            const video = document.createElement('video');
+            video.className = 'lightbox-content';
+            video.controls = true;
+            video.autoplay = true;
+            video.loop = true;
+            const source = document.createElement('source');
+            const originalSource = mediaElement.querySelector('source');
+            source.src = originalSource ? originalSource.src : mediaElement.src;
+            source.type = 'video/mp4';
+            video.appendChild(source);
+            wrapper.appendChild(video);
+        }
+
+        lightbox.classList.add('active');
+    }
+
+    // Initialize Slideshows on Load
+    document.addEventListener('DOMContentLoaded', initSlideshows);
+
+    // Fully Integrated Lightbox Popup System
+    function openLightbox(element, type) {
+        // Deprecated fallback: our custom container onclicks now bypass this with superior active-slide routing
+        const firstMedia = element.querySelector('img, video');
+        if (firstMedia) {
+            const actualType = firstMedia.tagName.toLowerCase() === 'video' ? 'video' : 'image';
+            openLightboxForElement(firstMedia, actualType);
+        }
+    }
+
+    function closeLightbox() {
+        const lightbox = document.getElementById('portfolio-lightbox');
+        const wrapper = document.getElementById('lightbox-content-wrapper');
+        wrapper.innerHTML = ''; // Destroy video to stop background playing
+        lightbox.classList.remove('active');
+    }
+
+    // Contact submission feedback system
+        function handleMatrixConnect(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('matrix-email').value;
+            if (emailInput.trim() !== '') {
+                document.getElementById('form-success').classList.add('active');
+            }
+        }
+
+        function dismissFeedback() {
+            document.getElementById('form-success').classList.remove('active');
+            document.getElementById('newsletter-form').reset();
+        }
+
+        // Escape Key closures for Lightbox
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
