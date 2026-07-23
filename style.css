@@ -191,18 +191,6 @@ section {
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Disable image saving, selection, and long-press popups on mobile */
-img, video {
-  -webkit-touch-callout: none !important; /* Disables iOS long-press menu */
-  -webkit-user-select: none !important;   /* Safari */
-  -khtml-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-  -webkit-user-drag: none !important;     /* Disables dragging images */
-  pointer-events: auto;
-}
-
 /* Hover Zoom Effect */
 .work-card:hover .media-container img,
 .work-card:hover .media-container video {
@@ -249,6 +237,21 @@ img, video {
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
+}
+
+/* Invisible Shield & Image Protection */
+img, video {
+  pointer-events: none !important; /* Disables direct touches/clicks on raw image files */
+  -webkit-touch-callout: none !important; /* Kills iOS "Save to Photos" pop-up */
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+}
+
+/* Ensure the card container still accepts clicks/taps for Lightbox */
+.work-card, .media-container {
+  pointer-events: auto !important;
+  -webkit-touch-callout: none !important;
 }
 
 /* ==========================================================================
@@ -687,9 +690,9 @@ footer {
         align-items: center;
         text-align: center;
     }
-}
-/* Always display control overlays on mobile touchscreens without requiring hover */
-@media (hover: none) {
+
+    /* Force all navigation overlays to stay visible on mobile/touch screens */
+@media (pointer: coarse), (max-width: 768px) {
   .camera-tag,
   .card-nav-arrow,
   .slide-dots,
@@ -698,4 +701,5 @@ footer {
     visibility: visible !important;
     display: flex !important;
   }
+}
 }
