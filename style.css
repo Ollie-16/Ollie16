@@ -191,6 +191,18 @@ section {
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Disable image saving, selection, and long-press popups on mobile */
+img, video {
+  -webkit-touch-callout: none !important; /* Disables iOS long-press menu */
+  -webkit-user-select: none !important;   /* Safari */
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;     /* Disables dragging images */
+  pointer-events: auto;
+}
+
 /* Hover Zoom Effect */
 .work-card:hover .media-container img,
 .work-card:hover .media-container video {
@@ -675,4 +687,15 @@ footer {
         align-items: center;
         text-align: center;
     }
+}
+/* Always display control overlays on mobile touchscreens without requiring hover */
+@media (hover: none) {
+  .camera-tag,
+  .card-nav-arrow,
+  .slide-dots,
+  .media-overlay {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+  }
 }

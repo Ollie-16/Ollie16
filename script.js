@@ -165,6 +165,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Block right-click context menu on images and videos
+document.addEventListener('contextmenu', (e) => {
+  if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
+    e.preventDefault();
+  }
+});
+
+// Block drag-and-drop saving
+document.addEventListener('dragstart', (e) => {
+  if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
+    e.preventDefault();
+  }
+});
+
     // Lightbox Close Handler
     const closeLightbox = () => {
         if (!lightbox) return;
