@@ -283,3 +283,53 @@ document.addEventListener('dragstart', (e) => {
         });
     });
 });
+// ============================================================================
+// MOBILE TOUCH / SWIPE NAVIGATION FOR MULTI-FRAME CARDS
+// ============================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const mediaContainers = document.querySelectorAll('.media-container');
+
+  mediaContainers.forEach(container => {
+    let startX = 0;
+    let startY = 0;
+
+    container.addEventListener('touchstart', (e) => {
+      startX = e.changedTouches[0].screenX;
+      startY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].screenX;
+      const endY = e.changedTouches[0].screenY;
+      
+      const diffX = endX - startX;
+      const diffY = endY - startY;
+
+      // Only trigger if horizontal swipe is greater than vertical movement (at least 40px)
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+        const slides = Array.from(container.querySelectorAll('img, video'));
+        if (slides.length <= 1) return; // Skip if card only has 1 image
+
+        let currentIndex = slides.findIndex(slide => slide.classList.contains('active'));
+        if (currentIndex === -1) currentIndex = 0;
+
+        // Hide current active slide
+        slides[currentIndex].classList.remove('active', 'block');
+        slides[currentIndex].classList.add('hidden');
+
+        // Calculate next slide index
+        if (diffX < 0) {
+          // Swiped Left -> Next Image
+          currentIndex = (currentIndex + 1) % slides.length;
+        } else {
+          // Swiped Right -> Previous Image
+          currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        }
+
+        // Show new active slide
+        slides[currentIndex].classList.remove('hidden');
+        slides[currentIndex].classList.add('active', 'block');
+      }
+    }, { passive: true });
+  });
+});
