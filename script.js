@@ -281,55 +281,42 @@ document.addEventListener('dragstart', (e) => {
                 skill_category: categoryTitle
             });
         });
-    });
-});
 // ============================================================================
-// MOBILE TOUCH / SWIPE NAVIGATION FOR MULTI-FRAME CARDS
+// MOBILE TOUCH / SWIPE NAVIGATION (COMPATIBLE WITH EXISTING ARROWS)
 // ============================================================================
 document.addEventListener('DOMContentLoaded', () => {
-  const mediaContainers = document.querySelectorAll('.media-container');
+  let touchStartX = 0;
+  let touchStartY = 0;
 
-  mediaContainers.forEach(container => {
-    let startX = 0;
-    let startY = 0;
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
 
-    container.addEventListener('touchstart', (e) => {
-      startX = e.changedTouches[0].screenX;
-      startY = e.changedTouches[0].screenY;
-    }, { passive: true });
+  document.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].screenX;
+    const touchEndY = e.changedTouches[0].screenY;
 
-    container.addEventListener('touchend', (e) => {
-      const endX = e.changedTouches[0].screenX;
-      const endY = e.changedTouches[0].screenY;
-      
-      const diffX = endX - startX;
-      const diffY = endY - startY;
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
 
-      // Only trigger if horizontal swipe is greater than vertical movement (at least 40px)
-      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
-        const slides = Array.from(container.querySelectorAll('img, video'));
-        if (slides.length <= 1) return; // Skip if card only has 1 image
+    // Trigger only if horizontal swipe is greater than vertical scroll (at least 40px)
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+      // Find the card container where the touch happened
+      const card = e.target.closest('.work-card') || e.target.closest('.media-container');
+      if (!card) return;
 
-        let currentIndex = slides.findIndex(slide => slide.classList.contains('active'));
-        if (currentIndex === -1) currentIndex = 0;
-
-        // Hide current active slide
-        slides[currentIndex].classList.remove('active', 'block');
-        slides[currentIndex].classList.add('hidden');
-
-        // Calculate next slide index
-        if (diffX < 0) {
-          // Swiped Left -> Next Image
-          currentIndex = (currentIndex + 1) % slides.length;
-        } else {
-          // Swiped Right -> Previous Image
-          currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        }
-
-        // Show new active slide
-        slides[currentIndex].classList.remove('hidden');
-        slides[currentIndex].classList.add('active', 'block');
+      if (diffX < 0) {
+        // Swiped Left -> Find & click Next Arrow
+        const nextBtn = card.querySelector('.card-nav-arrow.next, .next-btn, [data-dir="next"]');
+        if (nextBtn) nextBtn.click();
+      } else {
+        // Swiped Right -> Find & click Previous Arrow
+        const prevBtn = card.querySelector('.card-nav-arrow.prev, .prev-btn, [data-dir="prev"]');
+        if (prevBtn) prevBtn.click();
       }
-    }, { passive: true });
+    }
+  }, { passive: true });
+});
   });
 });
