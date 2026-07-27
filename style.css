@@ -20,6 +20,11 @@
     --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Global Utility Helper */
+.hidden {
+    display: none !important;
+}
+
 /* ==========================================================================
    2. SYSTEM RESET (Standard Developer Best Practice)
    ========================================================================== */
@@ -44,7 +49,7 @@ body {
 }
 
 /* ==========================================================================
-   3. HEADER & NAVIGATION (Minimalist Branding)
+   3. HEADER & NAVIGATION (With Dynamic Live Status Ticker)
    ========================================================================== */
 header {
     display: flex;
@@ -85,6 +90,44 @@ header nav a {
 header nav a:hover {
     color: var(--text-primary);
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Dynamic Live Status Badge */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.9rem;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    backdrop-filter: blur(8px);
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    box-shadow: 0 0 8px var(--accent-color);
+    animation: pulseDot 2s infinite;
+    flex-shrink: 0;
+}
+
+@keyframes pulseDot {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.85); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+#dynamic-status-text {
+    font-size: 0.72rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    transition: opacity 0.4s ease;
+    white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -169,6 +212,9 @@ section {
     flex-direction: column;
     gap: 1.2rem;
     background-color: transparent;
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 /* Media Container: Forces a strict vertical/horizontal ratio depending on configuration */
@@ -180,6 +226,7 @@ section {
     border-radius: 4px;
     border: 1px solid var(--border-color);
     cursor: pointer;
+    touch-action: pan-y;
 }
 
 /* Base Image and Video styles */
@@ -272,7 +319,7 @@ img, video {
 }
 
 /* ==========================================================================
-   8. CENTERED ABOUT SECTION (Editorial Style)
+   8. CENTERED ABOUT SECTION (Editorial Style & 3-Video Triptych)
    ========================================================================== */
 .about-container-centered {
     max-width: 800px;
@@ -299,11 +346,11 @@ img, video {
     margin-bottom: 3.5rem;
 }
 
-/* Centered Portrait Frame */
+/* Centered Portrait Frame (Legacy Single Video Container) */
 .about-portrait-centered {
     width: 100%;
     max-width: 600px;
-    aspect-ratio: 16 / 10; /* Modern, wide editorial profile crop */
+    aspect-ratio: 16 / 10;
     background-color: var(--card-bg);
     border-radius: 4px;
     overflow: hidden;
@@ -311,10 +358,65 @@ img, video {
     margin-bottom: 4rem;
 }
 
-.about-portrait-centered img {
+.about-portrait-centered img,
+.about-portrait-centered video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* 3-Video Triptych Grid Layout */
+.about-triptych-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1000px;
+    margin: 2rem 0 4rem 0;
+}
+
+.video-triptych-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 15.4 / 10;
+    object-fit: cover;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.video-triptych-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-triptych-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.2rem 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.4) 60%, transparent);
+    text-align: left;
+}
+
+.video-triptych-overlay .tag {
+    font-size: 0.68rem;
+    color: var(--accent-color);
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.video-triptych-overlay h4 {
+    font-family: var(--font-editorial);
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    font-weight: 400;
 }
 
 /* Elegant narrative spacing - lines follow each other gracefully */
@@ -480,13 +582,12 @@ img, video {
     gap: 4rem;
 }
 
-/* Flex layout forces physical stacking, preventing vertical overlapping */
 .footer-headline {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 1rem; /* Clean, reliable vertical space between head and paragraph */
+    gap: 1rem;
     text-align: left;
 }
 
@@ -494,7 +595,7 @@ img, video {
     font-family: var(--font-editorial);
     font-size: 2.2rem;
     font-weight: 400;
-    line-height: 1.25; /* Prevents overlap if the heading wraps to 2 lines */
+    line-height: 1.25;
     margin: 0;
     display: block;
 }
@@ -558,14 +659,14 @@ img, video {
    11. LIGHTBOX POPUP SYSTEM
    ========================================================================== */
 .lightbox {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
-    z-index: 1000; /* Stays above everything */
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(10, 10, 10, 0.95); /* Deep dark background */
+    background-color: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(15px);
     justify-content: center;
     align-items: center;
@@ -573,7 +674,6 @@ img, video {
     transition: opacity 0.4s ease;
 }
 
-/* Active class applied via JS to trigger smooth fade-in */
 .lightbox.active {
     display: flex;
     opacity: 1;
@@ -589,13 +689,11 @@ img, video {
     animation: zoomIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Animations for premium feel */
 @keyframes zoomIn {
     from { transform: scale(0.95); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
-/* Lightbox Close Button */
 .lightbox-close {
     position: absolute;
     top: 2rem;
@@ -628,16 +726,11 @@ footer {
 /* ==========================================================================
    13. RESPONSIVE DESIGN (Mobile & Tablet Adjustments)
    ========================================================================== */
-
-/* This rule triggers only on screens that are 768px wide or smaller */
 @media (max-width: 768px) {
-    
-    /* 1. Adjust Spacing: Massive 8rem padding is too big for mobile screens */
     section {
         padding: 4rem 0;
     }
 
-    /* 2. Stack the Header: Let logo and nav stack beautifully if space is tight */
     header {
         flex-direction: column;
         gap: 1.2rem;
@@ -650,21 +743,33 @@ footer {
         justify-content: center;
     }
 
-    /* 3. Collapse Grid Layouts: Force the 2-column contact section to stack vertically */
+    .status-badge {
+        width: 100%;
+        justify-content: center;
+    }
+
+    #dynamic-status-text {
+        font-size: 0.65rem;
+    }
+
+    .about-triptych-grid {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+        margin: 2rem auto;
+    }
+
     #contact {
         padding: 4rem 0;
     }
 
-    /* 4. Fine-tune the Form elements for fat-finger mobile tapping */
     #newsletter-form input[type="email"],
     #newsletter-form button {
         padding: 1rem 1.2rem;
         font-size: 0.95rem;
     }
-    
-    /* 5. Centered About & Connected Social Dock Mobile Styling */
+
     .about-portrait-centered {
-        aspect-ratio: 4 / 3; /* Tighter block layout for mobile phones */
+        aspect-ratio: 4 / 3;
         margin-bottom: 2.5rem;
     }
 
@@ -676,7 +781,7 @@ footer {
     }
 
     .social-dock {
-        grid-template-columns: 1fr; /* Stacks to 1 column on phones for easy mobile clicking */
+        grid-template-columns: 1fr;
         gap: 1rem;
     }
 
@@ -690,16 +795,125 @@ footer {
         align-items: center;
         text-align: center;
     }
-
-    /* Force all navigation overlays to stay visible on mobile/touch screens */
-@media (pointer: coarse), (max-width: 768px) {
-  .camera-tag,
-  .card-nav-arrow,
-  .slide-dots,
-  .media-overlay {
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: flex !important;
-  }
 }
+/* ============================================================================
+   INTERACTIVE PERSONA PORTAL STYLES
+   ============================================================================ */
+.capstone-interactive-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+}
+
+.capstone-header .eyebrow {
+    font-size: 0.72rem;
+    color: var(--accent-color);
+    letter-spacing: 0.15em;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+}
+
+.capstone-header h2 {
+    font-family: var(--font-editorial);
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0.4rem 0 0.6rem 0;
+}
+
+.capstone-header .subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+/* Tab Pills Container */
+.persona-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+.persona-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 0.6rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.78rem;
+    font-family: var(--font-sans);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.persona-btn:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}
+
+.persona-btn.active {
+    background-color: var(--text-primary);
+    color: var(--bg-color);
+    border-color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Dynamic Display Box */
+.persona-display-box {
+    background: rgba(10, 10, 10, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 2rem;
+    transition: opacity 0.3s ease;
+}
+
+.persona-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-family: var(--font-sans);
+    color: var(--accent-color);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+}
+
+.persona-display-box h3 {
+    font-family: var(--font-editorial);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.persona-display-box p {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+}
+
+.persona-cta-btn {
+    display: inline-block;
+    padding: 0.9rem 1.4rem;
+    background-color: var(--text-primary);
+    color: var(--bg-color);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: var(--transition-smooth);
+}
+
+.persona-cta-btn:hover {
+    background-color: var(--accent-color);
+    color: #000;
+    transform: translateY(-2px);
 }

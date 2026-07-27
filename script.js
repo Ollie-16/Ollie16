@@ -1,81 +1,54 @@
-// ==========================================================================
-// PORTFOLIO LIGHTBOX (Click-to-Expand) SYSTEM
-// ==========================================================================
+// ============================================================================
+// GLOBAL MEDIA SOUND TOGGLE & SAFARI PLAYBACK CONTROLLER
+// ============================================================================
+window.toggleMediaSound = function(event) {
+  event.stopPropagation(); // Prevents lightbox from opening when clicking sound
+  const btn = event.currentTarget;
+  const card = btn.closest('.video-triptych-card') || btn.closest('.about-portrait-centered') || btn.closest('.work-card');
+  const video = card ? card.querySelector('video') : null;
 
-document.addEventListener('DOMContentLoaded', () => {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxVideo = document.getElementById('lightbox-video');
-    const closeBtn = document.querySelector('.lightbox-close');
-    const mediaContainers = document.querySelectorAll('.media-container');
-
-   function openLightbox(card) {
-  // 1. Find the active slide (or fall back to the first image/video)
-  const activeMedia = card.querySelector('.media-container img.active, .media-container video.active') 
-                   || card.querySelector('.media-container img, .media-container video');
-
-  if (!activeMedia) return;
-
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const lightboxVideo = document.getElementById('lightbox-video');
-
-  // 2. Display the exact active image or video inside the Lightbox
-  if (activeMedia.tagName.toLowerCase() === 'img') {
-    if (lightboxImg) {
-      lightboxImg.src = activeMedia.src;
-      lightboxImg.classList.remove('hidden');
+  if (video) {
+    video.muted = !video.muted;
+    
+    // If video was suspended by browser, force play on click
+    if (video.paused) {
+      video.play().catch(e => console.log('Playback error:', e));
     }
-    if (lightboxVideo) {
-      lightboxVideo.pause();
-      lightboxVideo.classList.add('hidden');
-    }
-  } else if (activeMedia.tagName.toLowerCase() === 'video') {
-    if (lightboxVideo) {
-      const src = activeMedia.querySelector('source')?.src || activeMedia.src;
-      lightboxVideo.src = src;
-      lightboxVideo.classList.remove('hidden');
-      lightboxVideo.play();
-    }
-    if (lightboxImg) {
-      lightboxImg.classList.add('hidden');
+
+    const icon = btn.querySelector('i');
+    if (icon) {
+      icon.textContent = video.muted ? 'volume_off' : 'volume_up';
     }
   }
+};
 
-  // 3. Reveal Lightbox Modal
-  lightbox.classList.remove('hidden');
-  lightbox.classList.add('flex');
-}
-
-    // Close Lightbox function
-    const closeLightbox = () => {
-        lightbox.classList.remove('active');
-        lightboxImg.src = '';
-        lightboxVideo.src = '';
-        lightboxVideo.pause();
-    };
-
-    // Close on clicking Close Button or clicking outside the media
-    closeBtn.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
-    });
-
-    // Close on ESC key press
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-            closeLightbox();
-        }
-    });
+// Force all inline videos to loop and play cleanly on page load (Safari Fix)
+document.addEventListener('DOMContentLoaded', () => {
+  const autoVideos = document.querySelectorAll('video');
+  autoVideos.forEach(vid => {
+    vid.muted = true;
+    vid.playsInline = true;
+    vid.loop = true;
+    
+    const playPromise = vid.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Fallback: If Safari suspended autoplay, trigger on first user tap anywhere
+        const startPlay = () => {
+          vid.play();
+          document.removeEventListener('touchstart', startPlay);
+          document.removeEventListener('click', startPlay);
+        };
+        document.addEventListener('touchstart', startPlay, { once: true });
+        document.addEventListener('click', startPlay, { once: true });
+      });
+    }
+  });
 });
 /**
  * ============================================================================
  * ARCHETYPE ENGINE & DATA LAYER TRACKING SYSTEM
  * ============================================================================
- * Handles both the interactive editorial UI (lightbox, sliders, video controls)
- * and initializes the Google Tag Manager (GTM) dataLayer event pipeline.
  */
 
 // 1. INITIALIZE GOOGLE TAG MANAGER DATA LAYER
@@ -83,8 +56,6 @@ window.dataLayer = window.dataLayer || [];
 
 /**
  * Universal helper function to push clean events into GTM dataLayer
- * @param {string} eventName - Name of the custom event (e.g., 'contact_click')
- * @param {Object} eventParams - Contextual metadata associated with the event
  */
 function trackDataLayerEvent(eventName, eventParams = {}) {
     const payload = {
@@ -96,8 +67,6 @@ function trackDataLayerEvent(eventName, eventParams = {}) {
     };
     
     window.dataLayer.push(payload);
-    
-    // Developer console log for real-time testing and debugging
     console.log(`[DataLayer Event]: ${eventName}`, payload);
 }
 
@@ -122,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     mediaContainers.forEach((container, index) => {
         container.addEventListener('click', () => {
-            const activeImg = container.querySelector('img');
-            const activeVideo = container.querySelector('video');
+            const activeImg = container.querySelector('img:not(.hidden)');
+            const activeVideo = container.querySelector('video:not(.hidden)');
             const cardTitle = container.closest('.work-card')?.querySelector('h3')?.innerText || `Item ${index + 1}`;
             const cameraTag = container.querySelector('.camera-tag')?.innerText || 'Unspecified Gear';
 
@@ -166,18 +135,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Block right-click context menu on images and videos
-document.addEventListener('contextmenu', (e) => {
-  if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
-    e.preventDefault();
-  }
-});
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
+        e.preventDefault();
+      }
+    });
 
-// Block drag-and-drop saving
-document.addEventListener('dragstart', (e) => {
-  if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
-    e.preventDefault();
-  }
-});
+    // Block drag-and-drop saving
+    document.addEventListener('dragstart', (e) => {
+      if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
+        e.preventDefault();
+      }
+    });
 
     // Lightbox Close Handler
     const closeLightbox = () => {
@@ -219,7 +188,6 @@ document.addEventListener('dragstart', (e) => {
 
             const destinationUrl = button.getAttribute('href');
 
-            // Fire DataLayer Event for Direct Lead Generation / Social Clicks
             trackDataLayerEvent('contact_channel_click', {
                 contact_platform: platform,
                 destination_url: destinationUrl,
@@ -241,15 +209,12 @@ document.addEventListener('dragstart', (e) => {
             const emailValue = emailInput ? emailInput.value.trim() : '';
 
             if (emailValue) {
-                // Fire DataLayer Event for Newsletter Lead Capture
                 trackDataLayerEvent('newsletter_lead_submit', {
                     form_id: 'newsletter-form',
                     form_location: 'footer_audit_access',
-                    // Note: Email address is passed cleanly to the dataLayer for CRM hashing
                     user_email_provided: true
                 });
 
-                // Display a clean confirmation state on the button
                 const submitButton = newsletterForm.querySelector('button[type="submit"]');
                 if (submitButton) {
                     const originalText = submitButton.innerText;
@@ -269,7 +234,7 @@ document.addEventListener('dragstart', (e) => {
     }
 
     // ------------------------------------------------------------------------
-    // D. SKILLS CONSOLE ("THE BRAIN") INTERACTIVE LOGGING
+    // D. SKILLS CONSOLE INTERACTIVE LOGGING
     // ------------------------------------------------------------------------
     const skillCategoryElements = document.querySelectorAll('.skill-category');
 
@@ -281,42 +246,302 @@ document.addEventListener('dragstart', (e) => {
                 skill_category: categoryTitle
             });
         });
+    });
+
+    // ------------------------------------------------------------------------
+    // E. DYNAMIC TOP STATUS COMMAND TICKER
+    // ------------------------------------------------------------------------
+    const statusPhrases = [
+        "AVAILABLE FOR STRATEGY & CREATIVE DIRECTION",
+        "BOOK ME: MEDIA PRODUCTIONS, FILM SETS & SHOOTS",
+        "CUSTOMER JOURNEY MAPPING // FUNNELS & ANALYTICS",
+        "RESERVE A DATE: LET'S BUILD TOGETHER",
+        "PHOTOGRAPHY & CINEMATOGRAPHY COMMISSIONS OPEN"
+    ];
+
+    let statusIndex = 0;
+    const statusEl = document.getElementById('dynamic-status-text');
+
+    if (statusEl) {
+        setInterval(() => {
+            statusEl.style.opacity = '0';
+            setTimeout(() => {
+                statusIndex = (statusIndex + 1) % statusPhrases.length;
+                statusEl.textContent = statusPhrases[statusIndex];
+                statusEl.style.opacity = '1';
+            }, 400);
+        }, 3500);
+    }
+
+    // ------------------------------------------------------------------------
+    // F. NATIVE TOUCH SWIPE CONTROLLER FOR MOBILE / TABLETS
+    // ------------------------------------------------------------------------
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+        if (!touchStartX || !touchStartY) return;
+
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {
+            const cardContainer = e.target.closest('.media-container') || e.target.closest('.work-card');
+            
+            if (cardContainer) {
+                const slides = Array.from(cardContainer.querySelectorAll('img, video'));
+                if (slides.length <= 1) return;
+
+                let activeIndex = slides.findIndex(s => !s.classList.contains('hidden'));
+                if (activeIndex === -1) activeIndex = 0;
+
+                slides[activeIndex].classList.add('hidden');
+
+                if (diffX < 0) {
+                    activeIndex = (activeIndex + 1) % slides.length;
+                } else {
+                    activeIndex = (activeIndex - 1 + slides.length) % slides.length;
+                }
+
+                slides[activeIndex].classList.remove('hidden');
+            }
+        }
+
+        touchStartX = 0;
+        touchStartY = 0;
+    }, { passive: true });
+});
+// Universal Sound Toggle Handler
+function toggleMediaSound(event) {
+  event.stopPropagation(); // Prevents triggering Lightbox on click
+  const btn = event.currentTarget;
+  const card = btn.closest('.video-triptych-card') || btn.closest('.about-portrait-centered') || btn.closest('.work-card');
+  const video = card ? card.querySelector('video') : null;
+
+  if (video) {
+    video.muted = !video.muted;
+    const icon = btn.querySelector('i');
+    if (icon) {
+      icon.textContent = video.muted ? 'volume_off' : 'volume_up';
+    }
+  }
+}
 // ============================================================================
-// MOBILE TOUCH / SWIPE NAVIGATION (COMPATIBLE WITH EXISTING ARROWS)
+// INTERACTIVE PERSONA PORTAL SWITCHER
+// ============================================================================
+window.switchPersona = function(roleKey, clickedBtn) {
+  const personaData = {
+    hr: {
+      badge: "TALENT & RECRUITMENT",
+      title: "Are you looking to fill a strategic or creative leadership role?",
+      desc: "I bring a hybrid engine: high-fashion editorial execution paired with technical growth architecture (GA4, GTM server-side, Klaviyo workflows). Ready to step into a full-time dynamic team.",
+      ctaText: "REQUEST COMPLETE CV & SCHEDULE SCREENING →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=HR Inquiry: Talent Opportunity"
+    },
+    creative: {
+      badge: "CREATIVE DIRECTORS & PRODUCERS",
+      title: "Need a vision-aligned co-director, photographer, or onset talent?",
+      desc: "From lookbooks to set choreography and camera work. I step onto set prepared with fast composition, moodboard alignment, and disciplined visual rhythm.",
+      ctaText: "INITIATE DIRECT CREATIVE BRIEF →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Creative Brief / Set Collaboration"
+    },
+    brand: {
+      badge: "EDITORIAL BRAND CASTING (ZARA / LUXURY RETAIL)",
+      title: "Seeking modern, editorial modeling or visual brand representation?",
+      desc: "Lean physique, controlled soft presence, and natural camera fluidity for luxury streetwear, high-fashion campaigns, and editorial stills.",
+      ctaText: "BOOK FOR CAMPAIGN / MODELING COMMISSIONS →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Brand Modeling & Campaign Inquiry"
+    },
+    strategy: {
+      badge: "GROWTH STRATEGY & AUDITS",
+      title: "Looking to map out customer journeys, funnels, and tracking?",
+      desc: "I audit existing retention flows, build first-party data capture architectures, and craft custom lifecycle strategies that scale high-ticket retail and hospitality brands.",
+      ctaText: "BOOK A STRATEGIC AUDIT & BLUEPRINT →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Growth Audit & Blueprint Request"
+    },
+    collab: {
+      badge: "CREATIVE PEERS & DESIGN STUDENTS",
+      title: "Want to build an experimental project or conceptual series together?",
+      desc: "Let's innovate. Whether it's testing new visual media, short film concepts, or experimental direction, I'm always open to high-energy creative syncs.",
+      ctaText: "SEND A COLLAB IDEA →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Creative Collaboration Sync"
+    }
+  };
+
+  const selected = personaData[roleKey];
+  if (!selected) return;
+
+  // 1. Move active highlight pill to the newly clicked button
+  document.querySelectorAll('.persona-btn').forEach(btn => btn.classList.remove('active'));
+  if (clickedBtn) {
+    clickedBtn.classList.add('active');
+  }
+
+  // 2. Smooth fade-out, update text/badge, and fade back in
+  const box = document.getElementById('persona-display');
+  if (box) {
+    box.style.opacity = '0';
+    setTimeout(() => {
+      document.getElementById('persona-badge').textContent = selected.badge;
+      document.getElementById('persona-title').textContent = selected.title;
+      document.getElementById('persona-desc').textContent = selected.desc;
+      
+      const cta = document.getElementById('persona-cta');
+      cta.textContent = selected.ctaText;
+      cta.setAttribute('href', selected.ctaMail);
+      
+      box.style.opacity = '1';
+    }, 200);
+  }
+};
+// ============================================================================
+// GLOBAL PERSONA SWITCHER (Must sit outside DOMContentLoaded)
+// ============================================================================
+function switchPersona(roleKey, clickedBtn) {
+  const personaData = {
+    hr: {
+      badge: "TALENT & RECRUITMENT",
+      title: "Are you looking to fill a strategic or creative leadership role?",
+      desc: "I bring a hybrid engine: high-fashion editorial execution paired with technical growth architecture (GA4, GTM server-side, Klaviyo workflows). Ready to step into a full-time dynamic team.",
+      ctaText: "REQUEST COMPLETE CV & SCHEDULE SCREENING →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=HR Inquiry: Talent Opportunity"
+    },
+    creative: {
+      badge: "CREATIVE DIRECTORS & PRODUCERS",
+      title: "Need a vision-aligned co-director, photographer, or onset talent?",
+      desc: "From lookbooks to set choreography and camera work. I step onto set prepared with fast composition, moodboard alignment, and disciplined visual rhythm.",
+      ctaText: "INITIATE DIRECT CREATIVE BRIEF →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Creative Brief / Set Collaboration"
+    },
+    brand: {
+      badge: "EDITORIAL BRAND CASTING (ZARA / LUXURY RETAIL)",
+      title: "Seeking modern, editorial modeling or visual brand representation?",
+      desc: "Lean physique, controlled soft presence, and natural camera fluidity for luxury streetwear, high-fashion campaigns, and editorial stills.",
+      ctaText: "BOOK FOR CAMPAIGN / MODELING COMMISSIONS →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Brand Modeling & Campaign Inquiry"
+    },
+    strategy: {
+      badge: "GROWTH STRATEGY & AUDITS",
+      title: "Looking to map out customer journeys, funnels, and tracking?",
+      desc: "I audit existing retention flows, build first-party data capture architectures, and craft custom lifecycle strategies that scale high-ticket retail and hospitality brands.",
+      ctaText: "BOOK A STRATEGIC AUDIT & BLUEPRINT →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Growth Audit & Blueprint Request"
+    },
+    collab: {
+      badge: "CREATIVE PEERS & DESIGN STUDENTS",
+      title: "Want to build an experimental project or conceptual series together?",
+      desc: "Let's innovate. Whether it's testing new visual media, short film concepts, or experimental direction, I'm always open to high-energy creative syncs.",
+      ctaText: "SEND A COLLAB IDEA →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Creative Collaboration Sync"
+    }
+  };
+
+  const selected = personaData[roleKey];
+  if (!selected) return;
+
+  // 1. Move active pill highlight
+  document.querySelectorAll('.persona-btn').forEach(btn => btn.classList.remove('active'));
+  if (clickedBtn) {
+    clickedBtn.classList.add('active');
+  }
+
+  // 2. Update display box
+  const box = document.getElementById('persona-display');
+  if (box) {
+    box.style.opacity = '0';
+    setTimeout(() => {
+      document.getElementById('persona-badge').textContent = selected.badge;
+      document.getElementById('persona-title').textContent = selected.title;
+      document.getElementById('persona-desc').textContent = selected.desc;
+      
+      const cta = document.getElementById('persona-cta');
+      if (cta) {
+        cta.textContent = selected.ctaText;
+        cta.setAttribute('href', selected.ctaMail);
+      }
+      box.style.opacity = '1';
+    }, 200);
+  }
+}
+// ============================================================================
+// AUTOMATIC PERSONA PORTAL EVENT LISTENERS
 // ============================================================================
 document.addEventListener('DOMContentLoaded', () => {
-  let touchStartX = 0;
-  let touchStartY = 0;
+  const personaButtons = document.querySelectorAll('.persona-btn');
+  const personaDisplayBox = document.getElementById('persona-display');
 
-  document.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-  }, { passive: true });
-
-  document.addEventListener('touchend', (e) => {
-    const touchEndX = e.changedTouches[0].screenX;
-    const touchEndY = e.changedTouches[0].screenY;
-
-    const diffX = touchEndX - touchStartX;
-    const diffY = touchEndY - touchStartY;
-
-    // Trigger only if horizontal swipe is greater than vertical scroll (at least 40px)
-    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
-      // Find the card container where the touch happened
-      const card = e.target.closest('.work-card') || e.target.closest('.media-container');
-      if (!card) return;
-
-      if (diffX < 0) {
-        // Swiped Left -> Find & click Next Arrow
-        const nextBtn = card.querySelector('.card-nav-arrow.next, .next-btn, [data-dir="next"]');
-        if (nextBtn) nextBtn.click();
-      } else {
-        // Swiped Right -> Find & click Previous Arrow
-        const prevBtn = card.querySelector('.card-nav-arrow.prev, .prev-btn, [data-dir="prev"]');
-        if (prevBtn) prevBtn.click();
-      }
+  const personaData = {
+    hr: {
+      badge: "TALENT & RECRUITMENT",
+      title: "Are you looking to fill a strategic or creative leadership role?",
+      desc: "I bring a hybrid engine: high-fashion editorial execution paired with technical growth architecture (GA4, GTM server-side, Klaviyo workflows). Ready to step into a full-time dynamic team.",
+      ctaText: "REQUEST COMPLETE CV & SCHEDULE SCREENING →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=HR Inquiry: Talent Opportunity"
+    },
+    creative: {
+      badge: "CREATIVE DIRECTORS & PRODUCERS",
+      title: "Need a vision-aligned co-director, photographer, or onset talent?",
+      desc: "From lookbooks to set choreography and camera work. I step onto set prepared with fast composition, moodboard alignment, and disciplined visual rhythm.",
+      ctaText: "INITIATE DIRECT CREATIVE BRIEF →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Creative Brief / Set Collaboration"
+    },
+    brand: {
+      badge: "EDITORIAL BRAND CASTING (ZARA / LUXURY RETAIL)",
+      title: "Seeking modern, editorial modeling or visual brand representation?",
+      desc: "Lean physique, controlled soft presence, and natural camera fluidity for luxury streetwear, high-fashion campaigns, and editorial stills.",
+      ctaText: "BOOK FOR CAMPAIGN / MODELING COMMISSIONS →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Brand Modeling & Campaign Inquiry"
+    },
+    strategy: {
+      badge: "GROWTH STRATEGY & AUDITS",
+      title: "Looking to map out customer journeys, funnels, and tracking?",
+      desc: "I audit existing retention flows, build first-party data capture architectures, and craft custom lifecycle strategies that scale high-ticket retail and hospitality brands.",
+      ctaText: "BOOK A STRATEGIC AUDIT & BLUEPRINT →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Growth Audit & Blueprint Request"
+    },
+    collab: {
+      badge: "CREATIVE PEERS & DESIGN STUDENTS",
+      title: "Want to build an experimental project or conceptual series together?",
+      desc: "Let's innovate. Whether it's testing new visual media, short film concepts, or experimental direction, I'm always open to high-energy creative syncs.",
+      ctaText: "SEND A COLLAB IDEA →",
+      ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Creative Collaboration Sync"
     }
-  }, { passive: true });
-});
+  };
+
+  personaButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const roleKey = button.getAttribute('data-persona');
+      const selected = personaData[roleKey];
+      if (!selected) return;
+
+      // 1. Highlight the clicked button pill
+      personaButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      // 2. Smoothly update box content
+      if (personaDisplayBox) {
+        personaDisplayBox.style.opacity = '0';
+        setTimeout(() => {
+          document.getElementById('persona-badge').textContent = selected.badge;
+          document.getElementById('persona-title').textContent = selected.title;
+          document.getElementById('persona-desc').textContent = selected.desc;
+
+          const cta = document.getElementById('persona-cta');
+          if (cta) {
+            cta.textContent = selected.ctaText;
+            cta.setAttribute('href', selected.ctaMail);
+          }
+          personaDisplayBox.style.opacity = '1';
+        }, 180);
+      }
+    });
   });
 });
