@@ -494,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Creative Brief / Set Collaboration"
     },
     brand: {
-      badge: "EDITORIAL BRAND CASTING (ZARA / LUXURY RETAIL)",
+      badge: "EDITORIAL BRAND CASTING",
       title: "Seeking modern, editorial modeling or visual brand representation?",
       desc: "Lean physique, controlled soft presence, and natural camera fluidity for luxury streetwear, high-fashion campaigns, and editorial stills.",
       ctaText: "BOOK FOR CAMPAIGN / MODELING COMMISSIONS →",
