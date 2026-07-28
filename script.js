@@ -516,6 +516,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+// Inside switchPersona(roleKey, clickedBtn) in script.js:
+const selected = personaData[roleKey];
+if (!selected) return;
+
+// --- ADD THIS DATALAYER PUSH CODE BELOW ---
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+  'event': 'persona_switch',
+  'persona_role': roleKey,
+  'persona_badge': selected.badge
+});
+// ------------------------------------------
+
+// 1. Move active pill highlight...
+
   personaButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const roleKey = button.getAttribute('data-persona');
