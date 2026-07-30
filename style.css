@@ -917,3 +917,463 @@ footer {
     color: #000;
     transform: translateY(-2px);
 }
+
+:root {
+  --bg-color: #0a0a0a;
+  --card-bg: #121212;
+  --text-primary: #f5f5f7;
+  --text-muted: #86868b;
+  --accent-color: #d4af37;
+  --border-color: #262626;
+  --font-editorial: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Smooth Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background-color: #262626;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-color);
+}
+
+/* Image Protection & Shield Rules */
+img, video {
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+}
+
+/* Ambient Glow Backdrop */
+.ambient-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.15;
+  background: radial-gradient(circle at 10% 20%, rgba(20, 45, 30, 0.4) 0%, rgba(0,0,0,0) 60%),
+              radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.12) 0%, rgba(0,0,0,0) 50%);
+}
+
+/* Status Light Pulse */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+.status-dot::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: #10b981;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: ping 1.5s ease-in-out infinite;
+}
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* Interactive Audience Persona Card Styles */
+.capstone-interactive-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.capstone-header .eyebrow {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--accent-color);
+  letter-spacing: 0.2em;
+}
+.capstone-header h2 {
+  font-family: var(--font-editorial);
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-top: 0.25rem;
+}
+.capstone-header .subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.persona-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.persona-btn {
+  background-color: #1a1a1a;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-family: 'Fira Code', monospace;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.persona-btn.active, .persona-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--text-primary);
+  background-color: #222;
+}
+
+.persona-display-box {
+  background-color: #0a0a0a;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1.75rem;
+  transition: opacity 0.2s ease-in-out;
+}
+.persona-badge {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  color: var(--accent-color);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+}
+.persona-display-box h3 {
+  font-family: var(--font-editorial);
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+.persona-display-box p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+.persona-cta-btn {
+  display: inline-block;
+  padding: 0.65rem 1.25rem;
+  background-color: var(--accent-color);
+  color: #000;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
+  transition: var(--transition-smooth);
+}
+.persona-cta-btn:hover {
+  background-color: #fff;
+}
+
+/* Lightbox Base Styles */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition-smooth);
+}
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  z-index: 1010;
+}
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+/* ==========================================
+   FRAMELESS EDITORIAL MEDIA & CAROUSEL ENGINE
+   ========================================== */
+
+/* Remove heavy box containers for a seamless background look */
+.work-card {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-bottom: 2.5rem;
+}
+
+/* Invisible Protection Glass Shield over assets */
+.media-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: transparent;
+  pointer-events: auto;
+}
+
+/* Absolute Media Stacking for Multi-Slide Carousels */
+.media-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #121212;
+  border-radius: 2px;
+}
+
+.media-container.multi-slide img,
+.media-container.multi-slide video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.media-container.multi-slide img.active,
+.media-container.multi-slide video.active {
+  opacity: 1 !important;
+  z-index: 2;
+}
+
+/* Sleek Cookie Banner Positioning */
+#cookie-banner {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+/* ==========================================
+   DYNAMIC UNCAGED VIDEO CONTAINERS
+   ========================================== */
+
+.video-uncaged-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0a0a0a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Allows video to scale naturally without forced cropping */
+.video-uncaged-container video {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+}
+/* ==========================================
+   CAROUSEL NAV & SHIELD PROTECTION FIX
+   ========================================== */
+
+/* Glass shield allows hover/clicks to pass through to slider controls */
+.media-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* Multi-Slide Media Containers */
+.media-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #121212;
+  border-radius: 2px;
+}
+
+.media-container.multi-slide img,
+.media-container.multi-slide video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.media-container.multi-slide img.active,
+.media-container.multi-slide video.active {
+  opacity: 1 !important;
+  z-index: 2;
+}
+
+/* Interactive Arrow Navigation Buttons */
+.slide-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f5f5f7;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 30;
+  transition: all 0.3s ease;
+}
+
+.media-container:hover .slide-nav {
+  opacity: 1;
+}
+
+.slide-nav:hover {
+  background: #d4af37;
+  color: #000;
+}
+
+.slide-nav.prev { left: 0.75rem; }
+.slide-nav.next { right: 0.75rem; }
+
+/* Balenciaga Indicator Dashes */
+.slide-indicators {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.35rem;
+  z-index: 30;
+}
+
+.indicator-dash {
+  width: 14px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator-dash.active, .indicator-dash:hover {
+  background-color: #d4af37;
+  width: 24px;
+}
+/* ==========================================
+   CAROUSEL SLIDER ENGINE & ARROW CONTROLS
+   ========================================== */
+
+.media-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #121212;
+}
+
+.media-container.multi-slide img,
+.media-container.multi-slide video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.media-container.multi-slide img.active,
+.media-container.multi-slide video.active {
+  opacity: 1 !important;
+  z-index: 2;
+}
+
+/* Force Left & Right Arrow Buttons to Render on Top */
+.slide-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f5f5f7;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 50 !important;
+  transition: all 0.3s ease;
+}
+
+.media-container:hover .slide-nav {
+  opacity: 1 !important;
+}
+
+.slide-nav:hover {
+  background: #d4af37;
+  color: #000;
+}
+
+.slide-nav.prev { left: 0.75rem; }
+.slide-nav.next { right: 0.75rem; }
+
+/* Balenciaga Indicator Dashes */
+.slide-indicators {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  z-index: 50 !important;
+}
+
+.indicator-dash {
+  width: 14px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator-dash.active, .indicator-dash:hover {
+  background-color: #d4af37;
+  width: 26px;
+}

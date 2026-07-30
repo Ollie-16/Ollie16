@@ -1,1313 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-[#0a0a0a] text-[#f5f5f7] scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<!-- ==================================================================== -->
-  <!-- 1. GOOGLE TAG MANAGER  -->
-  <!-- ==================================================================== -->
+  <title>Ollie | Creative Growth Director & 16 EDT Hub</title>
+  <meta name="description" content="Official Hub of Ollie Trevor — Creative Growth Director specializing in high-fashion editorial direction, visual media, and server-side growth architecture." />
+  <meta name="keywords" content="Creative Growth Director, Visual Portfolio, Editorial Direction, Growth Strategy, GA4, GTM, Dubai Creative, Ollie16, 16 EDT" />
+  <meta name="author" content="Ollie Trevor" />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- OPEN GRAPH PREVIEWS -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ollie16.com/" />
+  <meta property="og:title" content="Ollie | Creative Growth Director & 16 EDT Studio" />
+  <meta property="og:description" content="High-fashion editorial execution paired with technical growth architecture, retention funnels, and brand strategy." />
+  <meta property="og:image" content="https://ollie16.com/images/og-preview.jpg" />
+
+  <!-- GOOGLE FONTS & ICONS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- TAILWIND & SHARED STYLES -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TFJ7D43V');</script>
-<!-- End Google Tag Manager —>
-
-<!-- ==================================================================== -->
-  <!-- 2. PRIMARY TECHNICAL METADATA                                       -->
-  <!-- ==================================================================== -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  <title>Ollie | Creative Growth Director & Visual Portfolio</title>
-  <meta name="description" content="Portfolio of Ollie — Creative Growth Director specializing in high-fashion editorial direction, visual media, and growth architecture.">
-  <meta name="keywords" content="Creative Growth Director, Visual Portfolio, Editorial Direction, Growth Strategy, GA4, GTM, Dubai Creative">
-  <meta name="author" content="Ollie">
-  <meta name="theme-color" content="#0a0a0a">
-
-  <!-- ==================================================================== -->
-  <!--  OPEN GRAPH / LINKEDIN / WHATSAPP PREVIEWS                        -->
-  <!-- ==================================================================== -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ollie16.com/">
-  <meta property="og:title" content="Ollie | Creative Growth Director & Visual Portfolio">
-  <meta property="og:description" content="High-fashion editorial execution paired with technical growth architecture, retention funnels, and brand strategy.">
-  <meta property="og:image" content="https://ollie16.com/images/og-preview.jpg">
-
-  <!-- ==================================================================== -->
-  <!-- TWITTER CARD PREVIEWS                                            -->
-  <!-- ==================================================================== -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://ollie16.com/">
-  <meta name="twitter:title" content="Ollie | Creative Growth Director">
-  <meta name="twitter:description" content="High-fashion editorial execution paired with technical growth architecture.">
-  <meta name="twitter:image" content="https://ollie16.com/images/og-preview.jpg">
-
-  <!-- ==================================================================== -->
-  <!--  STYLES, ICONS & EXTERNAL ASSETS                                 -->
-  <!-- ==================================================================== -->
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-    
-    <!-- External Typography & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-     <link rel="stylesheet" href="style.css">
-    <style>
+<body class="pt-24 pb-20 font-sans antialiased selection:bg-[#d4af37] selection:text-black">
 
-        :root {
-            --bg-color: #0a0a0a;
-            --card-bg: #121212;
-            --text-primary: #f5f5f7;
-            --text-muted: #86868b;
-            --accent-color: #d4af37;
-            --border-color: #262626;
-            --font-editorial: 'Playfair Display', Georgia, serif;
-            --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
-            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        /* Smooth Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-        ::-webkit-scrollbar-thumb {
-            background-color: #262626;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: var(--accent-color);
-        }
-
-        /* Ambient Glow Backdrop */
-        .ambient-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.15;
-            background: radial-gradient(circle at 10% 20%, rgba(20, 45, 30, 0.4) 0%, rgba(0,0,0,0) 60%),
-                        radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.12) 0%, rgba(0,0,0,0) 50%);
-        }
-
-        /* Status Light Animation */
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #10b981;
-            border-radius: 50%;
-            display: inline-block;
-            position: relative;
-        }
-        .status-dot::after {
-            content: '';
-            width: 100%;
-            height: 100%;
-            background-color: #10b981;
-            border-radius: 50%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            animation: ping 1.5s ease-in-out infinite;
-        }
-        @keyframes ping {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(2.5); opacity: 0; }
-        }
-
-        /* Interactive guidance info box */
-        .info-console {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 1.5rem;
-            margin-top: 2rem;
-            max-width: 800px;
-            display: flex;
-            gap: 1.2rem;
-            align-items: flex-start;
-        }
-        .info-console i {
-            color: var(--accent-color);
-            font-size: 1.8rem;
-        }
-        .info-console h3 {
-            font-family: var(--font-editorial);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-        .info-console p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* Interactive Grid Preset Selectors */
-        .preset-toggles {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-        .preset-btn {
-            background-color: #1a1a1a;
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 0.5rem 1rem;
-            font-size: 0.75rem;
-            font-family: var(--font-sans);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-        .preset-btn.active, .preset-btn:hover {
-            border-color: var(--accent-color);
-            color: var(--text-primary);
-            background-color: #222;
-        }
-
-        /* Interactive Brain Node Panel Styles */
-        .brain-panel {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 3.5rem;
-            margin-top: 4rem;
-        }
-        @media (max-width: 992px) {
-            .brain-panel {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-        }
-        .nodes-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.2rem;
-        }
-        @media (max-width: 576px) {
-            .nodes-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .node-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            position: relative;
-        }
-        .node-card:hover {
-            border-color: rgba(212, 175, 55, 0.4);
-            transform: translateY(-2px);
-        }
-        .node-card.active {
-            border-color: var(--accent-color);
-            background: linear-gradient(135deg, #121212 0%, #171d18 100%);
-        }
-        .node-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-        }
-        .node-card.active .node-meta {
-            color: var(--accent-color);
-        }
-        .node-card h4 {
-            font-family: var(--font-editorial);
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: var(--text-primary);
-        }
-        .node-card p {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 0.3rem;
-        }
-        .display-board {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden;
-        }
-        .display-board::before {
-            content: 'SYSTEM ACTIVE';
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.65rem;
-            color: #10b981;
-            letter-spacing: 0.1em;
-            opacity: 0.85;
-        }
-        .display-code {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.75rem;
-            color: var(--accent-color);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .display-title {
-            font-family: var(--font-editorial);
-            font-size: 2rem;
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-        .display-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin-bottom: 2rem;
-        }
-        .display-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        .display-tag {
-            background-color: #0a0a0a;
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            font-family: 'Fira Code', monospace;
-            font-size: 0.7rem;
-            padding: 0.3rem 0.65rem;
-            border-radius: 2px;
-        }
-        
-        /* Modern Video Controls Overlays */
-        .video-overlay-ctrl {
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            display: flex;
-            gap: 0.5rem;
-            z-index: 10;
-        }
-        .vid-btn {
-            background-color: rgba(10,10,10,0.8);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-primary);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-        .vid-btn:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-            transform: scale(1.05);
-        }
-
-        /* Success screen on submission */
-        .feedback-overlay {
-            position: absolute;
-            inset: 0;
-            background-color: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(12px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: var(--transition-smooth);
-            z-index: 10;
-        }
-        .feedback-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        .feedback-overlay i {
-            font-size: 3.5rem;
-            color: #10b981;
-            margin-bottom: 1rem;
-        }
-        .feedback-overlay h3 {
-            font-family: var(--font-editorial);
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-        .feedback-overlay p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            max-width: 320px;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        /* Multi-Slide Media Overrides */
-        .media-container.multi-slide {
-            position: relative;
-        }
-        
-        .media-container.multi-slide img,
-        .media-container.multi-slide video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            z-index: 1;
-            pointer-events: none;
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .media-container.multi-slide .slide-item.active {
-            opacity: 1;
-            z-index: 2;
-            pointer-events: auto;
-        }
-
-        /* Elegant Minimalist Slide Navigation */
-        .slide-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            z-index: 10;
-            transition: var(--transition-smooth);
-        }
-
-        .media-container:hover .slide-nav {
-            opacity: 0.8;
-        }
-
-        .slide-nav:hover {
-            background: rgba(10, 10, 10, 0.9);
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-            opacity: 1 !important;
-        }
-
-        .slide-nav.prev {
-            left: 1rem;
-        }
-
-        .slide-nav.next {
-            right: 1rem;
-        }
-
-        /* Minimalist Balenciaga-Style Indicator Dashes */
-        .slide-indicators {
-            position: absolute;
-            bottom: 1.2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.4rem;
-            z-index: 10;
-            pointer-events: auto;
-        }
-
-        .indicator-dash {
-            width: 16px;
-            height: 2px;
-            background-color: rgba(255, 255, 255, 0.25);
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-
-        .indicator-dash.active, .indicator-dash:hover {
-            background-color: var(--accent-color);
-            width: 28px;
-        }
-    </style>
-</head>
-<body class="spark-widget-shell antialiased">
-<!-- ==================================================================== -->
-  <!-- 3. GOOGLE TAG MANAGER NOSCRIPT -->
-  <!-- ==================================================================== -->
+  <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFJ7D43V"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+  <!-- AMBIENT BACKGROUND GLOW -->
+  <div class="ambient-glow"></div>
+  <nav class="fixed top-0 left-0 w-full z-[100] bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#262626]">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- LOGO -->
+      <a href="index.html" class="flex flex-col group">
+        <span class="text-lg font-serif tracking-tight text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">16 EDT</span>
+        <span class="text-[9px] font-mono tracking-[0.25em] text-[#d4af37] uppercase">By Ollie16</span>
+      </a>
 
-    <!-- Ambient Glow Backgrounds -->
-    <div class="ambient-glow"></div>
+      <!-- NAVIGATION LINKS -->
+      <div class="flex items-center gap-4 md:gap-8 text-[11px] md:text-xs font-mono tracking-widest uppercase">
+        <a href="index.html" class="text-[#d4af37] font-bold border-b border-[#d4af37] pb-1">Hub</a>
+        <a href="portfolio.html" class="text-[#86868b] hover:text-[#f5f5f7] transition-colors">Portfolio</a>
+        <a href="production.html" class="text-[#86868b] hover:text-[#f5f5f7] transition-colors">Production</a>
+        <a href="people.html" class="text-[#86868b] hover:text-[#f5f5f7] transition-colors">Our Own</a>
+        <a href="learning.html" class="text-[#86868b] hover:text-[#f5f5f7] transition-colors">Learning</a>
+        <a href="art.html" class="text-[#86868b] hover:text-[#f5f5f7] transition-colors">16 Gallery</a>
+      </div>
 
-   <!-- HEADER NAVIGATION -->
-<header>
-  <div class="logo">Creative Growth Director</div>
-  <nav>
-    <ul>
-      <li><a href="#intro">INTRO</a></li>
-      <li><a href="#media">MEDIA</a></li>
-      <li><a href="#certifications">CERTIFICATIONS</a></li>
-      <li><a href="#contact">CONTACT</a></li>
-    </ul>
+      <!-- CTA BUTTON -->
+      <a href="#audit" class="active lg:inline-block px-4 py-2 border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all text-xs font-mono uppercase tracking-widest rounded">
+        Book Audit
+      </a>
+    </div>
   </nav>
-  
-  <!-- Status Badge -->
-  <div class="status-badge">
-    <span class="status-dot"></span>
-    <span id="dynamic-status-text">AVAILABLE FOR STRATEGY & CREATIVE DIRECTION</span>
-  </div>
-</header>
-    <main>
-<!-- HERO / INTRO SECTION -->
-<section id="intro">
-  <div class="max-w-4xl">
-    <!-- Sub-heading tag -->
-    <div class="flex items-center gap-3 mb-6">
-      <span class="w-2 h-2 rounded-full bg-[#d4af37]"></span>
-      <span class="text-xs font-mono tracking-[0.3em] uppercase text-[#d4af37]">
-        HÓLA, MY NAME IS OLLIE  TREVOR,  <p>AM 21 YEARS OLD | UGANDAN | CREATOR OF OLLIE16... 
-      </p></span>
-    </div>
 
+  <main class="max-w-7xl mx-auto px-6">
 
-    <h1 class="text-3xl md:text-5xl font-serif text-[#f5f5f7] leading-tight tracking-tight mb-8">
-      I'M THE BEST CREATIVE DIRECTOR AND TECHNICAL GROWTH MARKETER.
-    </h1>
-
-  
-    <p class="text-base md:text-lg font-sans text-[#86868b] leading-relaxed mb-6">
-        I Bridge the gap between creative talent and technical marketing excuction.
-        Combining Authenticity with Growth Revenue Science, and brand storytelling.  
-        Expert in high converting brand ecosystems, server side analytics, and full funnel customer acquisition, talent acquisition, and retention strategies.
-        Combining GA4, GTM architecture, Klaviyo, and LTV, CAC optimization. 
-        Proven capability in mapping physical customer touchpoints through  captive portals with digital retention.  
-        Agile and Lean methodologies. AB testing  and running campaigns with measurable results.
-        I'm uniquely equipped to drive both brand prestige and measurable ROI across B2B and B2C markets.
-    </p>
-
-    <p class="text-sm font-mono text-[#86868b] leading-relaxed tracking-wide">
-        I create, edit and visualize but most important Protect your Data while bypassing ad blockers,  and tracking ever dollar.$. spent, with a retaining fully sartisfied CRM.
-        Yes i'm passionate about my career, I'm following my direction and i love what i do, i set achievable organizational goals.
-        In the next Series you will see some of my Projects, and THATS NOT ALL...
-    </p>
-  </div>
-</section>
-
-        <section id="media">
-        <div class="section-header">
-            <h2>16 Series</h2>
-            <span class="archive-subtitle">16 EDT Approved</span>
-        </div>
-<!-- Elegant Editorial Header + Integrated CTA -->
-<div class="flex flex-col md:flex-row md:items-end justify-between border-b border-[#262626] pb-4 mb-10 gap-4">
-  <div>
-    <span class="text-[10px] font-mono uppercase tracking-[0.3em] text-[#d4af37] block mb-1">Hover mouse with in any frame to enlarge | Scroll | click to Zoom in</span>
-    <h4 class="text-2xl md:text-3xl font-serif text-[#f5f5f7] tracking-tight" style="text-align: center;">16 EDT</h4>
-  </div>
-</div>
-
-        <!-- Categorized block showing high-fidelity media cards -->
-        <div class="category-block">
-            <div id="media-grid-container" class="work-grid grid-portrait">
-                
-                <!-- Card 1: Editorial Portrait (Now with Multi-Image Slider) -->
-                <div class="work-card">
-                    <div class="media-container">
-                        <img src="images/portrait-01.jpg" alt="Sartorial Model Editorial 1">
-                        <img src="images/portrait-02.jpg" alt="Sartorial Model Editorial 2">
-                        <img src="images/portrait-03.jpg" alt="Sartorial Model Editorial 3">
-                        <img src="images/portrait-04.jpg" alt="Sartorial Model Editorial 4"> 
-
-                        <div class="camera-tag">Shoot on iPhone17 PM</div>
-                    </div>
-                    <div class="card-details">
-                        <h3>ANUSHA: THE HUMAN FORM</h3>
-                        <p>EDITORIAL PORTRAITURE // LIGHT STUDY</p>
-                    </div>
-                </div>
-
-
-
-<div class="work-card">
-  <div class="media-container" style="aspect-ratio: 9/12; position: relative;">
-
-    <button onclick="toggleMediaSound(event)" class="vid-btn" style="position: absolute; top: 0.8rem; right: 0.8rem; background: rgba(10, 10, 10, 0.75); border: 1px solid rgba(255, 255, 255, 0.2); color: #f5f5f7; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; backdrop-filter: blur(8px);">
-      <i class="material-icons" style="font-size: 16px;">volume_off</i>
-    </button>
- 
-    <video loop muted playsinline autoplay class="active">
-      <source src="videos/f1-01.mp4" type="video/mp4">
-    </video>
- 
-    <img src="images/f1-01.jpg" alt="Moving Texture Portrait Slide 1" class="active">
-   
-    <img src="images/f1-02.jpg" alt="Moving Texture Portrait Slide 2" class="active">
-    
-    <div class="camera-tag">Snaps</div>
-  </div>
-
-  <div class="card-details">
-    <h3>YAS MARINA AUD </h3>
-    <p>Etihad</p>
-  </div>
-</div>
-
-
-  
-                <div class="work-card">
-                    <div class="media-container" style="aspect-ratio: 3/2;">
-                        <img src="images/landscape-01.jpg" alt="Whispering Wilds Landscape 1">
-                        <img src="images/landscape-02.jpg" alt="Whispering Wilds Landscape 2">
-                        <img src="images/landscape-03.jpg" alt="Whispering Wilds Landscape 3">
-                        <img src="images/landscape-04.jpg" alt="Whispering Wilds Landscape 4">
-                        <div class="camera-tag">Shoot on Samsung Galaxy S21 Ultra</div>
-                    </div>
-                    <div class="card-details">
-                        <h3>HORIZON AT DUSK</h3>
-                        <p>ATMOSPHERIC CHROMATICS & COLOR GRADING</p>
-                    </div>
-                </div>
-
-
-
-<div class="work-card">
-  <div class="media-container" style="aspect-ratio: 4/5;">
-    
-    <!-- Slide 1 (Default Active Cover) -->
-    <img src="images/woods-01.jpg" alt="Woods Frame 1" class="active" />
-
-    <!-- Slide 2 -->
-    <img src="images/woods-02.jpg" alt="Woods Frame 2" class="active" />
-
-    <!-- Slide 3 -->
-    <img src="images/woods-03.jpg" alt="Woods Frame 3" class="active" />
-
-    <!-- Slide 4 -->
-    <img src="images/woods-04.jpg" alt="Woods Frame 4" class="active" />
-
-    <!-- Tag Overlay -->
-    <div class="camera-tag">Shoot on iPhone17 PM</div>
-  </div>
-
-  <!-- Card Details (Matching Cards 1, 2, and 3) -->
-  <div class="card-details">
-    <h3>WOODS SERIES</h3>
-    <p>LOOKBOOK</p>
-  </div>
-</div>
-
-
-<!-- Card 4: Multi-Photo Series (Check) -->
-<div class="work-card">
-  <div class="media-container" style="aspect-ratio: 1/1;">
-    
-    <!-- Slide 1 (Default Active Cover) -->
-    <img src="images/check-01.jpg" alt="Check Frame 1" class="active" />
-
-    <!-- Slide 2 -->
-    <img src="images/check-02.jpg" alt="Check Frame 2" class="active" />
-
-    <!-- Slide 3 -->
-    <img src="images/check-03.jpg" alt="Check Frame 3" class="active" />
-
-    <!-- Tag Overlay -->
-    <div class="camera-tag">Shoot on iPhone17 PM</div>
-  </div>
-
-  <!-- Card Details (Matching Cards 1, 2, and 3) -->
-  <div class="card-details">
-    <h3>CHECK: EMPIRE STATES</h3>
-    <p>SUN MIND </p>
-  </div>
-</div>
-
-
-<!-- Card 4: Multi-Photo Series (Ultra) -->
-<div class="work-card">
-  <div class="media-container" style="aspect-ratio: 4/5;">
-    
-    <!-- Slide 1 (Default Active Cover) -->
-    <img src="images/ultra-01.jpg" alt="Ultra Frame 1" class="active" />
-
-    <!-- Slide 2 -->
-    <img src="images/ultra-02.jpg" alt="Ultra Frame 2" class="active" />
-
-
-    <!-- Tag Overlay -->
-    <div class="camera-tag">Samsung S20 Ultra</div>
-  </div>
-
-  <!-- Card Details (Matching Cards 1, 2, and 3) -->
-  <div class="card-details">
-    <h3>MOON LIGHTS</h3>
-    <p>Night Mode</p>
-  </div>
-</div>
-
-
-<!-- Card 4: Multi-Photo Series (Burn) -->
-<div class="work-card">
-  <div class="media-container" style="aspect-ratio: 9/12;">
-    
-    <!-- Slide 1 (Default Active Cover) -->
-    <img src="images/burn-01.jpg" alt="Burn Frame 1" class="active" />
-
-    <!-- Slide 2 -->
-    <img src="images/burn-02.jpg" alt="Burn Frame 2" class="active" />
-
-    <!-- Slide 3 -->
-    <img src="images/burn-03.jpg" alt="Burn Frame 3" class="active" />
-
-    <!-- Tag Overlay -->
-    <div class="camera-tag">Shoot on Sony</div>
-  </div>
-
-  <!-- Card Details (Matching Cards 1, 2, and 3) -->
-  <div class="card-details">
-    <h3>BURN</h3>
-    <p>16edt APPROVED</p>
-  </div>
-</div>
-
-
-<!-- Card 4: Multi-Photo Series (ebb) -->
-<div class="work-card">
-  <div class="media-container" style="aspect-ratio: 9/12;">
-    
-    <!-- Slide 1 (Default Active Cover) -->
-    <img src="images/ebb-01.jpg" alt="Ebb Frame 1" class="active" />
-
-    <!-- Slide 2 -->
-    <img src="images/ebb-02.jpg" alt="Ebb Frame 2" class="active" />
-
-    <!-- Slide 3 -->
-    <img src="images/ebb-03.jpg" alt="Ebb Frame 3" class="active" />
-
-
-    <!-- Tag Overlay -->
-    <div class="camera-tag">Shoot on iPhone11 PM</div>
-  </div>
-
-  <!-- Card Details (Matching Cards 1, 2, and 3) -->
-  <div class="card-details">
-    <h3>EBB</h3>
-    <p>WATERFRONT @ COCO</p>
-  </div>
-</div>
-
-<!-- Card 4: Multi-Photo Series (Diseal) -->
-<div class="work-card">
-  <div class="media-container" style="aspect-ratio: 4/5;">
-    
-    <!-- Slide 1 (Default Active Cover) -->
-    <img src="images/diseal-01.jpg" alt="Diseal Frame 1" class="active" />
-
-    <!-- Slide 2 -->
-    <img src="images/diseal-02.jpg" alt="Diseal Frame 2" class="active" />
-
-    <!-- Slide 3 -->
-    <img src="images/diseal-03.jpg" alt="Diseal Frame 3" class="active" />
-
-    <!--Slide 4-->
-    <img src="images/diseal-04.jpg" alt="Diseal Frame 4" class="active" />
-
-    <!-- Tag Overlay -->
-    <div class="camera-tag">Shoot on iPhone17 PM</div>
-  </div>
-
-  <!-- Card Details (Matching Cards 1, 2, and 3) -->
-  <div class="card-details">
-    <h3>DISEAL</h3>
-    <p>PREMIUM FUEL: 16 LIT</p>
-  </div>
-</div>
-
-<!-- Card 2: Arm Video & Image Mixed Series -->
-<div class="work-card">
-  <div class="media-container" style="aspect-ratio: 9/12; position: relative;">
-    
-    <!-- Sound Toggle Button (Top Right) -->
-    <button onclick="toggleMediaSound(event)" class="vid-btn" style="position: absolute; top: 0.8rem; right: 0.8rem; background: rgba(10, 10, 10, 0.75); border: 1px solid rgba(255, 255, 255, 0.2); color: #f5f5f7; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; backdrop-filter: blur(8px);">
-      <i class="material-icons" style="font-size: 16px;">volume_off</i>
-    </button>
-
-    <!-- Slide 1: Active Video Cover -->
-    <video loop muted playsinline autoplay class="active">
-      <source src="videos/arm-01.mp4" type="video/mp4">
-    </video>
-
-    <!-- Slides 2–6: Image Slides (Hidden by default until swiped) -->
-    <img src="images/arm-01.jpg" alt="Moving Texture Portrait Slide 1" class="active">
-    <img src="images/arm-02.jpg" alt="Moving Texture Portrait Slide 2" class="active">
-    <img src="images/arm-03.jpg" alt="Moving Texture Portrait Slide 3" class="active">
-    <img src="images/arm-04.jpg" alt="Moving Texture Portrait Slide 4" class="active">
-    <img src="images/arm-05.jpg" alt="Moving Texture Portrait Slide 5" class="active">
-
-    <!-- Gear Overlay Tag -->
-    <div class="camera-tag">Shoot on Canon EOS R5</div>
-  </div>
-
-  <!-- Card Details -->
-  <div class="card-details">
-    <h3>ARM.AE</h3>
-    <p>EDITORIAL PORTRAITURE & MOTION // MIXED MEDIA</p>
-  </div>
-</div>
-
-</article>
-
-
-            </div>
-        </div>
-
-    <!-- 3-VIDEO EDITORIAL TRIPTYCH -->
-
-
-<div class="about-triptych-grid">
-  <P><h4 class="text-2xl md:text-3xl font-serif text-[#f5f5f7] tracking-tight" style="text-align: center;">IMPORTANT// VIEW THE PROCESS</h4></p>
-  <!-- Video 1 -->
-  <div class="video-triptych-card">
-    <video loop muted playsinline autoplay>
-      <source src="videos/bts-01.mp4" type="video/mp4">
-    </video>
-    <div class="video-triptych-overlay">
-      <span class="tag">01 // CREATIVE DIRECTION</span>
-      <h4>Editorial & Styling</h4>
-    </div>
-  </div>
-
-  <!-- Video 2 -->
-  <div class="video-triptych-card">
-    <video loop muted playsinline autoplay>
-      <source src="videos/bts-02.mp4" type="video/mp4">
-    </video>
-    <div class="video-triptych-overlay">
-      <span class="tag">02 // CINEMATOGRAPHY</span>
-      <h4>Motion & Rhythm</h4>
-    </div>
-  </div>
-
-  <!-- Video 3 -->
-  <div class="video-triptych-card">
-    <video loop muted playsinline autoplay>
-      <source src="videos/bts-03.mp4" type="video/mp4">
-    </video>
-    <div class="video-triptych-overlay">
-      <span class="tag">03 // BRAND ARCHITECTURE</span>
-      <h4>Funnels & Strategy</h4>
-    </div>
-  </div>
-
-</div>
-
-                <div class="about-text-centered">
-                    <p class="lead">I AM THE GREATEST</p>
-                    <p>I've set my Goals and i love doing what i do.</p>
-                    <p>Programming, Analytics, Digital Marketing,Design.</p>
-                    <p>Well I'm the Talent that makes the difference, these skills have developed over the years.</p>
-                    <p>To fully fuel my talent, my goal is to keep learning and developing more, I'm growth Driven and i believe my potential is limitless.</p>
-                    <p>Clearly this is What i Love to Do. I found my Corporate Love. now i help Premium Teams while Thriving For Greateness.</p>
-                    <p>I produce visualize map and create in timeless ways, and i only implement the use of Ai where needed.</p>
-                    <p>I Make the difference, connecting dots to make sure the align. and yes, They do connect</p>
-                </div>
-            </div>
-            </section>
-
-        <!-- Sleek Verified Credentials Block -->
-<section id="certifications"
-class="credentials-section py-16 border-t border-[#262626]">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="flex items-center justify-between mb-8">
-      <h2 class="text-xs font-mono uppercase tracking-[0.2em] text-[#86868b]">
-         VERIFIED ARCHITECTURE & CERTIFICATIONS 
-      </h2>
-      <span class="text-xs font-mono text-[#d4af37]">AUDITED & ACTIVE</span>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <!-- Certification 1: Digital Marketing -->
-      <a href="https://app-eu1.hubspot.com/academy/achievements/c9dm110d/en/1/trevor-kaweesa/digital-marketing-certified" target="_blank" rel="noopener noreferrer" 
-         class="group p-5 bg-[#121212] border border-[#262626] rounded-lg hover:border-[#d4af37] transition-all duration-300">
-        <div class="flex justify-between items-start mb-3">
-          <span class="text-[10px] font-mono text-[#86868b] uppercase">Digital Marketing</span>
-          <span class="text-xs text-[#86868b] group-hover:text-[#f5f5f7]">&nearr;</span>
-        </div>
-        <h3 class="text-sm font-sans font-semibold text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">
-          Digital Marketing Certified
-        </h3>
-        <p class="text-xs text-[#86868b] mt-1 font-mono">Hubspot Academy</p>
-      </a>
-
-      <!-- Certification 2: Social Media -->
-      <a href="https://app-eu1.hubspot.com/academy/achievements/vbt6wpzf/en/1/trevor-kaweesa/social-media-certified" target="_blank" rel="noopener noreferrer" 
-         class="group p-5 bg-[#121212] border border-[#262626] rounded-lg hover:border-[#d4af37] transition-all duration-300">
-        <div class="flex justify-between items-start mb-3">
-          <span class="text-[10px] font-mono text-[#86868b] uppercase">Social Media Marketing</span>
-          <span class="text-xs text-[#86868b] group-hover:text-[#f5f5f7]">&nearr;</span>
-        </div>
-        <h3 class="text-sm font-sans font-semibold text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">
-          Social Media Certified
-        </h3>
-        <p class="text-xs text-[#86868b] mt-1 font-mono">Hubspot Academy</p>
-      </a>
-
-      <!-- Certification 3: Google Tag Manager -->
-      <a href="https://www.linkedin.com/learning/certificates/09e9571805b01a5aa724d145da02437c03f6eb17a075b1043e8451f5f7a86a91?trk=share_certificate" target="_blank" rel="noopener noreferrer" 
-         class="group p-5 bg-[#121212] border border-[#262626] rounded-lg hover:border-[#d4af37] transition-all duration-300">
-        <div class="flex justify-between items-start mb-3">
-          <span class="text-[10px] font-mono text-[#86868b] uppercase">Google Tag Manager</span>
-          <span class="text-xs text-[#86868b] group-hover:text-[#f5f5f7]">&nearr;</span>
-        </div>
-        <h3 class="text-sm font-sans font-semibold text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">
-          Google Tag Manager Certified
-        </h3>
-        <p class="text-xs text-[#86868b] mt-1 font-mono">LinkedIn Learning</p>
-      </a>
-
-      <!-- Certification 3: Digital Marketing Foundations -->
-      <a href="https://www.linkedin.com/learning/certificates/5180455465e098e8cc6e6f53ae671d25fa03e5b580811e1718ff76a5eea8ea59?trk=share_certificate" target="_blank" rel="noopener noreferrer" 
-         class="group p-5 bg-[#121212] border border-[#262626] rounded-lg hover:border-[#d4af37] transition-all duration-300">
-        <div class="flex justify-between items-start mb-3">
-          <span class="text-[10px] font-mono text-[#86868b] uppercase">Digital Marketing Foundations</span>
-          <span class="text-xs text-[#86868b] group-hover:text-[#f5f5f7]">&nearr;</span>
-        </div>
-        <h3 class="text-sm font-sans font-semibold text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">
-          Digital Marketing Foundations Certified
-        </h3>
-        <p class="text-xs text-[#86868b] mt-1 font-mono">LinkedIn Learning</p>
-      </a>
-    </div>
-  </div>
-</section>
-
-
-            <section id="contact">
-            <div class="connect-inner">
-                <div class="connect-header">
-                    <h2>Thriving For Greatness</h2>
-                    <p>Please initialize an operational sync or consult me directly on high end creative briefs. <strong>Contact Me Now</strong></p>
-                </div>
-                
-                <div class="social-dock">
-                    <a href="https://wa.me/+971502669024" target="_blank" class="social-btn whatsapp-btn">
-                        <i class="material-icons">chat</i>
-                        <span>WhatsApp</span>
-                    </a>
-                    <a href="https://www.instagram.com/16edt?igsh=MWJqYnZzN3Ztb2o3YQ==" target="_blank" class="social-btn instagram-btn">
-                        <i class="material-icons">camera_alt</i>
-                        <span>Instagram</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/ollie-creative" target="_blank" class="social-btn linkedin-btn">
-                        <i class="material-icons">work</i>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="mailto:keiantrevorkaweesa@gmail.com" class="social-btn email-btn">
-                        <i class="material-icons">alternate_email</i>
-                        <span>Email Command</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-
-<!-- INTERACTIVE AUDIENCE PORTAL CARD -->
-<div class="capstone-interactive-card">
-  <div class="capstone-header">
-    <span class="eyebrow">DIRECT INTERACTION</span>
-    <h2>Who Is Reading?</h2>
-    <p class="subtitle">Select your role below to tailor the objective and initialize direct sync.</p>
-  </div>
-
-  <!-- Persona Selection Pills -->
-  <div class="persona-tabs">
-    <button type="button" class="persona-btn active" data-persona="hr">HR & Recruiters</button>
-    <button type="button" class="persona-btn" data-persona="creative">Creative Directors</button>
-    <button type="button" class="persona-btn" data-persona="brand">Brands & Casting</button>
-    <button type="button" class="persona-btn" data-persona="strategy">Growth & Strategy</button>
-    <button type="button" class="persona-btn" data-persona="collab">Collabs & Peers</button>
-  </div>
-
-  <!-- Dynamic Display Box -->
-  <div class="persona-display-box" id="persona-display">
-    <div class="persona-badge" id="persona-badge">TALENT & RECRUITMENT</div>
-    <h3 id="persona-title">Are you looking to fill a strategic or creative leadership role?</h3>
-    <p id="persona-desc">
-      I bring a hybrid engine: high-fashion editorial execution paired with technical growth architecture (GA4, GTM server-side, Klaviyo workflows). Ready to step into a full-time dynamic team.
-    </p>
-    <div class="persona-cta-wrap">
-      <a href="mailto:keiantrevorkaweesa@gmail.com?subject=HR Inquiry: Portfolio Review" id="persona-cta" class="persona-cta-btn">
-        REQUEST COMPLETE CV & SCHEDULE SCREENING →
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- SELF-CONTAINED PORTAL ENGINE (Bypasses caching and external script conflicts) -->
-<script>
-  document.addEventListener('click', function(e) {
-    var btn = e.target.closest('.persona-btn');
-    if (!btn) return;
-
-    var personaData = {
-      hr: {
-        badge: "TALENT & RECRUITMENT",
-        title: "Are you looking to fill a strategic or creative leadership role?",
-        desc: "I bring a hybrid engine: high-fashion editorial execution paired with technical growth architecture (GA4, GTM server-side, Klaviyo workflows). Ready to step into a full-time dynamic team.",
-        ctaText: "REQUEST COMPLETE CV & SCHEDULE SCREENING →",
-        ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=HR Inquiry: Talent Opportunity"
-      },
-      creative: {
-        badge: "CREATIVE DIRECTORS & PRODUCERS",
-        title: "Need a vision-aligned co-director, photographer, or onset talent?",
-        desc: "From lookbooks to set choreography and camera work. I step onto set prepared with fast composition, moodboard alignment, and disciplined visual rhythm.",
-        ctaText: "INITIATE DIRECT CREATIVE BRIEF →",
-        ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Creative Brief / Set Collaboration"
-      },
-      brand: {
-        badge: "EDITORIAL BRAND CASTING",
-        title: "Seeking modern, editorial modeling or visual brand representation?",
-        desc: "Lean physique, controlled soft presence, and natural camera fluidity for luxury streetwear, high-fashion campaigns, and editorial stills.",
-        ctaText: "BOOK FOR CAMPAIGN / MODELING COMMISSIONS →",
-        ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Brand Modeling & Campaign Inquiry"
-      },
-      strategy: {
-        badge: "GROWTH STRATEGY & AUDITS",
-        title: "Looking to map out customer journeys, funnels, and tracking?",
-        desc: "I audit existing retention flows, build first-party data capture architectures, and craft custom lifecycle strategies that scale high-ticket retail and hospitality brands.",
-        ctaText: "BOOK A STRATEGIC AUDIT & BLUEPRINT →",
-        ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Growth Audit & Blueprint Request"
-      },
-      collab: {
-        badge: "CREATIVE PEERS & DESIGN STUDENTS",
-        title: "Want to build an experimental project or conceptual series together?",
-        desc: "Let's innovate. Whether it's testing new visual media, short film concepts, or experimental direction, I'm always open to high-energy creative syncs.",
-        ctaText: "SEND A COLLAB IDEA →",
-        ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Creative Collaboration Sync"
-      }
-    };
-
-    var roleKey = btn.getAttribute('data-persona');
-    var selected = personaData[roleKey];
-    if (!selected) return;
-
-    // 1. Move active pill highlight
-    var allBtns = document.querySelectorAll('.persona-btn');
-    allBtns.forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-
-    // 2. Smooth update
-    var box = document.getElementById('persona-display');
-    if (box) {
-      box.style.opacity = '0';
-      setTimeout(function() {
-        document.getElementById('persona-badge').textContent = selected.badge;
-        document.getElementById('persona-title').textContent = selected.title;
-        document.getElementById('persona-desc').textContent = selected.desc;
-
-        var cta = document.getElementById('persona-cta');
-        if (cta) {
-          cta.textContent = selected.ctaText;
-          cta.setAttribute('href', selected.ctaMail);
-        }
-        box.style.opacity = '1';
-      }, 180);
-    }
-  });
-</script>
-
-</section>
-    </main>
-
-    <footer>
-        <p>© 2026 OLLIE 16 // ALL OPERATIONS REGISTERED GLOBALLY // SPEAKING SILENTLY, TFG.</p>
-    </footer>
-
-    <div id="portfolio-lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <div id="lightbox-content-wrapper" style="position: relative;" onclick="event.stopPropagation()">
-            <!-- Media content (img/video) will be injected dynamically here -->
-        </div>
-    </div>
-
-    <script>
-
-
-        // Node Syncer
-        function syncArchetypeNode(key, element) {
-            // Unhighlight all node cards
-            document.querySelectorAll('.node-card').forEach(card => {
-                card.classList.remove('active');
-            });
-
-            // Highlight active clicked card
-            element.classList.add('active');
-
-            // Load and animate content into our display panel
-            const data = archetypeNodes[key];
-            if (data) {
-                document.getElementById('sync-code').textContent = data.code;
-                document.getElementById('sync-title').textContent = data.title;
-                document.getElementById('sync-desc').textContent = data.desc;
-
-                const tagsContainer = document.getElementById('sync-tags');
-                tagsContainer.innerHTML = '';
-                data.tags.forEach(tag => {
-                    const span = document.createElement('span');
-                    span.className = 'display-tag';
-                    span.textContent = tag;
-                    tagsContainer.appendChild(span);
-                });
-            }
-        }
-
-        // Responsive Aspect-Ratio Preset Toggles (No Crop solutions)
-    function toggleGridPreset(presetType) {
-        const container = document.getElementById('media-grid-container');
-        const cards = container.querySelectorAll('.work-card .media-container');
-
-        // Reset dynamic preset buttons
-        document.querySelectorAll('.preset-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-
-        // Set current preset active style
-        document.getElementById('btn-' + presetType).classList.add('active');
-
-        // Strip existing overrides
-        container.className = 'work-grid';
-
-        cards.forEach((card, idx) => {
-            card.removeAttribute('style'); // Strip custom hardcoded height aspects
-            
-            if (presetType === 'masonry') {
-                // Restore optimal varied editorial aspects
-                container.classList.add('grid-portrait');
-                if (idx === 1) card.style.aspectRatio = "16/9";
-                if (idx === 2) card.style.aspectRatio = "3/2";
-            } else if (presetType === 'cinematic') {
-                // Force cinematic proportions across all containers
-                container.classList.add('grid-landscape');
-            } else if (presetType === 'portrait') {
-                // Force vertical portrait ratios across all containers
-                container.classList.add('grid-portrait');
-            }
-        });
-    }
-
-    // Interactive Sound Toggle for inline videos
-    function toggleMediaSound(event) {
-        event.stopPropagation(); // Avoid triggering lightbox clicks
-        const button = event.currentTarget;
-        const container = button.closest('.about-portrait-centered, .media-container');
-        const video = container.querySelector('video.active') || container.querySelector('video');
-        if (!video) return;
+    <!-- ========================================== -->
+    <!-- HERO / INTRO SECTION                       -->
+    <!-- ========================================== -->
+    <section id="intro" class="min-h-[75vh] flex flex-col justify-center pt-8">
+      <div class="max-w-4xl space-y-6">
         
-        const icon = button.querySelector('i');
-        if (video.muted) {
-            video.muted = false;
-            icon.textContent = 'volume_up';
-        } else {
-            video.muted = true;
-            icon.textContent = 'volume_off';
-        }
-    }
+        <!-- STATUS & IDENTITY BADGE -->
+        <div class="inline-flex items-center gap-3 border border-[#262626] bg-[#121212] px-4 py-1.5 rounded-full text-xs font-mono text-[#d4af37]">
+          <span class="status-dot"></span>
+          <span>Ollie16 is a full stack creative studio and digital growth engine where high-fashion visual prestige meets server-side revenue science</span>
+        </div>
 
-    // Stateful Multi-Slide Carousels
-    function initSlideshows() {
-        const containers = document.querySelectorAll('.media-container');
-        containers.forEach((container, cardIdx) => {
-            const items = container.querySelectorAll('img, video');
-            if (items.length <= 1) {
-                // Standard Single Item: Bind simple click-to-lightbox behavior
-                container.onclick = () => {
-                    const single = items[0];
-                    if (single) {
-                        const type = single.tagName.toLowerCase() === 'video' ? 'video' : 'image';
-                        openLightboxForElement(single, type);
-                    }
-                };
-                return;
-            }
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-serif text-[#f5f5f7] leading-tight tracking-tight">
+          Visual Prestige & Digital Growth Architecture.
+        </h1>
 
-            // Multiple Items! Let's convert this into an editorial slideshow
-            container.classList.add('multi-slide');
-            
-            let activeIndex = 0;
+        <p class="text-base md:text-lg font-sans text-[#86868b] leading-relaxed">
+          I bridge the gap between creative talent and technical marketing execution, combining visual authenticity with revenue growth science and high end brand storytelling. Expert in high converting brand ecosystems, server side analytics, full funnel customer acquisition, and retention architecture.
+        </p>
+        
+        <p class="text-base md:text-lg font-sans text-[#86868b] leading-relaxed"> 
+         Most agencies force brands to choose: work with creative directors who make stunning visuals that can't be tracked, or hire media buyers who run data campaigns with zero artistic soul.
+         Ollie16 destroys that divide.
+        </p>
 
-            // Structure current children
-            items.forEach((item, index) => {
-                item.classList.add('slide-item');
-                if (index === 0) item.classList.add('active');
-                else item.classList.remove('active');
-            });
+        <p class="text-base md:text-lg font-sans text-[#86868b] leading-relaxed"> 
+         Operating out of Dubai, Ollie16 and its creative hub 16 EDT exists to build timeless visual assets while engineering the first-party server pipelines required to monetize, track, 
+         and scale them. We merge editorial streetwear photography, motion light direction, and minimalist UI design with server-side GTM architecture, GA4 tracking pipelines, and Klaviyo lifecycle retention engines.
+         We don't just create content to look good—we build brand ecosystems engineered for long-term Customer Lifetime Value ROI and measurable revenue.
+        </p>
 
-            // Generate Arrow Controls
-            const prevBtn = document.createElement('button');
-            prevBtn.className = 'slide-nav prev';
-            prevBtn.setAttribute('aria-label', 'Previous slide');
-            prevBtn.innerHTML = '<i class="material-icons">chevron_left</i>';
-            
-            const nextBtn = document.createElement('button');
-            nextBtn.className = 'slide-nav next';
-            nextBtn.setAttribute('aria-label', 'Next slide');
-            nextBtn.innerHTML = '<i class="material-icons">chevron_right</i>';
+        <p class="text-base md:text-lg font-sans text-[#86868b] leading-relaxed"> 
+       Our Mission
+       To eliminate the friction between luxury branding and technical marketing. 
+       We empower high ticket retail, hospitality, and fashion brands to capture market attention through uncompromising visual art while capturing every dollar of revenue through precise data infrastructure.
+       </p>
 
-            // Generate Balenciaga-style trackers
-            const indicators = document.createElement('div');
-            indicators.className = 'slide-indicators';
-            items.forEach((_, index) => {
-                const dash = document.createElement('span');
-                dash.className = `indicator-dash ${index === 0 ? 'active' : ''}`;
-                dash.onclick = (e) => {
-                    e.stopPropagation();
-                    goToSlide(index);
-                };
-                indicators.appendChild(dash);
-            });
+        <p class="text-base md:text-lg font-sans text-[#86868b] leading-relaxed"> 
+        Our Vision
+        To scale Ollie16 from a Dubai-founded boutique agency into a global creative collective—expanding our syndicate of visionaries, colorists, and data engineers while educating the next generation of digital builders through open-source learning.
+       </p>
 
-            container.appendChild(prevBtn);
-            container.appendChild(nextBtn);
-            container.appendChild(indicators);
+        <p class="text-xs sm:text-sm font-mono text-[#86868b] leading-relaxed border-l-2 border-[#d4af37] pl-4">
+          I create, edit, and visualize.. but most importantly, I protect your data while bypassing ad blockers and tracking every dollar spent to maximize lifetime value.
+          Connecting the dots so they align. Zero fluff. Timeless creation. Grounded execution.
+        </p>
 
-            function goToSlide(newIndex) {
-                items[activeIndex].classList.remove('active');
-                indicators.children[activeIndex].classList.remove('active');
-                
-                if (items[activeIndex].tagName.toLowerCase() === 'video') {
-                    items[activeIndex].pause();
-                }
+        <div class="flex flex-wrap gap-4 pt-4">
+            <a href="art.html" class="px-6 py-3 bg-[#f5f5f7] text-[#0a0a0a] text-xs font-mono uppercase tracking-widest font-semibold rounded hover:bg-[#d4af37] transition-colors">
+            Explore 16 Gallery | Hand painted| One on One | African Paintings  &rarr;
+          </a>
+          <a href="portfolio.html" class="px-6 py-3 bg-[#f5f5f7] text-[#0a0a0a] text-xs font-mono uppercase tracking-widest font-semibold rounded hover:bg-[#d4af37] transition-colors">
+            Explore 16 Series Portfolio &rarr;
+          </a>
+        </div>
 
-                activeIndex = (newIndex + items.length) % items.length;
-                
-                items[activeIndex].classList.add('active');
-                indicators.children[activeIndex].classList.add('active');
+      </div>
+    </section>
 
-                if (items[activeIndex].tagName.toLowerCase() === 'video') {
-                    items[activeIndex].play().catch(() => {});
-                }
-            }
+    <!-- ========================================== -->
+    <!-- CAPABILITIES & CORE SERVICES               -->
+    <!-- ========================================== -->
+    <section id="capabilities" class="py-20 border-t border-[#262626]">
+      <div class="mb-12">
+        <span class="text-xs font-mono text-[#d4af37] tracking-[0.3em] uppercase block mb-2">AGENCY CAPABILITIES</span>
+        <h2 class="text-3xl md:text-5xl font-serif text-[#f5f5f7]">What We  Delivery</h2>
+      </div>
 
-            prevBtn.onclick = (e) => {
-                e.stopPropagation();
-                goToSlide(activeIndex - 1);
-            };
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="border border-[#262626] bg-[#121212] p-8 rounded-lg space-y-3 hover:border-[#d4af37] transition-all">
+          <span class="text-xs font-mono text-[#d4af37]"> PRODUCTION </span>
+          <h3 class="text-xl font-serif text-[#f5f5f7]">Editorial Media & Stills</h3>
+          <p class="text-xs font-mono text-[#86868b] leading-relaxed">
+            High-fashion portraiture, streetwear lookbooks, motion light videography, and multi frame campaign asset sets.
+          </p>
+        </div>
 
-            nextBtn.onclick = (e) => {
-                e.stopPropagation();
-                goToSlide(activeIndex + 1);
-            };
+        <div class="border border-[#262626] bg-[#121212] p-8 rounded-lg space-y-3 hover:border-[#d4af37] transition-all">
+          <span class="text-xs font-mono text-[#d4af37]"> ANALYTICS </span>
+          <h3 class="text-xl font-serif text-[#f5f5f7]">Server-Side Tracking Architecture</h3>
+          <p class="text-xs font-mono text-[#86868b] leading-relaxed">
+            GTM server-side tracking, custom event pipelines in GA4, Meta Conversions API (CAPI), and first party data protection.
+          </p>
+        </div>
 
-            // Open lightbox on clicking the active slide item (excluding button elements)
-            container.onclick = (e) => {
-                if (e.target.closest('.slide-nav') || e.target.closest('.slide-indicators') || e.target.closest('.video-overlay-ctrl') || e.target.closest('.vid-btn')) {
-                    return;
-                }
-                const activeMedia = items[activeIndex];
-                const type = activeMedia.tagName.toLowerCase() === 'video' ? 'video' : 'image';
-                openLightboxForElement(activeMedia, type);
-            };
-        });
-    }
+        <div class="border border-[#262626] bg-[#121212] p-8 rounded-lg space-y-3 hover:border-[#d4af37] transition-all">
+          <span class="text-xs font-mono text-[#d4af37]"> Revenue Strategy  </span>
+          <h3 class="text-xl font-serif text-[#f5f5f7]"> Funnel Optimization </h3>
+          <p class="text-xs font-mono text-[#86868b] leading-relaxed">
+            End-to-end B2B and B2C strategy mapping focused on metrics that matter: ROI, ROAS, LTV:CAC, and Conversion Rate Optimization (CRO).
+          </p>
+        </div>
 
-    // Dedicated helper to open Lightbox on slides
-    function openLightboxForElement(mediaElement, type) {
-        const lightbox = document.getElementById('portfolio-lightbox');
-        const wrapper = document.getElementById('lightbox-content-wrapper');
-        wrapper.innerHTML = ''; // Reset
+        <div class="border border-[#262626] bg-[#121212] p-8 rounded-lg space-y-3 hover:border-[#d4af37] transition-all">
+          <span class="text-xs font-mono text-[#d4af37]"> RETENTION </span>
+          <h3 class="text-xl font-serif text-[#f5f5f7]">WiFi to CRM Funnel Systems</h3>
+          <p class="text-xs font-mono text-[#86868b] leading-relaxed">
+            Transitioning physical venue foot traffic into digital retention assets using captive portal mapping and Klaviyo automations.
+          </p>
+        </div>
 
-        if (type === 'image') {
-            const img = document.createElement('img');
-            img.src = mediaElement.src;
-            img.className = 'lightbox-content';
-            img.alt = mediaElement.alt || 'Portfolio Slider Zoom View';
-            wrapper.appendChild(img);
-        } else if (type === 'video') {
-            const video = document.createElement('video');
-            video.className = 'lightbox-content';
-            video.controls = true;
-            video.autoplay = true;
-            video.loop = true;
-            const source = document.createElement('source');
-            const originalSource = mediaElement.querySelector('source');
-            source.src = originalSource ? originalSource.src : mediaElement.src;
-            source.type = 'video/mp4';
-            video.appendChild(source);
-            wrapper.appendChild(video);
-        }
+      </div>
+    </section>
 
-        lightbox.classList.add('active');
-    }
+    <!-- ========================================== -->
+    <!-- VERIFIED CERTIFICATIONS SUMMARY            -->
+    <!-- ========================================== -->
+    <section id="certifications" class="py-16 border-t border-[#262626]">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-xs font-mono uppercase tracking-[0.2em] text-[#86868b]">
+          VERIFIED ARCHITECTURE & CERTIFICATIONS
+        </h2>
+        <span class="text-xs font-mono text-[#d4af37]">ACTIVE AND LEARNING MORE SKILLS </span>
+      </div>
 
-    // Initialize Slideshows on Load
-    document.addEventListener('DOMContentLoaded', initSlideshows);
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+       
+        <a href="https://app-eu1.hubspot.com/academy/achievements/c9dm110d/en/1/trevor-kaweesa/digital-marketing-certified" target="_blank" rel="noopener noreferrer" 
+         class="group p-5 bg-[#121212] border border-[#262626] rounded-lg hover:border-[#d4af37] transition-all duration-300">
+        <div class="p-5 bg-[#121212] border border-[#262626] rounded-lg">
+          <span class="text-[10px] font-mono text-[#86868b] uppercase block mb-1">Digital Marketing</span>
+          <h3 class="text-sm font-semibold text-[#f5f5f7]">Digital Marketing Certified</h3>
+          <p class="text-xs text-[#86868b] mt-1 font-mono">HubSpot Academy</p>
+        </div>
+        </a>
 
-    // Fully Integrated Lightbox Popup System
-    function openLightbox(element, type) {
-        // Deprecated fallback: our custom container onclicks now bypass this with superior active-slide routing
-        const firstMedia = element.querySelector('img, video');
-        if (firstMedia) {
-            const actualType = firstMedia.tagName.toLowerCase() === 'video' ? 'video' : 'image';
-            openLightboxForElement(firstMedia, actualType);
-        }
-    }
+        <a href="https://app-eu1.hubspot.com/academy/achievements/vbt6wpzf/en/1/trevor-kaweesa/social-media-certified" target="_blank" rel="noopener noreferrer" 
+         class="group p-5 bg-[#121212] border border-[#262626] rounded-lg hover:border-[#d4af37] transition-all duration-300">
+        <div class="p-5 bg-[#121212] border border-[#262626] rounded-lg">
+          <span class="text-[10px] font-mono text-[#86868b] uppercase block mb-1">Social Strategy</span>
+          <h3 class="text-sm font-semibold text-[#f5f5f7]">Social Media Certified</h3>
+          <p class="text-xs text-[#86868b] mt-1 font-mono">HubSpot Academy</p>
+        </div>
+        </a>
 
-    function closeLightbox() {
-        const lightbox = document.getElementById('portfolio-lightbox');
-        const wrapper = document.getElementById('lightbox-content-wrapper');
-        wrapper.innerHTML = ''; // Destroy video to stop background playing
-        lightbox.classList.remove('active');
-    }
+        <a href="https://www.linkedin.com/learning/certificates/09e9571805b01a5aa724d145da02437c03f6eb17a075b1043e8451f5f7a86a91?trk=share_certificate" target="_blank" rel="noopener noreferrer" 
+         class="group p-5 bg-[#121212] border border-[#262626] rounded-lg hover:border-[#d4af37] transition-all duration-300">
+        <div class="p-5 bg-[#121212] border border-[#262626] rounded-lg">
+          <span class="text-[10px] font-mono text-[#86868b] uppercase block mb-1">Data Infrastructure</span>
+          <h3 class="text-sm font-semibold text-[#f5f5f7]">Google Tag Manager Certified</h3>
+          <p class="text-xs text-[#86868b] mt-1 font-mono">LinkedIn Learning</p>
+        </div>
+        </a>
+        
+        <a href="https://www.linkedin.com/learning/certificates/5180455465e098e8cc6e6f53ae671d25fa03e5b580811e1718ff76a5eea8ea59?trk=share_certificate" target="_blank" rel="noopener noreferrer" 
+         class="group p-5 bg-[#121212] border border-[#262626] rounded-lg hover:border-[#d4af37] transition-all duration-300">
+        <div class="p-5 bg-[#121212] border border-[#262626] rounded-lg">
+          <span class="text-[10px] font-mono text-[#86868b] uppercase block mb-1">Growth Foundations</span>
+          <h3 class="text-sm font-semibold text-[#f5f5f7]">Digital Marketing Foundations</h3>
+          <p class="text-xs text-[#86868b] mt-1 font-mono">LinkedIn Learning</p>
+        </div>
+        </a>
 
-    // Contact submission feedback system
-        function handleMatrixConnect(event) {
-            event.preventDefault();
-            const emailInput = document.getElementById('matrix-email').value;
-            if (emailInput.trim() !== '') {
-                document.getElementById('form-success').classList.add('active');
-            }
-        }
+      </div>
+    </section>
 
-        function dismissFeedback() {
-            document.getElementById('form-success').classList.remove('active');
-            document.getElementById('newsletter-form').reset();
-        }
+    <!-- ========================================== -->
+    <!-- INTERACTIVE AUDIENCE PORTAL CARD           -->
+    <!-- ========================================== -->
+    <section class="py-16 border-t border-[#262626]">
+      <div class="capstone-interactive-card">
+        <div class="capstone-header">
+          <span class="eyebrow"> DIRECT INTERACTION </span>
+          <h2>Who Is Reading?</h2>
+          <p class="subtitle">Select your role below to tailor the objective and initialize direct sync.</p>
+        </div>
 
-        // Escape Key closures for Lightbox
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
-        });
-    </script>
+        <div class="persona-tabs">
+          <button type="button" class="persona-btn active" data-persona="hr">HR & Recruiters</button>
+          <button type="button" class="persona-btn" data-persona="creative">Creative Directors</button>
+          <button type="button" class="persona-btn" data-persona="brand">Brands & Casting</button>
+          <button type="button" class="persona-btn" data-persona="strategy">Growth & Strategy</button>
+          <button type="button" class="persona-btn" data-persona="collab">Collabs & Peers</button>
+        </div>
+
+        <div class="persona-display-box" id="persona-display">
+          <div class="persona-badge" id="persona-badge">TALENT & RECRUITMENT</div>
+          <h3 id="persona-title">Are you looking to fill a strategic or creative leadership role?</h3>
+          <p id="persona-desc">
+            I bring a hybrid engine: high fashion editorial execution paired with technical growth architecture (GA4, GTM server-side, Klaviyo workflows). Ready to step into a full time dynamic team.
+          </p>
+          <div class="persona-cta-wrap">
+            <a href="mailto:keiantrevorkaweesa@gmail.com?subject=HR Inquiry: Talent Opportunity" id="persona-cta" class="persona-cta-btn">
+              REQUEST COMPLETE CV & SCHEDULE SCREENING &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- DIRECT AUDIT & CONTACT ENGAGEMENT          -->
+    <!-- ========================================== -->
+    <section id="audit" class="py-20 border-t border-[#262626]">
+      <div class="bg-[#121212] border border-[#262626] p-8 md:p-12 rounded-lg text-center space-y-6 max-w-3xl mx-auto">
+        <span class="text-xs font-mono text-[#d4af37] tracking-[0.3em] uppercase block"> DIRECT ENGAGEMEN T</span>
+        <h2 class="text-3xl md:text-4xl font-serif text-[#f5f5f7]">Book a Growth & Media Audit</h2>
+        <p class="text-xs font-mono text-[#86868b] leading-relaxed max-w-lg mx-auto">
+          Ready to elevate your brand visual assets or audit your tracking pipeline? Connect directly via command links below.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4 pt-4">
+          <a href="https://wa.me/+971502669024" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-[#1a1a1a] border border-[#262626] text-xs font-mono text-[#f5f5f7] rounded hover:border-[#d4af37] transition-all flex items-center gap-2">
+            <i class="material-icons text-sm">chat</i> WhatsApp
+          </a>
+          <a href="https://www.instagram.com/keifad_galleria?igsh=a3FzdW03b250bWRw" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-[#1a1a1a] border border-[#262626] text-xs font-mono text-[#f5f5f7] rounded hover:border-[#d4af37] transition-all flex items-center gap-2">
+            <i class="material-icons text-sm">camera_alt</i> Instagram
+          </a>
+          <a href="https://www.linkedin.com/in/ollie-creative" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-[#1a1a1a] border border-[#262626] text-xs font-mono text-[#f5f5f7] rounded hover:border-[#d4af37] transition-all flex items-center gap-2">
+            <i class="material-icons text-sm">work</i> LinkedIn
+          </a>
+          <a href="mailto:ollie16.edt@gmail.com" class="px-5 py-2.5 bg-[#d4af37] text-black text-xs font-mono font-bold rounded hover:bg-white transition-all flex items-center gap-2">
+            <i class="material-icons text-sm">alternate_email</i> Email Command
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-8 text-center text-xs font-mono text-[#86868b] border-t border-[#262626]">
+    <p>&copy; 2026 OLLIE 16 // ALL OPERATIONS REGISTERED GLOBALLY // SPEAKING SILENTLY, TFG.</p>
+  </footer>
+
+  <!-- SHARED LIGHTBOX OVERLAY -->
+  <div id="portfolio-lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <div id="lightbox-content-wrapper" style="position: relative;" onclick="event.stopPropagation()"></div>
+  </div>
+
+  <!-- EXTERNAL SCRIPT -->
+  <script src="script.js"></script>
 </body>
 </html>
