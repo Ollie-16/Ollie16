@@ -1422,10 +1422,18 @@ img, video {
   cursor: pointer;
   transition: var(--transition-smooth);
 }
-
 .art-cat-btn.active, 
 .art-cat-btn:hover {
   border-color: var(--accent-color);
   color: var(--text-primary);
   background-color: #1a1a1a;
+}
+/* Ensure mobile menu dropdown displays on top of hero elements */
+#mobile-menu-dropdown {
+  position: relative;
+  z-index: 101 !important;
+}
+
+#mobile-menu-btn {
+  z-index: 102 !important;
 }

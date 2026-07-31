@@ -21,76 +21,108 @@ function trackDataLayerEvent(eventName, eventParams = {}) {
   window.dataLayer.push(payload);
   console.log(`[DataLayer Event]: ${eventName}`, payload);
 }
-
 // ==========================================
-// 2. MANDATORY FULLSCREEN COOKIE POPUP MODAL
+// BULLETPROOF GLOBAL COOKIE MODAL ENGINE
 // ==========================================
 function initGlobalCookieModal() {
-  if (localStorage.getItem('cookie_consent_accepted')) return;
+  const existingModal = document.getElementById('cookie-modal-overlay') || document.getElementById('cookie-banner');
 
-  // Lock background scrolling while modal is active
+  // If consent was already given, remove any existing overlay immediately
+  if (localStorage.getItem('cookie_consent_accepted') === 'true') {
+    if (existingModal) existingModal.remove();
+    document.body.style.overflow = 'auto';
+    return;
+  }
+
+  // Prevent background scrolling while modal is open
   document.body.style.overflow = 'hidden';
 
-  const modal = document.createElement('div');
-  modal.id = 'cookie-modal-overlay';
-  modal.className = 'fixed inset-0 z-[500] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6';
-  modal.innerHTML = `
-    <div class="bg-[#121212] border border-[#262626] max-w-md w-full p-6 sm:p-8 rounded-lg shadow-2xl text-center space-y-5 font-sans">
-      <div class="inline-flex items-center gap-2 text-xs font-mono text-[#d4af37] uppercase tracking-widest border border-[#d4af37]/30 bg-[#0a0a0a] px-3 py-1 rounded-full">
-        <span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
-        GTM ACTIVE & COOKIE CONSENT
-      </div>
-      
-      <h3 class="text-2xl font-serif text-[#f5f5f7]">Welcome to 16 EDT</h3>
-      
-      <p class="text-xs font-mono text-[#86868b] leading-relaxed">
-        We utilize functional cookies and Google Tag Manager analytics to deliver a seamless editorial experience, protect digital architecture, and optimize retention pipelines.
-      </p>
-      
-      <div class="pt-2">
-        <button id="accept-cookies-btn" class="w-full py-3 bg-[#d4af37] text-black font-mono text-xs uppercase tracking-widest font-bold rounded hover:bg-white transition-colors cursor-pointer shadow-lg">
-          Accept & Continue to Site
+  // Find existing overlay or dynamically inject full-screen dark modal
+  let modalOverlay = existingModal;
+
+  if (!modalOverlay) {
+    modalOverlay = document.createElement('div');
+    modalOverlay.id = 'cookie-modal-overlay';
+    modalOverlay.className = 'fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex items-center justify-center p-4';
+    modalOverlay.innerHTML = `
+      <div class="max-w-md w-full bg-[#121212] border border-[#262626] p-8 rounded-2xl text-center space-y-6 shadow-2xl">
+        <div class="inline-flex items-center gap-2 border border-[#d4af37]/40 bg-[#0a0a0a] px-3.5 py-1 rounded-full text-[10px] font-mono text-[#d4af37] uppercase tracking-widest">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse"></span>
+          GTM ACTIVE & COOKIE CONSENT
+        </div>
+
+        <h3 class="text-2xl font-serif text-[#f5f5f7]">Welcome to 16 EDT</h3>
+
+        <p class="text-xs font-mono text-[#86868b] leading-relaxed">
+          We utilize functional cookies and Google Tag Manager analytics to deliver a seamless editorial experience, protect digital architecture, and optimize retention pipelines.
+        </p>
+
+        <button id="accept-cookies-final-btn" class="w-full py-3.5 bg-[#d4af37] text-black font-mono text-xs uppercase font-bold tracking-widest rounded-lg hover:bg-white transition-colors cursor-pointer shadow-lg">
+          ACCEPT & CONTINUE TO SITE
         </button>
       </div>
-    </div>
-  `;
+    `;
+    document.body.appendChild(modalOverlay);
+  }
 
-  document.body.appendChild(modal);
+  // Bind Safe Accept Action
+  const acceptBtn = document.getElementById('accept-cookies-final-btn') || modalOverlay.querySelector('button');
 
-  document.getElementById('accept-cookies-btn').addEventListener('click', () => {
-    localStorage.setItem('cookie_consent_accepted', 'true');
-    document.body.style.overflow = '';
-    modal.remove();
-    
-    trackDataLayerEvent('cookie_consent_accepted', {
-      consent_type: 'functional_and_analytics',
-      gtm_status: 'initialized'
-    });
-  });
-}
+  if (acceptBtn) {
+    acceptBtn.onclick = function(e) {
+      if (e) e.stopPropagation();
+      
+      // 1. Store consent
+      localStorage.setItem('cookie_consent_accepted', 'true');
+      
+      // 2. Completely remove the full-screen backdrop overlay
+      modalOverlay.remove();
+      
+      // 3. Re-enable site scrolling
+      document.body.style.overflow = 'auto';
 
-// ==========================================
-// 3. MOBILE DROPDOWN MENU ENGINE
-// ==========================================
-function initMobileMenu() {
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const menuDropdown = document.getElementById('mobile-menu-dropdown');
-  const menuIcon = document.getElementById('menu-icon');
-
-  if (menuBtn && menuDropdown) {
-    menuBtn.addEventListener('click', () => {
-      const isVisible = menuDropdown.style.display === 'block';
-      if (!isVisible) {
-        menuDropdown.style.display = 'block';
-        if (menuIcon) menuIcon.textContent = 'close';
-      } else {
-        menuDropdown.style.display = 'none';
-        if (menuIcon) menuIcon.textContent = 'menu';
+      // 4. Safe DataLayer push
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'cookie_consent_accepted',
+          consent_type: 'functional_and_gtm_analytics',
+          timestamp: new Date().toISOString()
+        });
       }
-    });
+    };
   }
 }
+// ==========================================
+// BULLETPROOF MOBILE MENU TOGGLE ENGINE
+// ==========================================
+function initMobileMenu() {
+  // Global event delegation — works every time regardless of render timing
+  document.addEventListener('click', function(e) {
+    const menuBtn = e.target.closest('#mobile-menu-btn');
+    if (!menuBtn) return;
 
+    e.preventDefault();
+    e.stopPropagation();
+
+    const dropdown = document.getElementById('mobile-menu-dropdown');
+    const menuIcon = document.getElementById('menu-icon');
+
+    if (dropdown) {
+      // Check both class state and actual rendered computed style
+      const isHidden = dropdown.classList.contains('hidden') || getComputedStyle(dropdown).display === 'none';
+
+      if (isHidden) {
+        dropdown.classList.remove('hidden');
+        dropdown.style.display = 'block';
+        if (menuIcon) menuIcon.textContent = 'close';
+      } else {
+        dropdown.classList.add('hidden');
+        dropdown.style.display = 'none';
+        if (menuIcon) menuIcon.textContent = 'menu';
+      }
+    }
+  });
+}
 // ==========================================
 // 4. MEDIA SOUND CONTROLLER
 // ==========================================
@@ -407,6 +439,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Mobile Hamburger Menu
   initMobileMenu();
+  
+  document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Cookie Consent Modal Engine
+  initGlobalCookieModal();
+
+  // Auto-Highlight active navbar tab
+  if (typeof highlightActiveNavLink === 'function') {
+    highlightActiveNavLink();
+  }
+
+  // Initialize Media Sliders and Lightbox
+  if (typeof initSlideshows === 'function') {
+    initSlideshows();
+  }
+});
 
   // ... rest of your existing JS code ...
 });
