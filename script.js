@@ -93,33 +93,30 @@ function initGlobalCookieModal() {
   }
 }
 // ==========================================
-// BULLETPROOF MOBILE MENU TOGGLE ENGINE
+// MOBILE MENU DROPDOWN ENGINE
 // ==========================================
 function initMobileMenu() {
-  // Global event delegation — works every time regardless of render timing
-  document.addEventListener('click', function(e) {
-    const menuBtn = e.target.closest('#mobile-menu-btn');
-    if (!menuBtn) return;
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const dropdown = document.getElementById('mobile-menu-dropdown');
+  const menuIcon = document.getElementById('menu-icon');
 
-    e.preventDefault();
+  if (!menuBtn || !dropdown) return;
+
+  // Toggle dropdown on button click
+  menuBtn.onclick = function(e) {
     e.stopPropagation();
+    const isOpen = dropdown.classList.toggle('is-open');
 
-    const dropdown = document.getElementById('mobile-menu-dropdown');
-    const menuIcon = document.getElementById('menu-icon');
+    if (menuIcon) {
+      menuIcon.textContent = isOpen ? 'close' : 'menu';
+    }
+  };
 
-    if (dropdown) {
-      // Check both class state and actual rendered computed style
-      const isHidden = dropdown.classList.contains('hidden') || getComputedStyle(dropdown).display === 'none';
-
-      if (isHidden) {
-        dropdown.classList.remove('hidden');
-        dropdown.style.display = 'block';
-        if (menuIcon) menuIcon.textContent = 'close';
-      } else {
-        dropdown.classList.add('hidden');
-        dropdown.style.display = 'none';
-        if (menuIcon) menuIcon.textContent = 'menu';
-      }
+  // Close menu if user clicks anywhere outside the nav bar
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('nav') && dropdown.classList.contains('is-open')) {
+      dropdown.classList.remove('is-open');
+      if (menuIcon) menuIcon.textContent = 'menu';
     }
   });
 }

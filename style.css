@@ -1437,3 +1437,36 @@ img, video {
 #mobile-menu-btn {
   z-index: 102 !important;
 }
+/* ==========================================
+   NAVBAR RESPONSIVE & MOBILE DROPDOWN ENGINE
+   ========================================== */
+
+.nav-desktop-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-mobile-btn {
+  display: none;
+}
+
+/* Hidden by default */
+.nav-mobile-dropdown {
+  display: none;
+}
+
+/* Forced visible when toggled open by JS */
+.nav-mobile-dropdown.is-open {
+  display: block !important;
+}
+
+/* Mobile viewport adjustments (< 768px) */
+@media (max-width: 767px) {
+  .nav-desktop-links {
+    display: none !important;
+  }
+  .nav-mobile-btn {
+    display: flex !important;
+  }
+}
