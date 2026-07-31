@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>16 Gallery</title>
+  <title>16 Gallery | Original Fine Art & African Canvas Exhibition</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css" />
@@ -17,274 +19,751 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TFJ7D43V');</script>
-</head>
-<body class="pt-28 pb-20 font-sans antialiased">
 
-  <!-- Google Tag Manager (noscript) -->
+  <style>
+    /* Spotlight Glow Animation */
+    .spotlight-glow {
+      background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.18) 0%, rgba(10, 10, 10, 0.98) 75%);
+    }
+
+    /* Filter & View Mode Animations */
+    .art-item {
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .art-item.filter-hidden {
+      display: none !important;
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    .art-filter-btn.active, .view-mode-btn.active {
+      background-color: #d4af37 !important;
+      color: #000000 !important;
+      border-color: #d4af37 !important;
+      font-weight: 700 !important;
+    }
+
+    /* Room Visualizer Wall Mockup */
+    .virtual-wall-mockup {
+      background: linear-gradient(180deg, #181818 0%, #0d0d0d 100%);
+      box-shadow: inset 0 0 100px rgba(0,0,0,0.9);
+    }
+  </style>
+</head>
+<body class="pt-28 pb-20 font-sans antialiased selection:bg-[#d4af37] selection:text-black">
+
+    <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFJ7D43V"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<!-- AMBIENT BACKGROUND GLOW -->
-   <div class="ambient-glow"></div>
-  <!-- NAVBAR -->
-  <nav class="fixed top-0 left-0 w-full z-[100] bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#262626]">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex flex-col group">
-        <span class="text-lg font-serif tracking-tight text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">16 Gallery</span>
-        <span class="text-[9px] font-mono tracking-[0.25em] text-[#d4af37] uppercase">By 16EDT</span>
+  <div class="ambient-glow"></div>
+
+ <!-- GLOBAL 16 EDT NAVIGATION NAVBAR -->
+<nav class="fixed top-0 left-0 w-full z-[100] bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#262626]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+    
+    <!-- BRAND LOGO -->
+    <a href="index.html" class="flex flex-col group shrink-0">
+      <span class="text-lg font-serif tracking-tight text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">16 EDT</span>
+      <span class="text-[9px] font-mono tracking-[0.25em] text-[#d4af37] uppercase">By Ollie16</span>
+    </a>
+
+    <!-- DESKTOP LINKS -->
+    <div class="nav-desktop-links text-xs font-mono tracking-widest uppercase">
+      <a href="index.html">Hub</a>
+      <a href="art.html">16 Gallery</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="production.html">Production</a>
+      <a href="people.html">Our Own</a>
+      <a href="learning.html">Learning</a>
+    </div>
+
+    <!-- RIGHT ACTIONS: BOOK AUDIT + HAMBURGER ICON -->
+    <div class="flex items-center gap-3">
+      <a href="index.html#audit" class="px-3 py-1.5 sm:px-4 sm:py-2 border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all text-[10px] sm:text-xs font-mono uppercase tracking-widest rounded shrink-0">
+        Book Audit
       </a>
 
-      <div class="flex items-center gap-4 md:gap-8 text-[11px] md:text-xs font-mono tracking-widest uppercase">
-        <a href="index.html" class="text-[#86868b] hover:text-[#f5f5f7]">Hub</a>
-        <a href="portfolio.html" class="text-[#86868b] hover:text-[#f5f5f7]">Portfolio</a>
-        <a href="production.html" class="text-[#86868b] hover:text-[#f5f5f7]">Production</a>
-        <a href="people.html" class="text-[#86868b] hover:text-[#f5f5f7]">Our Own</a>
-        <a href="learning.html" class="text-[#86868b] hover:text-[#f5f5f7]">Learning</a>
-        <a href="art.html" class="text-[#d4af37] font-bold border-b border-[#d4af37] pb-1">16 Gallery</a>
-      </div>
-
-      <a href="index.html#audit" class="active lg:inline-block px-4 py-2 border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black text-xs font-mono uppercase rounded">Book Audit</a>
+      <button id="mobile-menu-btn" class="nav-mobile-btn p-2 text-[#f5f5f7] hover:text-[#d4af37] transition-colors focus:outline-none" aria-label="Toggle Menu">
+        <i class="material-icons text-2xl" id="menu-icon">menu</i>
+      </button>
     </div>
-  </nav>
+  </div>
+
+  <!-- MOBILE DROPDOWN MENU PANEL -->
+  <div id="mobile-menu-dropdown" class="nav-mobile-dropdown bg-[#121212] border-b border-[#262626] px-6 py-4 font-mono text-xs uppercase tracking-widest space-y-1">
+    <a href="index.html" class="block">Hub</a>
+    <a href="art.html" class="block">16 Gallery</a>
+    <a href="portfolio.html" class="block">Portfolio</a>
+    <a href="production.html" class="block">Production</a>
+    <a href="people.html" class="block">Our Own</a>
+    <a href="learning.html" class="block">Learning</a>
+  </div>
+</nav>
 
   <main class="max-w-7xl mx-auto px-6">
-    <!-- HEADER -->
-    <section class="mb-12">
-      <span class="text-xs font-mono text-[#d4af37] tracking-[0.3em] uppercase block mb-2">ORIGINAL AFRICAN ART WORK</span>
-      <h1 class="text-4xl md:text-6xl font-serif text-[#f5f5f7]">Original Collections from the Pearl of Africa </h1>
-      <p class="text-xs font-mono text-[#86868b] mt-3 max-w-xl">
-        Curated original art paintings crafted by 16 EDT Studio. Culture and Nature of Africa.
-   </p>
-    <p class="text-xs font-mono text-[#86868b] mt-3 max-w-xl">
-         Worldwide private shipping available upon reservation.
-      </p>
+
+    <!-- ========================================== -->
+    <!-- SECTION 1: HERO & DEEP CURATORIAL ESSAY    -->
+    <!-- ========================================== -->
+    <section class="py-16 md:py-24 border-b border-[#262626] spotlight-glow rounded-3xl px-6 md:px-12 mb-16 relative overflow-hidden">
+      <div class="max-w-4xl space-y-8 relative z-10">
+        
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="inline-flex items-center gap-3 border border-[#d4af37]/40 bg-[#121212]/90 px-4 py-1.5 rounded-full text-xs font-mono text-[#d4af37]">
+            <span class="w-2 h-2 rounded-full bg-[#d4af37] animate-ping"></span>
+            16 GALLERY | FINE ART FROM UGANDA | PEARL OF AFRICA
+          </div>
+
+          <!-- AMBIENCE AUDIO TOGGLE -->
+          <button onclick="toggleGalleryAmbience()" id="ambience-btn" class="inline-flex items-center gap-2 border border-[#262626] bg-[#0a0a0a] px-4 py-1.5 rounded-full text-[11px] font-mono text-[#86868b] hover:text-[#f5f5f7] hover:border-[#d4af37] transition-all cursor-pointer">
+            <i class="material-icons text-sm text-[#d4af37]">volume_up</i>
+            <span id="ambience-text">Museum Soundscape: Off</span>
+          </button>
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif text-[#f5f5f7] leading-[1.1] tracking-tight">
+          True Fine Art Is Not Hanged. <br />
+          <span class="text-[#86868b] italic font-light">It Commands the Room.</span>
+        </h1>
+
+        <p class="text-base sm:text-xl font-serif italic text-[#86868b] leading-relaxed max-w-3xl">
+          16 Gallery is an invitation to experience physical creation at its most authentic. Every canvas in our sanctuary is a 1 of 1 physical masterpiece, painted one on one by master African artists in the heart of the Pearl.
+        </p>
+
+        <!-- DEEP CURATORIAL NARRATIVE -->
+        <div class="space-y-4 pt-4 border-t border-[#262626]/80 text-xs sm:text-sm font-mono text-[#86868b] leading-relaxed">
+          <p>
+            In a digital world overflowing with mass produced prints and AI generated duplicates, <strong class="text-[#f5f5f7]">16 Gallery preserves the rare weight of physical human art</strong>. Every stroke, impasto ridge, and shadow gradient represents hundreds of dedicated studio hours infused with African heritage, emotional depth, and uncompromising artistic soul.
+          </p>
+          <p>
+            From rich oil pigments matured over weeks to expressive acrylics and delicate charcoal lines, these works are crafted to serve as the crown centerpiece of private luxury residences, executive suites, and elite architectural spaces.
+          </p>
+        </div>
+
+        <!-- PILLARS OF 16 GALLERY -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-[#262626]/80 text-xs font-mono text-[#86868b]">
+          <div class="border-l-2 border-[#d4af37] pl-4">
+            <span class="text-[#d4af37] block mb-1 uppercase font-bold">HAND PIGMENTED</span>
+            <p class="leading-relaxed">Heavy oil impasto and rich organic pigments built over stretched natural canvas.</p>
+          </div>
+          <div class="border-l-2 border-[#d4af37] pl-4">
+            <span class="text-[#d4af37] block mb-1 uppercase font-bold">PROVENANCE SEAL</span>
+            <p class="leading-relaxed">Accompanied by a physical Ugandan Art Council provenance certificate and signature.</p>
+          </div>
+          <div class="border-l-2 border-[#d4af37] pl-4">
+            <span class="text-[#d4af37] block mb-1 uppercase font-bold">GLOBAL COURIER</span>
+            <p class="leading-relaxed">Hand crated in custom wood and delivered directly to 16 Gallery in Dubai and Globally.</p>
+          </div>
+        </div>
+
+      </div>
     </section>
 
-    <!-- ART GRID -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-      <!-- ART PIECE 01 -->
-      <article class="border border-[#262626] bg-[#121212] rounded-lg overflow-hidden group">
-        <div class="aspect-square overflow-hidden bg-[#1a1a1a] relative">
-          <img src="images/art-01.jpg" alt="Golden Shadow Study No. 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <span class="absolute top-3 right-3 bg-black/80 text-[#d4af37] text-[9px] font-mono px-3 py-1 rounded border border-[#d4af37]/30">
-            PRE ORDER 
-          </span>
+    <!-- ========================================== -->
+    <!-- SECTION 2: INTERACTIVE MEDIUM MASTERPIECES -->
+    <!-- ========================================== -->
+    <section class="py-12 border-b border-[#262626] mb-16">
+      <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-mono text-[#d4af37] tracking-[0.3em] uppercase block mb-2">VISUAL MEDIUM STUDIES</span>
+          <h2 class="text-3xl md:text-5xl font-serif text-[#f5f5f7]">Explore Medium Masterpieces</h2>
         </div>
-        <div class="p-6">
-          <h3 class="text-lg font-serif text-[#f5f5f7]">Golden Shadow Study No. 1</h3>
-          <p class="text-xs font-mono text-[#86868b] mt-1">Oil on Canvas (120 x 90 cm)</p>
-          
-          <div class="flex items-center justify-between mt-6 pt-4 border-t border-[#262626]">
-            <span class="text-sm font-mono text-[#f5f5f7] font-semibold">$1,200 USD</span>
-            <a href="mailto:ollie16.edt@gmail.com?subject=Inquiry: Golden Shadow Study No. 1 Canvas Acquisition" 
-               class="px-3 py-1.5 bg-[#f5f5f7] text-[#0a0a0a] text-[10px] font-mono uppercase font-bold rounded hover:bg-[#d4af37] transition-colors">
-              Inquire to Acquire
-            </a>
+        <p class="text-xs font-mono text-[#86868b] max-w-xs">
+          Click any discipline below to view its dedicated canvas collection.
+        </p>
+      </div>
+
+      <!-- 5 VISUAL MEDIUM MASTERPIECE CARDS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        
+        <!-- MEDIUM 1: OIL -->
+        <div onclick="filterAndScroll('oil')" class="border border-[#262626] bg-[#121212] p-3 rounded-xl hover:border-[#d4af37] transition-all cursor-pointer group flex flex-col justify-between shadow-lg">
+          <div class="aspect-[4/5] rounded-lg overflow-hidden relative mb-3 bg-[#1a1a1a]">
+            <img src="images/medium-oil.jpg" alt="Oil Canvas Study" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700" />
+            <span class="absolute top-2 left-2 bg-black/85 text-[8px] font-mono px-2 py-0.5 rounded text-[#d4af37] border border-[#d4af37]/30">OIL</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-serif text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">Oil Canvas Studies</h3>
+            <p class="text-[10px] font-mono text-[#86868b] mt-1 leading-relaxed">Organic pigments yielding timeless depth and luminous light interplay.</p>
+            <span class="text-[9px] font-mono text-[#d4af37] mt-3 block uppercase font-bold tracking-wider group-hover:translate-x-1 transition-transform">Explore Works &rarr;</span>
           </div>
         </div>
-      </article>
 
-       <!-- ART PIECE 02 -->
-      <article class="border border-[#262626] bg-[#121212] rounded-lg overflow-hidden group">
-        <div class="aspect-square overflow-hidden bg-[#1a1a1a] relative">
-          <img src="images/art-02.jpg" alt="Golden Shadow Study No. 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <span class="absolute top-3 right-3 bg-black/80 text-[#d4af37] text-[9px] font-mono px-3 py-1 rounded border border-[#d4af37]/30">
-            PRE ORDER 
-          </span>
-        </div>
-        <div class="p-6">
-          <h3 class="text-lg font-serif text-[#f5f5f7]">Golden Shadow Study No. 1</h3>
-          <p class="text-xs font-mono text-[#86868b] mt-1">Acrylic on Canvas (120 x 90 cm)</p>
-          
-          <div class="flex items-center justify-between mt-6 pt-4 border-t border-[#262626]">
-            <span class="text-sm font-mono text-[#f5f5f7] font-semibold">$1,200 USD</span>
-            <a href="mailto:ollie16.edt@gmail.com?subject=Inquiry: Golden Shadow Study No. 1 Canvas Acquisition" 
-               class="px-3 py-1.5 bg-[#f5f5f7] text-[#0a0a0a] text-[10px] font-mono uppercase font-bold rounded hover:bg-[#d4af37] transition-colors">
-              Inquire to Acquire
-            </a>
+        <!-- MEDIUM 2: ACRYLIC -->
+        <div onclick="filterAndScroll('acrylic')" class="border border-[#262626] bg-[#121212] p-3 rounded-xl hover:border-[#d4af37] transition-all cursor-pointer group flex flex-col justify-between shadow-lg">
+          <div class="aspect-[4/5] rounded-lg overflow-hidden relative mb-3 bg-[#1a1a1a]">
+            <img src="images/medium-acrylic.jpg" alt="Acrylic Expression Study" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700" />
+            <span class="absolute top-2 left-2 bg-black/85 text-[8px] font-mono px-2 py-0.5 rounded text-[#d4af37] border border-[#d4af37]/30">ACRYLIC</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-serif text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">Acrylic Expressions</h3>
+            <p class="text-[10px] font-mono text-[#86868b] mt-1 leading-relaxed">Immediate artistic energy delivering intense saturation and impasto texture.</p>
+            <span class="text-[9px] font-mono text-[#d4af37] mt-3 block uppercase font-bold tracking-wider group-hover:translate-x-1 transition-transform">Explore Works &rarr;</span>
           </div>
         </div>
-      </article>
 
-      <!-- ART PIECE 03 -->
-      <article class="border border-[#262626] bg-[#121212] rounded-lg overflow-hidden group">
-        <div class="aspect-square overflow-hidden bg-[#1a1a1a] relative">
-          <img src="images/art-03.jpg" alt="Golden Shadow Study No. 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <span class="absolute top-3 right-3 bg-black/80 text-[#d4af37] text-[9px] font-mono px-3 py-1 rounded border border-[#d4af37]/30">
-            PRE ORDER 
-          </span>
-        </div>
-        <div class="p-6">
-          <h3 class="text-lg font-serif text-[#f5f5f7]">Golden Shadow Study No. 1</h3>
-          <p class="text-xs font-mono text-[#86868b] mt-1">Acrylic on Canvas (120 x 90 cm)</p>
-          
-          <div class="flex items-center justify-between mt-6 pt-4 border-t border-[#262626]">
-            <span class="text-sm font-mono text-[#f5f5f7] font-semibold">$1,200 USD</span>
-            <a href="mailto:ollie16.edt@gmail.com?subject=Inquiry: Golden Shadow Study No. 1 Canvas Acquisition" 
-               class="px-3 py-1.5 bg-[#f5f5f7] text-[#0a0a0a] text-[10px] font-mono uppercase font-bold rounded hover:bg-[#d4af37] transition-colors">
-              Inquire to Acquire
-            </a>
+        <!-- MEDIUM 3: ABSTRACT -->
+        <div onclick="filterAndScroll('abstract')" class="border border-[#262626] bg-[#121212] p-3 rounded-xl hover:border-[#d4af37] transition-all cursor-pointer group flex flex-col justify-between shadow-lg">
+          <div class="aspect-[4/5] rounded-lg overflow-hidden relative mb-3 bg-[#1a1a1a]">
+            <img src="images/medium-abstract.jpg" alt="Abstract Concept Study" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700" />
+            <span class="absolute top-2 left-2 bg-black/85 text-[8px] font-mono px-2 py-0.5 rounded text-[#d4af37] border border-[#d4af37]/30">ABSTRACT</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-serif text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">Abstract Concepts</h3>
+            <p class="text-[10px] font-mono text-[#86868b] mt-1 leading-relaxed">Pure feeling and geometric tension conveyed through raw movement and balance.</p>
+            <span class="text-[9px] font-mono text-[#d4af37] mt-3 block uppercase font-bold tracking-wider group-hover:translate-x-1 transition-transform">Explore Works &rarr;</span>
           </div>
         </div>
-      </article>
 
-      <!-- ART PIECE 04 -->
-      <article class="border border-[#262626] bg-[#121212] rounded-lg overflow-hidden group">
-        <div class="aspect-square overflow-hidden bg-[#1a1a1a] relative">
-          <img src="images/art-04.jpg" alt="Golden Shadow Study No. 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <span class="absolute top-3 right-3 bg-black/80 text-[#d4af37] text-[9px] font-mono px-3 py-1 rounded border border-[#d4af37]/30">
-            PRE ORDER 
-          </span>
-        </div>
-        <div class="p-6">
-          <p class="text-xs font-mono text-[#86868b] mt-1">Oil on Canvas (120 x 90 cm)</p>
-          
-          <div class="flex items-center justify-between mt-6 pt-4 border-t border-[#262626]">
-            <span class="text-sm font-mono text-[#f5f5f7] font-semibold">$1,200 USD</span>
-            <a href="mailto:ollie16.edt@gmail.com?subject=Inquiry: Golden Shadow Study No. 1 Canvas Acquisition" 
-               class="px-3 py-1.5 bg-[#f5f5f7] text-[#0a0a0a] text-[10px] font-mono uppercase font-bold rounded hover:bg-[#d4af37] transition-colors">
-              Inquire to Acquire
-            </a>
+        <!-- MEDIUM 4: PORTRAIT -->
+        <div onclick="filterAndScroll('portrait')" class="border border-[#262626] bg-[#121212] p-3 rounded-xl hover:border-[#d4af37] transition-all cursor-pointer group flex flex-col justify-between shadow-lg">
+          <div class="aspect-[4/5] rounded-lg overflow-hidden relative mb-3 bg-[#1a1a1a]">
+            <img src="images/medium-portrait.jpg" alt="Fine Portraiture Study" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700" />
+            <span class="absolute top-2 left-2 bg-black/85 text-[8px] font-mono px-2 py-0.5 rounded text-[#d4af37] border border-[#d4af37]/30">PORTRAIT</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-serif text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">Fine Portraiture</h3>
+            <p class="text-[10px] font-mono text-[#86868b] mt-1 leading-relaxed">Capturing the dignity, spiritual depth, and character of the human subject.</p>
+            <span class="text-[9px] font-mono text-[#d4af37] mt-3 block uppercase font-bold tracking-wider group-hover:translate-x-1 transition-transform">Explore Works &rarr;</span>
           </div>
         </div>
-      </article>
 
-      <!-- ART PIECE 05-->
-      <article class="border border-[#262626] bg-[#121212] rounded-lg overflow-hidden group">
-        <div class="aspect-square overflow-hidden bg-[#1a1a1a] relative">
-          <img src="images/art-05.jpg" alt="Golden Shadow Study No. 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <span class="absolute top-3 right-3 bg-black/80 text-[#d4af37] text-[9px] font-mono px-3 py-1 rounded border border-[#d4af37]/30">
-             AVAILABLE  
-          </span>
-        </div>
-        <div class="p-6">
-          <h3 class="text-lg font-serif text-[#f5f5f7]">Golden Shadow Study No. 1</h3>
-          <p class="text-xs font-mono text-[#86868b] mt-1">Oil on Canvas (70 x 60 cm)</p>
-          
-          <div class="flex items-center justify-between mt-6 pt-4 border-t border-[#262626]">
-            <span class="text-sm font-mono text-[#f5f5f7] font-semibold">$1,200 USD</span>
-            <a href="mailto:ollie16.edt@gmail.com?subject=Inquiry: Golden Shadow Study No. 1 Canvas Acquisition" 
-               class="px-3 py-1.5 bg-[#f5f5f7] text-[#0a0a0a] text-[10px] font-mono uppercase font-bold rounded hover:bg-[#d4af37] transition-colors">
-              Inquire to Acquire
-            </a>
+        <!-- MEDIUM 5: MONO -->
+        <div onclick="filterAndScroll('mono')" class="border border-[#262626] bg-[#121212] p-3 rounded-xl hover:border-[#d4af37] transition-all cursor-pointer group flex flex-col justify-between shadow-lg">
+          <div class="aspect-[4/5] rounded-lg overflow-hidden relative mb-3 bg-[#1a1a1a]">
+            <img src="images/meduim-mono.jpg" alt="Charcoal and Line Study" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700" />
+            <span class="absolute top-2 left-2 bg-black/85 text-[8px] font-mono px-2 py-0.5 rounded text-[#d4af37] border border-[#d4af37]/30">MONO</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-serif text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">Charcoal & Line</h3>
+            <p class="text-[10px] font-mono text-[#86868b] mt-1 leading-relaxed">Raw graphite, charcoal, and line-work focused on shadow weight and purity.</p>
+            <span class="text-[9px] font-mono text-[#d4af37] mt-3 block uppercase font-bold tracking-wider group-hover:translate-x-1 transition-transform">Explore Works &rarr;</span>
           </div>
         </div>
-      </article>
 
-<!-- ART PIECE 06-->
-      <article class="border border-[#262626] bg-[#121212] rounded-lg overflow-hidden group">
-        <div class="aspect-square overflow-hidden bg-[#1a1a1a] relative">
-          <img src="images/art-6.jpg" alt="Golden Shadow Study No. 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <span class="absolute top-3 right-3 bg-black/80 text-[#d4af37] text-[9px] font-mono px-3 py-1 rounded border border-[#d4af37]/30">
-             PRE ORDER
-          </span>
-        </div>
-        <div class="p-6">
-          <h3 class="text-lg font-serif text-[#f5f5f7]">Golden Shadow Study No. 1</h3>
-          <p class="text-xs font-mono text-[#86868b] mt-1">Oil on Canvas (70 x 60 cm)</p>
-          
-          <div class="flex items-center justify-between mt-6 pt-4 border-t border-[#262626]">
-            <span class="text-sm font-mono text-[#f5f5f7] font-semibold">$1,200 USD</span>
-            <a href="mailto:ollie16.edt@gmail.com?subject=Inquiry: Golden Shadow Study No. 1 Canvas Acquisition" 
-               class="px-3 py-1.5 bg-[#f5f5f7] text-[#0a0a0a] text-[10px] font-mono uppercase font-bold rounded hover:bg-[#d4af37] transition-colors">
-              Inquire to Acquire
-            </a>
-          </div>
-        </div>
-      </article>
+      </div>
+    </section>
 
-<!-- ART PIECE 07-->
-      <article class="border border-[#262626] bg-[#121212] rounded-lg overflow-hidden group">
-        <div class="aspect-square overflow-hidden bg-[#1a1a1a] relative">
-          <img src="images/art-7.jpg" alt="Golden Shadow Study No. 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <span class="absolute top-3 right-3 bg-black/80 text-[#d4af37] text-[9px] font-mono px-3 py-1 rounded border border-[#d4af37]/30">
-            PRE ORDER 
-          </span>
+    <!-- ========================================== -->
+    <!-- SECTION 3: DYNAMIC CONTROLS & FILTER BAR   -->
+    <!-- ========================================== -->
+    <section id="exhibition-grid" class="py-6 border-b border-[#262626] mb-12 space-y-6 scroll-mt-28">
+      
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div>
+          <span class="text-xs font-mono text-[#d4af37] tracking-[0.3em] uppercase block mb-1">CURATED EXHIBITION</span>
+          <h2 class="text-2xl sm:text-3xl font-serif text-[#f5f5f7]">Select Medium & View Mode</h2>
         </div>
-        <div class="p-6">
-          <h3 class="text-lg font-serif text-[#f5f5f7]">Golden Shadow Study No. 1</h3>
-          <p class="text-xs font-mono text-[#86868b] mt-1">Oil on Canvas (70 x 60 cm)</p>
-          
-          <div class="flex items-center justify-between mt-6 pt-4 border-t border-[#262626]">
-            <span class="text-sm font-mono text-[#f5f5f7] font-semibold">$1,200 USD</span>
-            <a href="mailto:ollie16.edt@gmail.com?subject=Inquiry: Golden Shadow Study No. 1 Canvas Acquisition" 
-               class="px-3 py-1.5 bg-[#f5f5f7] text-[#0a0a0a] text-[10px] font-mono uppercase font-bold rounded hover:bg-[#d4af37] transition-colors">
-              Inquire to Acquire
-            </a>
-          </div>
-        </div>
-      </article>
 
-      <!-- ART PIECE 08-->
-      <article class="border border-[#262626] bg-[#121212] rounded-lg overflow-hidden group">
-        <div class="aspect-square overflow-hidden bg-[#1a1a1a] relative">
-          <img src="images/art-8.jpg" alt="Golden Shadow Study No. 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <span class="absolute top-3 right-3 bg-black/80 text-[#d4af37] text-[9px] font-mono px-3 py-1 rounded border border-[#d4af37]/30">
-             AVAILABLE 
-          </span>
+        <!-- VIEW MODE TOGGLE (GRID VS SPOTLIGHT) -->
+        <div class="flex items-center gap-2 border border-[#262626] bg-[#121212] p-1 rounded-lg self-start">
+          <button onclick="switchViewMode('grid', this)" class="view-mode-btn active px-3.5 py-1.5 text-xs font-mono uppercase rounded flex items-center gap-1.5 cursor-pointer">
+            <i class="material-icons text-sm">grid_view</i> Grid View
+          </button>
+          <button onclick="switchViewMode('spotlight', this)" class="view-mode-btn px-3.5 py-1.5 text-xs font-mono text-[#86868b] uppercase rounded flex items-center gap-1.5 cursor-pointer">
+            <i class="material-icons text-sm">filter_center_focus</i> Masterpiece Spotlight
+          </button>
         </div>
-        <div class="p-6">
-          <h3 class="text-lg font-serif text-[#f5f5f7]">Golden Shadow Study No. 1</h3>
-          <p class="text-xs font-mono text-[#86868b] mt-1">Oil on Canvas (70 x 60 cm)</p>
-          
-          <div class="flex items-center justify-between mt-6 pt-4 border-t border-[#262626]">
-            <span class="text-sm font-mono text-[#f5f5f7] font-semibold">$1,200 USD</span>
-            <a href="mailto:ollie16.edt@gmail.com?subject=Inquiry: Golden Shadow Study No. 1 Canvas Acquisition" 
-               class="px-3 py-1.5 bg-[#f5f5f7] text-[#0a0a0a] text-[10px] font-mono uppercase font-bold rounded hover:bg-[#d4af37] transition-colors">
-              Inquire to Acquire
-            </a>
-          </div>
-        </div>
-      </article>
+      </div>
 
-      <!-- ART PIECE 09-->
-      <article class="border border-[#262626] bg-[#121212] rounded-lg overflow-hidden group">
-        <div class="aspect-square overflow-hidden bg-[#1a1a1a] relative">
-          <img src="images/art-9.jpg" alt="Golden Shadow Study No. 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <span class="absolute top-3 right-3 bg-black/80 text-[#d4af37] text-[9px] font-mono px-3 py-1 rounded border border-[#d4af37]/30">
-             PRE ORDER  
-          </span>
-        </div>
-        <div class="p-6">
-          <h3 class="text-lg font-serif text-[#f5f5f7]">Golden Shadow Study No. 1</h3>
-          <p class="text-xs font-mono text-[#86868b] mt-1">Oil on Canvas (70 x 60 cm)</p>
-          
-          <div class="flex items-center justify-between mt-6 pt-4 border-t border-[#262626]">
-            <span class="text-sm font-mono text-[#f5f5f7] font-semibold">$1,200 USD</span>
-            <a href="mailto:ollie16.edt@gmail.com?subject=Inquiry: Golden Shadow Study No. 1 Canvas Acquisition" 
-               class="px-3 py-1.5 bg-[#f5f5f7] text-[#0a0a0a] text-[10px] font-mono uppercase font-bold rounded hover:bg-[#d4af37] transition-colors">
-              Inquire to Acquire
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- ART PIECE 010-->
-      <article class="border border-[#262626] bg-[#121212] rounded-lg overflow-hidden group">
-        <div class="aspect-square overflow-hidden bg-[#1a1a1a] relative">
-          <img src="images/art-10.jpg" alt="Golden Shadow Study No. 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <span class="absolute top-3 right-3 bg-black/80 text-[#d4af37] text-[9px] font-mono px-3 py-1 rounded border border-[#d4af37]/30">
-            PRE ORDER  
-          </span>
-        </div>
-        <div class="p-6">
-          <h3 class="text-lg font-serif text-[#f5f5f7]">Golden Shadow Study No. 1</h3>
-          <p class="text-xs font-mono text-[#86868b] mt-1">Oil on Canvas (70 x 60 cm)</p>
-          
-          <div class="flex items-center justify-between mt-6 pt-4 border-t border-[#262626]">
-            <span class="text-sm font-mono text-[#f5f5f7] font-semibold">$1,200 USD</span>
-            <a href="mailto:ollie16.edt@gmail.com?subject=Inquiry: Golden Shadow Study No. 1 Canvas Acquisition" 
-               class="px-3 py-1.5 bg-[#f5f5f7] text-[#0a0a0a] text-[10px] font-mono uppercase font-bold rounded hover:bg-[#d4af37] transition-colors">
-              Inquire to Acquire
-            </a>
-          </div>
-        </div>
-      </article>
-
+      <!-- CATEGORY FILTERS -->
+      <div class="flex flex-wrap gap-2 text-xs font-mono uppercase tracking-wider pt-2">
+        <button onclick="filterCategory('all', this)" id="filter-btn-all" class="art-filter-btn active px-4 py-2 border border-[#262626] bg-[#121212] text-[#f5f5f7] rounded-full hover:border-[#d4af37] transition-all cursor-pointer">
+          All Works
+        </button>
+        <button onclick="filterCategory('oil', this)" id="filter-btn-oil" class="art-filter-btn px-4 py-2 border border-[#262626] bg-[#121212] text-[#86868b] rounded-full hover:border-[#d4af37] hover:text-white transition-all cursor-pointer">
+          Oil Canvas
+        </button>
+        <button onclick="filterCategory('acrylic', this)" id="filter-btn-acrylic" class="art-filter-btn px-4 py-2 border border-[#262626] bg-[#121212] text-[#86868b] rounded-full hover:border-[#d4af37] hover:text-white transition-all cursor-pointer">
+          Acrylics
+        </button>
+        <button onclick="filterCategory('abstract', this)" id="filter-btn-abstract" class="art-filter-btn px-4 py-2 border border-[#262626] bg-[#121212] text-[#86868b] rounded-full hover:border-[#d4af37] hover:text-white transition-all cursor-pointer">
+          Abstracts
+        </button>
+        <button onclick="filterCategory('portrait', this)" id="filter-btn-portrait" class="art-filter-btn px-4 py-2 border border-[#262626] bg-[#121212] text-[#86868b] rounded-full hover:border-[#d4af37] hover:text-white transition-all cursor-pointer">
+          Portraiture
+        </button>
+        <button onclick="filterCategory('mono', this)" id="filter-btn-mono" class="art-filter-btn px-4 py-2 border border-[#262626] bg-[#121212] text-[#86868b] rounded-full hover:border-[#d4af37] hover:text-white transition-all cursor-pointer">
+          Drawings & Mono
+        </button>
+      </div>
 
     </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 4: DYNAMIC EXHIBITION GALLERY      -->
+    <!-- ========================================== -->
+    <section class="pb-20">
+      <div id="gallery-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 transition-all duration-500">
+
+        <!-- ARTWORK 1 -->
+        <article class="art-item work-card border border-[#262626] bg-[#121212] p-5 rounded-xl group relative hover:border-[#d4af37] transition-all" data-category="oil portrait">
+          <div class="media-container aspect-[4/5] overflow-hidden rounded-lg relative bg-[#1a1a1a]">
+            <img src="images/art-01.jpg" alt="Golden Shadow Study No. 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            
+            <span class="absolute top-3 right-3 bg-black/85 backdrop-blur-md text-[9px] font-mono px-2.5 py-1 rounded-full text-[#d4af37] border border-[#d4af37]/40 shadow-lg z-10">
+              PRE ORDER
+            </span>
+
+            <button onclick="event.stopPropagation(); openRoomVisualizer('Golden Shadow ', 'images/art-01.jpg', '60 x 50 cm', '800 USD')" 
+                    class="absolute bottom-3 right-3 z-20 bg-black/90 backdrop-blur-md hover:bg-[#d4af37] hover:text-black text-[#f5f5f7] text-[10px] font-mono px-3 py-1.5 rounded-lg border border-white/20 transition-all flex items-center gap-1.5 cursor-pointer shadow-xl">
+              <i class="material-icons text-xs text-[#d4af37] hover:text-black">aspect_ratio</i> View in Room
+            </button>
+          </div>
+
+          <div class="mt-5 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono text-[#d4af37] uppercase tracking-widest">OIL CANVAS</span>
+              <span class="text-[10px] font-mono text-[#86868b]">60 x 50 cm</span>
+            </div>
+            
+            <h3 class="text-xl font-serif text-[#f5f5f7]">Golden Shadow</h3>
+            <p class="text-xs font-mono text-[#86868b] leading-relaxed">
+              Layered oil impasto depicting ambient Colors.
+            </p>
+
+            <div class="flex items-center justify-between pt-4 border-t border-[#262626]/80 mt-4">
+              <div>
+                <span class="text-[9px] font-mono text-[#86868b] uppercase block">Acquisition Value</span>
+                <span class="text-base font-mono text-[#f5f5f7] font-bold">$800 USD</span>
+              </div>
+              <a href="mailto:ollie16.edt@gmail.com?subject=Acquisition Request: Golden Shadow Study No. 1 ($800 USD)" 
+                 class="px-4 py-2 bg-[#d4af37] text-black text-[10px] font-mono uppercase font-bold rounded hover:bg-white transition-colors">
+                Acquire Canvas &rarr;
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ARTWORK 2 -->
+        <article class="art-item work-card border border-[#262626] bg-[#121212] p-5 rounded-xl group relative hover:border-[#d4af37] transition-all" data-category="abstract acrylic">
+          <div class="media-container aspect-[4/5] overflow-hidden rounded-lg relative bg-[#1a1a1a]">
+            <img src="images/art-02.jpg" alt="Voice of the Mind" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            
+            <span class="absolute top-3 right-3 bg-black/85 backdrop-blur-md text-[9px] font-mono px-2.5 py-1 rounded-full text-[#d4af37] border border-[#d4af37]/40 shadow-lg z-10">
+              PRE ORDER
+            </span>
+
+            <button onclick="event.stopPropagation(); openRoomVisualizer('Voice of the Mind', 'images/art-02.jpg', '60 x 60 cm', '$750 USD')" 
+                    class="absolute bottom-3 right-3 z-20 bg-black/90 backdrop-blur-md hover:bg-[#d4af37] hover:text-black text-[#f5f5f7] text-[10px] font-mono px-3 py-1.5 rounded-lg border border-white/20 transition-all flex items-center gap-1.5 cursor-pointer shadow-xl">
+              <i class="material-icons text-xs text-[#d4af37] hover:text-black">aspect_ratio</i> View in Room
+            </button>
+          </div>
+
+          <div class="mt-5 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono text-[#d4af37] uppercase tracking-widest">ABSTRACT EXPRESSIONIST</span>
+              <span class="text-[10px] font-mono text-[#86868b]">60 x 60 cm</span>
+            </div>
+            
+            <h3 class="text-xl font-serif text-[#f5f5f7]">Voice of the Mind</h3>
+            <p class="text-xs font-mono text-[#86868b] leading-relaxed">
+              Expressive acrylic brushstrokes capturing the raw urban rhythm and warm energy of the blank mind.
+            </p>
+
+            <div class="flex items-center justify-between pt-4 border-t border-[#262626]/80 mt-4">
+              <div>
+                <span class="text-[9px] font-mono text-[#86868b] uppercase block">Acquisition Value</span>
+                <span class="text-base font-mono text-[#f5f5f7] font-bold">$750 USD</span>
+              </div>
+              <a href="mailto:ollie16.edt@gmail.com?subject=Acquisition Request: Voice of the Mind ($750 USD)" 
+                 class="px-4 py-2 bg-[#d4af37] text-black text-[10px] font-mono uppercase font-bold rounded hover:bg-white transition-colors">
+                Acquire Canvas &rarr;
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ARTWORK 3 -->
+        <article class="art-item work-card border border-[#262626] bg-[#121212] p-5 rounded-xl group relative hover:border-[#d4af37] transition-all" data-category="portrait oil">
+          <div class="media-container aspect-[4/5] overflow-hidden rounded-lg relative bg-[#1a1a1a]">
+            <img src="images/art-03.jpg" alt="Mother Nature" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            
+            <span class="absolute top-3 right-3 bg-black/85 backdrop-blur-md text-[9px] font-mono px-2.5 py-1 rounded-full text-[#d4af37] border border-[#d4af37]/40 shadow-lg z-10">
+              PRE ORDER
+            </span>
+
+            <button onclick="event.stopPropagation(); openRoomVisualizer('Mother Nature', 'images/art-03.jpg', '70 x 80 cm', '$829 USD')" 
+                    class="absolute bottom-3 right-3 z-20 bg-black/90 backdrop-blur-md hover:bg-[#d4af37] hover:text-black text-[#f5f5f7] text-[10px] font-mono px-3 py-1.5 rounded-lg border border-white/20 transition-all flex items-center gap-1.5 cursor-pointer shadow-xl">
+              <i class="material-icons text-xs text-[#d4af37] hover:text-black">aspect_ratio</i> View in Room
+            </button>
+          </div>
+
+          <div class="mt-5 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono text-[#d4af37] uppercase tracking-widest">OIL GLOW</span>
+              <span class="text-[10px] font-mono text-[#86868b]">70 x 80 cm</span>
+            </div>
+            
+            <h3 class="text-xl font-serif text-[#f5f5f7]">Mother Nature</h3>
+            <p class="text-xs font-mono text-[#86868b] leading-relaxed">
+              Portrait exploring silent strength, human dignity, and shadow balance.
+            </p>
+
+            <div class="flex items-center justify-between pt-4 border-t border-[#262626]/80 mt-4">
+              <div>
+                <span class="text-[9px] font-mono text-[#86868b] uppercase block">Acquisition Value</span>
+                <span class="text-base font-mono text-[#f5f5f7] font-bold">$829 USD</span>
+              </div>
+              <a href="mailto:ollie16.edt@gmail.com?subject=Acquisition Request: Mother Nature ($829 USD)" 
+                 class="px-4 py-2 bg-[#d4af37] text-black text-[10px] font-mono uppercase font-bold rounded hover:bg-white transition-colors">
+                Acquire Canvas &rarr;
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ARTWORK 4-->
+        <article class="art-item work-card border border-[#262626] bg-[#121212] p-5 rounded-xl group relative hover:border-[#d4af37] transition-all" data-category="oil abstract">
+          <div class="media-container aspect-[4/5] overflow-hidden rounded-lg relative bg-[#1a1a1a]">
+            <img src="images/art-04.jpg" alt="Tall Sure Tall" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            
+            <span class="absolute top-3 right-3 bg-black/85 backdrop-blur-md text-[9px] font-mono px-2.5 py-1 rounded-full text-[#d4af37] border border-[#d4af37]/40 shadow-lg z-10">
+              PRE ORDER
+            </span>
+
+            <button onclick="event.stopPropagation(); openRoomVisualizer('Tall Sure Tall', 'images/art-04.jpg', '70 x 80 cm', '$780 USD')" 
+                    class="absolute bottom-3 right-3 z-20 bg-black/90 backdrop-blur-md hover:bg-[#d4af37] hover:text-black text-[#f5f5f7] text-[10px] font-mono px-3 py-1.5 rounded-lg border border-white/20 transition-all flex items-center gap-1.5 cursor-pointer shadow-xl">
+              <i class="material-icons text-xs text-[#d4af37] hover:text-black">aspect_ratio</i> View in Room
+            </button>
+          </div>
+
+          <div class="mt-5 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono text-[#d4af37] uppercase tracking-widest">I STAND TALL ALWAYS</span>
+              <span class="text-[10px] font-mono text-[#86868b]">70 x 80 cm</span>
+            </div>
+            
+            <h3 class="text-xl font-serif text-[#f5f5f7]">Tall Sure Tall</h3>
+            <p class="text-xs font-mono text-[#86868b] leading-relaxed">
+              Empire States have Nothing on Me.
+            </p>
+
+            <div class="flex items-center justify-between pt-4 border-t border-[#262626]/80 mt-4">
+              <div>
+                <span class="text-[9px] font-mono text-[#86868b] uppercase block">Acquisition Value</span>
+                <span class="text-base font-mono text-[#f5f5f7] font-bold">$780 USD</span>
+              </div>
+              <a href="mailto:ollie16.edt@gmail.com?subject=Acquisition Request: Tall Sure Tall ($780 USD)" 
+                 class="px-4 py-2 bg-[#d4af37] text-black text-[10px] font-mono uppercase font-bold rounded hover:bg-white transition-colors">
+                Acquire Canvas &rarr;
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ARTWORK 5-->
+        <article class="art-item work-card border border-[#262626] bg-[#121212] p-5 rounded-xl group relative hover:border-[#d4af37] transition-all" data-category="acrylic mono">
+          <div class="media-container aspect-[4/5] overflow-hidden rounded-lg relative bg-[#1a1a1a]">
+            <img src="images/art-05.jpg" alt="Ride Joy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            
+            <span class="absolute top-3 right-3 bg-black/85 backdrop-blur-md text-[9px] font-mono px-2.5 py-1 rounded-full text-[#d4af37] border border-[#d4af37]/40 shadow-lg z-10">
+              PRE ORDER
+            </span>
+
+            <button onclick="event.stopPropagation(); openRoomVisualizer('Ride Joy', 'images/art-05.jpg', '70 x 80 cm', '$599 USD')" 
+                    class="absolute bottom-3 right-3 z-20 bg-black/90 backdrop-blur-md hover:bg-[#d4af37] hover:text-black text-[#f5f5f7] text-[10px] font-mono px-3 py-1.5 rounded-lg border border-white/20 transition-all flex items-center gap-1.5 cursor-pointer shadow-xl">
+              <i class="material-icons text-xs text-[#d4af37] hover:text-black">aspect_ratio</i> View in Room
+            </button>
+          </div>
+
+          <div class="mt-5 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono text-[#d4af37] uppercase tracking-widest">I Travel with you on My Back</span>
+              <span class="text-[10px] font-mono text-[#86868b]">70 x 80 cm</span>
+            </div>
+            
+            <h3 class="text-xl font-serif text-[#f5f5f7]">Ride Joy</h3>
+            <p class="text-xs font-mono text-[#86868b] leading-relaxed">
+              Nothing Beats A Four Legs Ride.
+            </p>
+
+            <div class="flex items-center justify-between pt-4 border-t border-[#262626]/80 mt-4">
+              <div>
+                <span class="text-[9px] font-mono text-[#86868b] uppercase block">Acquisition Value</span>
+                <span class="text-base font-mono text-[#f5f5f7] font-bold">$599 USD</span>
+              </div>
+              <a href="mailto:ollie16.edt@gmail.com?subject=Acquisition Request: Ride Joy ($599 USD)" 
+                 class="px-4 py-2 bg-[#d4af37] text-black text-[10px] font-mono uppercase font-bold rounded hover:bg-white transition-colors">
+                Acquire Canvas &rarr;
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ARTWORK 6-->
+        <article class="art-item work-card border border-[#262626] bg-[#121212] p-5 rounded-xl group relative hover:border-[#d4af37] transition-all" data-category="oil portrait">
+          <div class="media-container aspect-[4/5] overflow-hidden rounded-lg relative bg-[#1a1a1a]">
+            <img src="images/art-06.jpg" alt="Love Eyes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            
+            <span class="absolute top-3 right-3 bg-black/85 backdrop-blur-md text-[9px] font-mono px-2.5 py-1 rounded-full text-[#d4af37] border border-[#d4af37]/40 shadow-lg z-10">
+              PRE ORDER
+            </span>
+
+            <button onclick="event.stopPropagation(); openRoomVisualizer('Love Eyes', 'images/art-06.jpg', '70 x 60 cm', '$600 USD')" 
+                    class="absolute bottom-3 right-3 z-20 bg-black/90 backdrop-blur-md hover:bg-[#d4af37] hover:text-black text-[#f5f5f7] text-[10px] font-mono px-3 py-1.5 rounded-lg border border-white/20 transition-all flex items-center gap-1.5 cursor-pointer shadow-xl">
+              <i class="material-icons text-xs text-[#d4af37] hover:text-black">aspect_ratio</i> View in Room
+            </button>
+          </div>
+
+          <div class="mt-5 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono text-[#d4af37] uppercase tracking-widest">Love Glows In My Eyes</span>
+              <span class="text-[10px] font-mono text-[#86868b]">70 x 60 cm</span>
+            </div>
+            
+            <h3 class="text-xl font-serif text-[#f5f5f7]">Love Eyes</h3>
+            <p class="text-xs font-mono text-[#86868b] leading-relaxed">
+              Peaces lives in me.
+            </p>
+
+            <div class="flex items-center justify-between pt-4 border-t border-[#262626]/80 mt-4">
+              <div>
+                <span class="text-[9px] font-mono text-[#86868b] uppercase block">Acquisition Value</span>
+                <span class="text-base font-mono text-[#f5f5f7] font-bold">$600 USD</span>
+              </div>
+              <a href="mailto:ollie16.edt@gmail.com?subject=Acquisition Request: Love Eyes ($600 USD)" 
+                 class="px-4 py-2 bg-[#d4af37] text-black text-[10px] font-mono uppercase font-bold rounded hover:bg-white transition-colors">
+                Acquire Canvas &rarr;
+              </a>
+            </div>
+          </div>
+        </article>
+        
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 5: BESPOKE COMMISSION CONCIERGE    -->
+    <!-- ========================================== -->
+    <section class="py-16 border-t border-[#262626]">
+      <div class="bg-[#121212] border border-[#262626] p-8 md:p-12 rounded-2xl text-center space-y-6 max-w-3xl mx-auto shadow-2xl">
+        <span class="text-xs font-mono text-[#d4af37] tracking-[0.3em] uppercase block">PRIVATE CURATOR COMMISSIONS</span>
+        <h2 class="text-3xl md:text-5xl font-serif text-[#f5f5f7]">Commission a Custom Masterpiece</h2>
+        <p class="text-xs font-mono text-[#86868b] leading-relaxed max-w-lg mx-auto">
+          Desire a specific canvas dimension, bespoke portraiture, or multi-panel installation for a luxury residence or corporate suite? We collaborate directly with art collectors and interior architects worldwide.
+        </p>
+
+        <div class="pt-2">
+          <a href="mailto:ollie16.edt@gmail.com?subject=16 Gallery // Custom Canvas Commission Inquiry" 
+             class="inline-block px-8 py-4 bg-[#d4af37] text-black font-mono text-xs uppercase tracking-widest font-bold rounded-lg hover:bg-white transition-colors shadow-lg">
+            Initiate Custom Commission
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 6: DUAL HERITAGE & PROVENANCE      -->
+    <!-- ========================================== -->
+    <section class="py-24 border-t border-[#262626]/60 relative overflow-hidden">
+      
+      <!-- AMBIENT GOLD RADIANCE -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-72 bg-[#d4af37]/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto space-y-10 relative z-10 text-center">
+        
+        <!-- TOP BADGE -->
+        <div class="flex items-center justify-center gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse"></span>
+          <span class="text-xs font-mono text-[#d4af37] tracking-[0.35em] uppercase">
+           CULTURAL HERITAGE & GLOBAL BRIDGE
+          </span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse"></span>
+        </div>
+
+        <!-- EDITORIAL HEADLINE & DUAL NARRATIVE -->
+        <div class="space-y-6 max-w-3xl mx-auto">
+          <h2 class="text-4xl sm:text-6xl font-serif text-[#f5f5f7] leading-tight tracking-tight">
+            Crafted in the Pearl of Africa. <br />
+            <span class="text-[#86868b] italic font-light">Curated in the City of Gold.</span>
+          </h2>
+          
+          <p class="text-xs sm:text-sm font-mono text-[#86868b] leading-relaxed max-w-2xl mx-auto">
+            16 Gallery is anchored across two extraordinary destinations. Every canvas is born in <strong class="text-[#f5f5f7]">Uganda | The Pearl of Africa</strong>, carrying the organic spirit, rich pigments, and raw natural beauty of its homeland. Curated and managed out of <strong class="text-[#f5f5f7]">Dubai, UAE | The City of Gold</strong>, we connect East African fine art with private collectors and luxury venues across the globe.
+          </p>
+        </div>
+
+        <!-- DUAL FLAG PROVENANCE BADGES -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-8 md:gap-16 pt-2">
+          
+          <!-- UGANDA BADGE -->
+          <div class="flex items-center gap-4 group">
+            <img src="https://flagcdn.com/w80/ug.png" alt="Uganda Flag" class="w-11 h-7 object-cover rounded shadow-2xl border border-white/20 group-hover:border-[#d4af37] transition-all" />
+            <div class="text-left font-mono">
+              <span class="text-[10px] text-[#d4af37] uppercase tracking-widest block font-bold">UGANDA | ARTISTIC ORIGIN</span>
+              <span class="text-xs text-[#f5f5f7] font-serif italic">The Pearl of Africa</span>
+            </div>
+          </div>
+
+          <!-- DIVIDER DOT -->
+          <span class="hidden sm:inline-block text-[#262626] font-mono text-xl">&bull;</span>
+
+          <!-- DUBAI / UAE BADGE -->
+          <div class="flex items-center gap-4 group">
+            <img src="https://flagcdn.com/w80/ae.png" alt="UAE Flag" class="w-11 h-7 object-cover rounded shadow-2xl border border-white/20 group-hover:border-[#d4af37] transition-all" />
+            <div class="text-left font-mono">
+              <span class="text-[10px] text-[#d4af37] uppercase tracking-widest block font-bold">DUBAI, UAE | GLOBAL CAPITAL</span>
+              <span class="text-xs text-[#f5f5f7] font-serif italic">The City of Gold</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- OUTBOUND DESTINATION CTAS -->
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          
+          <!-- EXPLORE UGANDA LINK -->
+          <a href="https://www.exploreuganda.com" target="_blank" rel="noopener noreferrer" 
+             class="inline-flex items-center gap-3 px-6 py-3 border border-[#262626] bg-[#121212]/60 hover:bg-[#d4af37] text-[#86868b] hover:text-black font-mono text-xs uppercase tracking-widest transition-all rounded-full group shadow-xl w-full sm:w-auto justify-center">
+            <span>Explore Uganda (Pearl of Africa)</span>
+            <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+          </a>
+
+          <!-- VISIT DUBAI LINK -->
+          <a href="https://www.visitdubai.com" target="_blank" rel="noopener noreferrer" 
+             class="inline-flex items-center gap-3 px-6 py-3 border border-[#262626] bg-[#121212]/60 hover:bg-[#d4af37] text-[#86868b] hover:text-black font-mono text-xs uppercase tracking-widest transition-all rounded-full group shadow-xl w-full sm:w-auto justify-center">
+            <span>Visit Dubai (City of Gold)</span>
+            <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
   </main>
+
+  <!-- ========================================== -->
+  <!-- MODAL: DYNAMIC ROOM & SCALE VISUALIZER     -->
+  <!-- ========================================== -->
+  <div id="room-visualizer-modal" class="fixed inset-0 z-[300] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+    <button onclick="closeRoomVisualizer()" class="absolute top-6 right-6 text-white text-3xl cursor-pointer hover:text-[#d4af37] transition-colors z-10">&times;</button>
+    
+    <div class="max-w-4xl w-full bg-[#121212] border border-[#262626] rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+      <div class="p-4 border-b border-[#262626] flex items-center justify-between">
+        <div>
+          <span class="text-[10px] font-mono text-[#d4af37] uppercase tracking-widest block">VIRTUAL PREVIEW</span>
+          <h4 id="viz-title" class="text-lg font-serif text-[#f5f5f7]">Artwork Scale</h4>
+        </div>
+        <span id="viz-dimensions" class="text-xs font-mono text-[#86868b] border border-[#262626] px-3 py-1 rounded-full">120 x 90 cm</span>
+      </div>
+
+      <!-- VIRTUAL LUXURY ROOM WALL MOCKUP -->
+      <div class="virtual-wall-mockup p-8 md:p-16 flex items-center justify-center relative min-h-[380px] md:min-h-[480px]">
+        <!-- FLOATING CANVAS -->
+        <div class="relative shadow-[0_25px_60px_rgba(0,0,0,0.95)] border-2 border-[#121212] transition-all max-h-[260px] md:max-h-[340px]">
+          <img id="viz-img" src="" alt="Room Scale Preview" class="max-h-[240px] md:max-h-[320px] object-contain rounded" />
+        </div>
+
+        <!-- 6FT HUMAN SILHOUETTE FOR ACCURATE SCALE -->
+        <div class="absolute bottom-4 left-8 hidden sm:flex flex-col items-center opacity-40">
+          <div class="w-6 h-6 rounded-full bg-[#86868b] mb-1"></div>
+          <div class="w-10 h-28 bg-[#86868b] rounded-t-lg"></div>
+          <span class="text-[9px] font-mono text-[#86868b] mt-1">6 FT (183cm)</span>
+        </div>
+      </div>
+
+      <div class="p-4 bg-[#0a0a0a] border-t border-[#262626] flex items-center justify-between">
+        <span id="viz-price" class="text-sm font-mono text-[#f5f5f7] font-bold">$1,200 USD</span>
+        <a id="viz-cta" href="#" class="px-5 py-2 bg-[#d4af37] text-black text-xs font-mono uppercase font-bold rounded hover:bg-white transition-colors">
+          Acquire This Piece
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="py-8 text-center text-xs font-mono text-[#86868b] border-t border-[#262626]">
+    <p>&copy; 2026 16 GALLERY BY OLLIE16. ALL RIGHTS RESERVED.</p>
+  </footer>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="portfolio-lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <div id="lightbox-content-wrapper" style="position: relative;" onclick="event.stopPropagation()"></div>
+  </div>
+
+  <!-- DYNAMIC EXHIBITION ENGINE SCRIPT -->
+  <script>
+    // 1. Room Scale Visualizer Modal
+    function openRoomVisualizer(title, imgSrc, dimensions, price) {
+      document.getElementById('viz-title').textContent = title;
+      document.getElementById('viz-img').src = imgSrc;
+      document.getElementById('viz-dimensions').textContent = dimensions;
+      document.getElementById('viz-price').textContent = price;
+      
+      const cta = document.getElementById('viz-cta');
+      cta.href = `mailto:keiantrevorkaweesa@gmail.com?subject=Acquisition Request: ${title} (${price})`;
+
+      const modal = document.getElementById('room-visualizer-modal');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          'event': 'gallery_room_visualizer_open',
+          'artwork_title': title
+        });
+      }
+    }
+
+    function closeRoomVisualizer() {
+      const modal = document.getElementById('room-visualizer-modal');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    // 2. Medium Click-to-Filter & Smooth Scroll Helper
+    function filterAndScroll(category) {
+      const targetBtn = document.getElementById(`filter-btn-${category}`) || document.getElementById('filter-btn-all');
+      filterCategory(category, targetBtn);
+
+      const gridSection = document.getElementById('exhibition-grid');
+      if (gridSection) {
+        gridSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // 3. View Mode Switcher (Grid vs Masterpiece Spotlight)
+    function switchViewMode(mode, btn) {
+      document.querySelectorAll('.view-mode-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const container = document.getElementById('gallery-container');
+      if (mode === 'spotlight') {
+        container.className = 'grid grid-cols-1 max-w-2xl mx-auto gap-16 transition-all duration-500';
+      } else {
+        container.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 transition-all duration-500';
+      }
+    }
+
+    // 4. Category Filter
+    function filterCategory(category, btnElement) {
+      document.querySelectorAll('.art-filter-btn').forEach(btn => btn.classList.remove('active'));
+      if (btnElement) btnElement.classList.add('active');
+
+      const items = document.querySelectorAll('.art-item');
+      items.forEach(item => {
+        const itemCategories = item.getAttribute('data-category') || '';
+        if (category === 'all' || itemCategories.includes(category)) {
+          item.classList.remove('filter-hidden');
+        } else {
+          item.classList.add('filter-hidden');
+        }
+      });
+    }
+
+    // 5. Ambient Sound Synthesizer
+    let ambienceActive = false;
+    function toggleGalleryAmbience() {
+      const text = document.getElementById('ambience-text');
+      ambienceActive = !ambienceActive;
+      if (ambienceActive) {
+        text.textContent = "Museum Soundscape: Active 🎵";
+      } else {
+        text.textContent = "Museum Soundscape: Off";
+      }
+    }
+  </script>
 
   <script src="script.js"></script>
 </body>

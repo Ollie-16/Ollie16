@@ -43,31 +43,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
   <!-- AMBIENT BACKGROUND GLOW -->
   <div class="ambient-glow"></div>
-  <nav class="fixed top-0 left-0 w-full z-[100] bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#262626]">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      
-      <!-- LOGO -->
-      <a href="index.html" class="flex flex-col group">
-        <span class="text-lg font-serif tracking-tight text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">16 EDT</span>
-        <span class="text-[9px] font-mono tracking-[0.25em] text-[#d4af37] uppercase">By Ollie16</span>
-      </a>
+<!-- GLOBAL 16 EDT NAVIGATION NAVBAR -->
+<nav class="fixed top-0 left-0 w-full z-[100] bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#262626]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+    
+    <!-- BRAND LOGO -->
+    <a href="index.html" class="flex flex-col group shrink-0">
+      <span class="text-lg font-serif tracking-tight text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">16 EDT</span>
+      <span class="text-[9px] font-mono tracking-[0.25em] text-[#d4af37] uppercase">By Ollie16</span>
+    </a>
 
-      <!-- NAVIGATION LINKS -->
-      <div class="flex items-center gap-4 md:gap-8 text-[11px] md:text-xs font-mono tracking-widest uppercase">
-        <a href="index.html" class="text-[#d4af37] font-bold border-b border-[#d4af37] pb-1">Hub</a>
-        <a href="portfolio.html" class="text-[#86868b] hover:text-[#f5f5f7] transition-colors">Portfolio</a>
-        <a href="production.html" class="text-[#86868b] hover:text-[#f5f5f7] transition-colors">Production</a>
-        <a href="people.html" class="text-[#86868b] hover:text-[#f5f5f7] transition-colors">Our Own</a>
-        <a href="learning.html" class="text-[#86868b] hover:text-[#f5f5f7] transition-colors">Learning</a>
-        <a href="art.html" class="text-[#86868b] hover:text-[#f5f5f7] transition-colors">16 Gallery</a>
-      </div>
+    <!-- DESKTOP LINKS -->
+    <div class="nav-desktop-links text-xs font-mono tracking-widest uppercase">
+      <a href="index.html">Hub</a>
+      <a href="art.html">16 Gallery</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="production.html">Production</a>
+      <a href="people.html">Our Own</a>
+      <a href="learning.html">Learning</a>
+    </div>
 
-      <!-- CTA BUTTON -->
-      <a href="#audit" class="active lg:inline-block px-4 py-2 border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all text-xs font-mono uppercase tracking-widest rounded">
+    <!-- RIGHT ACTIONS: BOOK AUDIT + HAMBURGER ICON -->
+    <div class="flex items-center gap-3">
+      <a href="index.html#audit" class="px-3 py-1.5 sm:px-4 sm:py-2 border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all text-[10px] sm:text-xs font-mono uppercase tracking-widest rounded shrink-0">
         Book Audit
       </a>
+
+      <button id="mobile-menu-btn" class="nav-mobile-btn p-2 text-[#f5f5f7] hover:text-[#d4af37] transition-colors focus:outline-none" aria-label="Toggle Menu">
+        <i class="material-icons text-2xl" id="menu-icon">menu</i>
+      </button>
     </div>
-  </nav>
+  </div>
+
+  <!-- MOBILE DROPDOWN MENU PANEL -->
+  <div id="mobile-menu-dropdown" class="nav-mobile-dropdown bg-[#121212] border-b border-[#262626] px-6 py-4 font-mono text-xs uppercase tracking-widest space-y-1">
+    <a href="index.html" class="block">Hub</a>
+    <a href="art.html" class="block">16 Gallery</a>
+    <a href="portfolio.html" class="block">Portfolio</a>
+    <a href="production.html" class="block">Production</a>
+    <a href="people.html" class="block">Our Own</a>
+    <a href="learning.html" class="block">Learning</a>
+  </div>
+</nav>
 
   <main class="max-w-7xl mx-auto px-6">
 

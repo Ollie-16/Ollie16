@@ -1377,3 +1377,55 @@ img, video {
   background-color: #d4af37;
   width: 26px;
 }
+/* ==========================================
+   BULLETPROOF NAVBAR RESPONSIVE ENGINE
+   ========================================== */
+
+/* Desktop Links: Visible by default on wide screens */
+.nav-desktop-links {
+  display: flex !important;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Mobile Button & Dropdown: Hidden by default on desktop */
+.nav-mobile-btn {
+  display: none !important;
+}
+
+.nav-mobile-dropdown {
+  display: none;
+}
+
+/* On Mobile Screens (Narrower than 768px) */
+@media (max-width: 767px) {
+  .nav-desktop-links {
+    display: none !important;
+  }
+  .nav-mobile-btn {
+    display: flex !important;
+  }
+}
+/* ==========================================
+   16 GALLERY CATEGORY PILL BUTTONS
+   ========================================== */
+.art-cat-btn {
+  background-color: #121212;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-family: 'Fira Code', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.art-cat-btn.active, 
+.art-cat-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--text-primary);
+  background-color: #1a1a1a;
+}

@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * 16 EDT // MASTER JAVASCRIPT ENGINE & DATA LAYER INFRASTRUCTURE
+ * 16 EDT // MASTER JAVASCRIPT ENGINE & MOBILE UX INFRASTRUCTURE
  * ============================================================================
  */
 
@@ -23,34 +23,45 @@ function trackDataLayerEvent(eventName, eventParams = {}) {
 }
 
 // ==========================================
-// 2. GLOBAL DYNAMIC COOKIE BANNER INJECTOR
+// 2. MANDATORY FULLSCREEN COOKIE POPUP MODAL
 // ==========================================
-function initGlobalCookieBanner() {
+function initGlobalCookieModal() {
   if (localStorage.getItem('cookie_consent_accepted')) return;
 
-  const banner = document.createElement('div');
-  banner.id = 'cookie-banner';
-  banner.className = 'fixed bottom-6 left-6 z-[200] max-w-sm bg-[#121212]/95 backdrop-blur-md border border-[#262626] p-5 rounded-lg text-xs font-mono space-y-3';
-  banner.innerHTML = `
-    <div class="flex items-center justify-between text-[#d4af37]">
-      <span>// PRIVACY & COOKIES</span>
-      <span class="text-[10px] uppercase text-[#86868b]">GTM ACTIVE</span>
-    </div>
-    <p class="text-[#86868b] leading-relaxed text-[11px]">
-      We utilize functional cookies and Google Tag Manager analytics to ensure secure site architecture and measure user experience.
-    </p>
-    <div class="flex gap-2 pt-1">
-      <button id="accept-cookies-btn" class="px-4 py-1.5 bg-[#d4af37] text-black font-bold uppercase text-[10px] rounded hover:bg-white transition-colors cursor-pointer">
-        Accept & Continue
-      </button>
+  // Lock background scrolling while modal is active
+  document.body.style.overflow = 'hidden';
+
+  const modal = document.createElement('div');
+  modal.id = 'cookie-modal-overlay';
+  modal.className = 'fixed inset-0 z-[500] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6';
+  modal.innerHTML = `
+    <div class="bg-[#121212] border border-[#262626] max-w-md w-full p-6 sm:p-8 rounded-lg shadow-2xl text-center space-y-5 font-sans">
+      <div class="inline-flex items-center gap-2 text-xs font-mono text-[#d4af37] uppercase tracking-widest border border-[#d4af37]/30 bg-[#0a0a0a] px-3 py-1 rounded-full">
+        <span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
+        GTM ACTIVE & COOKIE CONSENT
+      </div>
+      
+      <h3 class="text-2xl font-serif text-[#f5f5f7]">Welcome to 16 EDT</h3>
+      
+      <p class="text-xs font-mono text-[#86868b] leading-relaxed">
+        We utilize functional cookies and Google Tag Manager analytics to deliver a seamless editorial experience, protect digital architecture, and optimize retention pipelines.
+      </p>
+      
+      <div class="pt-2">
+        <button id="accept-cookies-btn" class="w-full py-3 bg-[#d4af37] text-black font-mono text-xs uppercase tracking-widest font-bold rounded hover:bg-white transition-colors cursor-pointer shadow-lg">
+          Accept & Continue to Site
+        </button>
+      </div>
     </div>
   `;
 
-  document.body.appendChild(banner);
+  document.body.appendChild(modal);
 
   document.getElementById('accept-cookies-btn').addEventListener('click', () => {
     localStorage.setItem('cookie_consent_accepted', 'true');
-    banner.remove();
+    document.body.style.overflow = '';
+    modal.remove();
+    
     trackDataLayerEvent('cookie_consent_accepted', {
       consent_type: 'functional_and_analytics',
       gtm_status: 'initialized'
@@ -59,7 +70,29 @@ function initGlobalCookieBanner() {
 }
 
 // ==========================================
-// 3. MEDIA SOUND CONTROLLER
+// 3. MOBILE DROPDOWN MENU ENGINE
+// ==========================================
+function initMobileMenu() {
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const menuDropdown = document.getElementById('mobile-menu-dropdown');
+  const menuIcon = document.getElementById('menu-icon');
+
+  if (menuBtn && menuDropdown) {
+    menuBtn.addEventListener('click', () => {
+      const isVisible = menuDropdown.style.display === 'block';
+      if (!isVisible) {
+        menuDropdown.style.display = 'block';
+        if (menuIcon) menuIcon.textContent = 'close';
+      } else {
+        menuDropdown.style.display = 'none';
+        if (menuIcon) menuIcon.textContent = 'menu';
+      }
+    });
+  }
+}
+
+// ==========================================
+// 4. MEDIA SOUND CONTROLLER
 // ==========================================
 window.toggleMediaSound = function(event) {
   event.stopPropagation();
@@ -80,43 +113,43 @@ window.toggleMediaSound = function(event) {
 };
 
 // ==========================================
-// 4. INTERACTIVE PERSONA PORTAL SWITCHER
+// 5. INTERACTIVE PERSONA PORTAL SWITCHER
 // ==========================================
 const personaData = {
   hr: {
-    badge: "TALENT | RECRUITMENT",
+    badge: "TALENT & RECRUITMENT",
     title: "Are you looking to fill a strategic or creative leadership role?",
-    desc: "I bring a hybrid engine: high-fashion editorial execution paired with technical growth architecture GA4, GTM server-side, Klaviyo workflows, Talent Aquisition. Ready to step into a full-time dynamic team.",
+    desc: "I bring a hybrid engine: high-fashion editorial execution paired with technical growth architecture (GA4, GTM server-side, Klaviyo workflows). Ready to step into a full-time dynamic team.",
     ctaText: "REQUEST COMPLETE CV & SCHEDULE SCREENING →",
-    ctaMail: "mailto:ollie16.edt@gmail.com?subject=HR Inquiry: Talent Opportunity"
+    ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=HR Inquiry: Talent Opportunity"
   },
   creative: {
-    badge: "CREATIVE DIRECTORS | PRODUCERS",
-    title: "Need a vision aligned co director, photographer extra, or onset talent?",
+    badge: "CREATIVE DIRECTORS & PRODUCERS",
+    title: "Need a vision-aligned co-director, photographer, or onset talent?",
     desc: "From lookbooks to set choreography and camera work. I step onto set prepared with fast composition, moodboard alignment, and disciplined visual rhythm.",
     ctaText: "INITIATE DIRECT CREATIVE BRIEF →",
-    ctaMail: "mailto:ollie16.edt@gmail.com?subject=Creative Brief / Set Collaboration"
+    ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Creative Brief / Set Collaboration"
   },
   brand: {
-    badge: "EDITORIAL BRAND CASTING | LUXURY RETAIL",
+    badge: "EDITORIAL BRAND CASTING (LUXURY RETAIL)",
     title: "Seeking modern, editorial modeling or visual brand representation?",
-    desc: "Lean physique, controlled soft presence, and natural camera fluidity for luxury streetwear, high fashion campaigns, and editorial stills.",
+    desc: "Lean physique, controlled soft presence, and natural camera fluidity for luxury streetwear, high-fashion campaigns, and editorial stills.",
     ctaText: "BOOK FOR CAMPAIGN / MODELING COMMISSIONS →",
-    ctaMail: "mailto:ollie16.edt@gmail.com?subject=Brand Modeling & Campaign Inquiry"
+    ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Brand Modeling & Campaign Inquiry"
   },
   strategy: {
-    badge: "GROWTH STRATEGY | AUDITS",
+    badge: "GROWTH STRATEGY & AUDITS",
     title: "Looking to map out customer journeys, funnels, and tracking?",
-    desc: "I audit existing retention flows, build first-party data capture architectures, and craft custom lifecycle strategies that scale high ticket retail and hospitality brands.",
+    desc: "I audit existing retention flows, build first-party data capture architectures, and craft custom lifecycle strategies that scale high-ticket retail and hospitality brands.",
     ctaText: "BOOK A STRATEGIC AUDIT & BLUEPRINT →",
-    ctaMail: "mailto:ollie16.edt@gmail.com?subject=Growth Audit & Blueprint Request"
+    ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Growth Audit & Blueprint Request"
   },
   collab: {
-    badge: "CREATIVE PEERS | DESIGN STUDENTS",
+    badge: "CREATIVE PEERS & DESIGN STUDENTS",
     title: "Want to build an experimental project or conceptual series together?",
-    desc: "Let's innovate. Whether it's testing new visual media, short film concepts, or experimental direction, I'm always open to high energy creative syncs.",
+    desc: "Let's innovate. Whether it's testing new visual media, short film concepts, or experimental direction, I'm always open to high-energy creative syncs.",
     ctaText: "SEND A COLLAB IDEA →",
-    ctaMail: "mailto:ollie16.edt@gmail.com?subject=Creative Collaboration Sync"
+    ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Creative Collaboration Sync"
   }
 };
 
@@ -151,7 +184,7 @@ function switchPersona(roleKey, clickedBtn) {
 }
 
 // ==========================================
-// 5. MULTI-SLIDE CAROUSEL & LIGHTBOX ENGINE
+// 6. MULTI-SLIDE CAROUSEL & LIGHTBOX ENGINE
 // ==========================================
 function initSlideshows() {
   const containers = document.querySelectorAll('.media-container');
@@ -177,7 +210,6 @@ function initSlideshows() {
       else item.classList.remove('active');
     });
 
-    // Arrow Controls
     const prevBtn = document.createElement('button');
     prevBtn.className = 'slide-nav prev';
     prevBtn.setAttribute('aria-label', 'Previous slide');
@@ -188,7 +220,6 @@ function initSlideshows() {
     nextBtn.setAttribute('aria-label', 'Next slide');
     nextBtn.innerHTML = '<i class="material-icons">chevron_right</i>';
 
-    // Indicator Dashes
     const indicators = document.createElement('div');
     indicators.className = 'slide-indicators';
     items.forEach((_, index) => {
@@ -296,12 +327,15 @@ function closeLightbox() {
 }
 
 // ==========================================
-// 6. MAIN DOM INITIALIZATION
+// 7. MAIN DOM INITIALIZATION
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Auto-inject Cookie Banner across all pages
-  initGlobalCookieBanner();
+  // Initialize Mandatory Cookie Modal
+  initGlobalCookieModal();
+
+  // Initialize Mobile Hamburger Menu
+  initMobileMenu();
 
   // Track Page View
   trackDataLayerEvent('custom_page_view', {
@@ -351,50 +385,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') closeLightbox();
   });
 
-  // Mobile Touch Swipe Controller
-  let touchStartX = 0;
-  let touchStartY = 0;
-
-  document.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-
-  document.addEventListener('touchend', (e) => {
-    if (!touchStartX || !touchStartY) return;
-
-    const touchEndX = e.changedTouches[0].clientX;
-    const touchEndY = e.changedTouches[0].clientY;
-
-    const diffX = touchEndX - touchStartX;
-    const diffY = touchEndY - touchStartY;
-
-    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {
-      const cardContainer = e.target.closest('.media-container') || e.target.closest('.work-card');
-
-      if (cardContainer) {
-        const slides = Array.from(cardContainer.querySelectorAll('img, video'));
-        if (slides.length <= 1) return;
-
-        let activeIndex = slides.findIndex(s => s.classList.contains('active'));
-        if (activeIndex === -1) activeIndex = 0;
-
-        slides[activeIndex].classList.remove('active');
-
-        if (diffX < 0) {
-          activeIndex = (activeIndex + 1) % slides.length;
-        } else {
-          activeIndex = (activeIndex - 1 + slides.length) % slides.length;
-        }
-
-        slides[activeIndex].classList.add('active');
-      }
-    }
-
-    touchStartX = 0;
-    touchStartY = 0;
-  }, { passive: true });
-
   // Right Click & Drag Protection
   document.addEventListener('contextmenu', (e) => {
     if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
@@ -408,3 +398,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+document.addEventListener('DOMContentLoaded', () => {
+  // Automatically highlight active navbar tab based on current URL
+  highlightActiveNavLink();
+
+  // Initialize Mandatory Cookie Modal
+  initGlobalCookieModal();
+
+  // Initialize Mobile Hamburger Menu
+  initMobileMenu();
+
+  // ... rest of your existing JS code ...
+});
+// ==========================================
+// AUTOMATIC NAVBAR ACTIVE TAB HIGHLIGHTER
+// ==========================================
+function highlightActiveNavLink() {
+  // Get current page file name (default to index.html if on root '/')
+  let currentPage = window.location.pathname.split('/').pop();
+  if (!currentPage || currentPage === '') currentPage = 'index.html';
+
+  const allLinks = document.querySelectorAll('.nav-desktop-links a, #mobile-menu-dropdown a');
+
+  allLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto')) return;
+
+    // Check if link matches current page
+    if (href === currentPage) {
+      // Apply Active Gold Styles
+      if (link.classList.contains('block')) {
+        // Mobile Link Active
+        link.className = 'block text-[#d4af37] font-bold py-2 border-b border-[#d4af37]';
+      } else {
+        // Desktop Link Active
+        link.className = 'text-[#d4af37] font-bold border-b border-[#d4af37] pb-1 transition-colors';
+      }
+    } else {
+      // Apply Inactive Gray Styles
+      if (link.classList.contains('block')) {
+        // Mobile Link Inactive
+        link.className = 'block text-[#86868b] hover:text-[#f5f5f7] py-2 border-b border-[#262626]/40 transition-colors';
+      } else {
+        // Desktop Link Inactive
+        link.className = 'text-[#86868b] hover:text-[#f5f5f7] transition-colors';
+      }
+    }
+  });
+}
