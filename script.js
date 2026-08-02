@@ -48,17 +48,18 @@ function initGlobalCookieModal() {
       <div class="max-w-md w-full bg-[#121212] border border-[#262626] p-8 rounded-2xl text-center space-y-6 shadow-2xl">
         <div class="inline-flex items-center gap-2 border border-[#d4af37]/40 bg-[#0a0a0a] px-3.5 py-1 rounded-full text-[10px] font-mono text-[#d4af37] uppercase tracking-widest">
           <span class="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse"></span>
-          GTM ACTIVE & COOKIE CONSENT
+          Cookie Policy | Functional Cookies
         </div>
 
-        <h3 class="text-2xl font-serif text-[#f5f5f7]">Welcome to 16 EDT</h3>
+        <h3 class="text-2xl font-serif text-[#f5f5f7]">Welcome to Ollie16</h3>
 
         <p class="text-xs font-mono text-[#86868b] leading-relaxed">
-          We utilize functional cookies and Google Tag Manager analytics to deliver a seamless editorial experience, protect digital architecture, and optimize retention pipelines.
+           We use Cookies, for example Google Analytics to ensure the smooth operation of our Platform, secure site architecture and measure user experience.
+      These cookies also help us understand how users navigate and interact with our website, without identifying or targeting any individual user.
         </p>
 
         <button id="accept-cookies-final-btn" class="w-full py-3.5 bg-[#d4af37] text-black font-mono text-xs uppercase font-bold tracking-widest rounded-lg hover:bg-white transition-colors cursor-pointer shadow-lg">
-          ACCEPT & CONTINUE TO SITE
+          ACCEPT & CONTINUE
         </button>
       </div>
     `;
