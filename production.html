@@ -1,44 +1,290 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-[#0a0a0a] text-[#f5f5f7] scroll-smooth">
+<html lang="en" class="bg-[#08080a] text-[#f5f5f7] scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Production | 16 EDT Studio Sets</title>
+  <title>SEDICI 16 EDT</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css" />
 
-<!-- Google Tag Manager -->
+  <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src="https://load.metrics.ollie16.com/d73dkuvvuomb.js?"+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','6y11pigo=CwlSMiI7WD8kJ1gxQkUjTRRQXVtHUBEFXwIDGR8TRF1MDgAY');</script>
 <!-- End Google Tag Manager -->
-</head>
-<body class="pt-28 pb-20 font-sans antialiased selection:bg-[#d4af37] selection:text-black">
+  <style>
+    :root {
+      --wiper-pos: 50%;
+    }
 
-   <!-- Google Tag Manager (noscript) -->
+    /* SCROLL ENTRANCE REVEAL ENGINE */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* SUBTLE 3D PERSPECTIVE TILT & METADATA BADGE */
+    .media-container {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      perspective: 1000px;
+    }
+    .media-container:hover {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.15);
+    }
+    .camera-spec-pill {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 25;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #d4af37;
+      font-family: monospace;
+      font-size: 9px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .media-container:hover .camera-spec-pill {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* FRAME HOVER ELEVATION */
+    .work-item-frame {
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .work-item-frame:hover {
+      transform: translateY(-4px);
+    }
+
+    /* MULTI-MEDIA STACKING INSIDE CARDS */
+    .media-container img,
+    .media-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.35s ease-in-out;
+      pointer-events: none;
+    }
+    .media-container img.active,
+    .media-container video.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* SINGLE UNIFIED CAROUSEL DASH BAR */
+    .card-nav-bar {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      z-index: 25;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(12px);
+      padding: 5px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .nav-dash {
+      width: 10px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-dash.active {
+      background: #d4af37;
+      width: 22px;
+    }
+
+    /* PERFECT 1-TO-1 CLIP-PATH WIPER ENGINE */
+    #wiper-modal,
+    #wiper-modal * {
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      -webkit-user-drag: none !important;
+    }
+    #wiper-modal *::selection {
+      background: transparent !important;
+    }
+    #wiper-modal *::-moz-selection {
+      background: transparent !important;
+    }
+    .wiper-container-box {
+      position: relative;
+      display: inline-block;
+      max-height: 80vh;
+      max-width: 90vw;
+      touch-action: none;
+      background: #000000;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid #262626;
+      cursor: ew-resize;
+    }
+    .wiper-base-img {
+      max-height: 80vh;
+      max-width: 90vw;
+      width: auto;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      pointer-events: none;
+    }
+    .wiper-overlay-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      clip-path: inset(0 calc(100% - var(--wiper-pos, 50%)) 0 0);
+    }
+    .wiper-handle-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: var(--wiper-pos, 50%);
+      width: 2px;
+      background: #d4af37;
+      transform: translateX(-50%);
+      z-index: 30;
+      cursor: ew-resize;
+    }
+    .wiper-handle-knob {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #d4af37;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    /* TYPOGRAPHIC FILTER TOGGLES */
+    .filter-tab {
+      color: #86868b;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+      transition: all 0.3s ease;
+    }
+    .filter-tab.active {
+      color: #d4af37;
+      border-bottom-color: #d4af37;
+      font-weight: 700;
+    }
+
+    /* SIGNATURE ANIMATION */
+    @keyframes drawSig {
+      to { stroke-dashoffset: 0; }
+    }
+    .signature-path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: drawSig 3s ease-in-out forwards;
+    }
+
+    /* GLASSMORPHISM CARD NAVIGATION ARROWS */
+    .card-arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 25;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .media-container:hover .card-arrow-btn {
+      opacity: 1;
+    }
+    .card-arrow-btn:hover {
+      background: rgba(0, 0, 0, 0.95);
+      border-color: #d4af37;
+      color: #d4af37;
+      transform: translateY(-50%) scale(1.1);
+    }
+    .card-arrow-prev { left: 10px; }
+    .card-arrow-next { right: 10px; }
+    @media (max-width: 768px) {
+      .card-arrow-btn { opacity: 0.85; }
+    }
+     /* Complete Global Media Protection Shield */
+    img, video {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+  }
+  </style>
+</head>
+<body class="pt-28 pb-12 font-sans antialiased bg-[#08080a] text-[#f5f5f7] selection:bg-[#d4af37] selection:text-black">
+
+  <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://load.metrics.ollie16.com/ns.html?id=GTM-TFJ7D43V" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-  <div class="ambient-glow"></div>
 
- <!-- GLOBAL 16 EDT NAVIGATION NAVBAR -->
+  <!-- GLOBAL 16 EDT NAVIGATION NAVBAR -->
 <nav class="fixed top-0 left-0 w-full z-[100] bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#262626]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
     
     <!-- BRAND LOGO -->
     <a href="index.html" class="flex flex-col group shrink-0">
-      <span class="text-lg font-serif tracking-tight text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">16 EDT</span>
-      <span class="text-[9px] font-mono tracking-[0.25em] text-[#d4af37] uppercase">By Ollie16</span>
+      <span class="text-lg font-serif tracking-tight text-[#f5f5f7] group-hover:text-[#d4af37] transition-colors">Sedici</span>
+      <span class="text-[9px] font-mono tracking-[0.25em] text-[#d4af37] uppercase">16 EDT</span>
     </a>
 
     <!-- DESKTOP LINKS -->
-    <div class="nav-desktop-links text-xs font-mono tracking-widest uppercase">
+    <div class="hidden md:flex items-center gap-8 text-xs font-mono tracking-widest uppercase">
       <a href="index.html">Hub</a>
       <a href="art.html">16 Gallery</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="production.html">Production</a>
+      <a href="production.html">Sedici EDT</a>
+       <a href="portfolio.html">Anusha</a>
       <a href="people.html">Our Own</a>
       <a href="learning.html">Learning</a>
     </div>
@@ -46,98 +292,834 @@
     <!-- RIGHT ACTIONS: BOOK AUDIT + HAMBURGER ICON -->
     <div class="flex items-center gap-3">
       <a href="index.html#audit" class="px-3 py-1.5 sm:px-4 sm:py-2 border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all text-[10px] sm:text-xs font-mono uppercase tracking-widest rounded shrink-0">
-        Book Audit
+        Book 16 EDT 
       </a>
 
-      <button id="mobile-menu-btn" class="nav-mobile-btn p-2 text-[#f5f5f7] hover:text-[#d4af37] transition-colors focus:outline-none" aria-label="Toggle Menu">
+      <button id="mobile-menu-btn" class="p-2 text-[#f5f5f7] hover:text-[#d4af37] transition-colors focus:outline-none md:hidden" aria-label="Toggle Menu">
         <i class="material-icons text-2xl" id="menu-icon">menu</i>
       </button>
     </div>
   </div>
 
   <!-- MOBILE DROPDOWN MENU PANEL -->
-  <div id="mobile-menu-dropdown" class="nav-mobile-dropdown bg-[#121212] border-b border-[#262626] px-6 py-4 font-mono text-xs uppercase tracking-widest space-y-1">
+  <div id="mobile-menu-dropdown" class="hidden md:hidden bg-[#121212] border-b border-[#262626] px-6 py-4 font-mono text-xs uppercase tracking-widest space-y-3">
     <a href="index.html" class="block">Hub</a>
     <a href="art.html" class="block">16 Gallery</a>
-    <a href="portfolio.html" class="block">Portfolio</a>
-    <a href="production.html" class="block">Production</a>
+    <a href="production.html" class="block">Sedici EDT</a>
+    <a href="portfolio.html" class="block">Anusha</a>
     <a href="people.html" class="block">Our Own</a>
     <a href="learning.html" class="block">Learning</a>
   </div>
 </nav>
 
-  <main class="max-w-7xl mx-auto px-6">
-    <!-- HEADER -->
-    <section class="mb-12">
-      <span class="text-xs font-mono text-[#d4af37] tracking-[0.3em] uppercase block mb-2">ON SET WORKFLOW & PROCESS</span>
-      <h1 class="text-4xl md:text-6xl font-serif text-[#f5f5f7]">Production Sets & Behind The Scenes</h1>
-      <p class="text-xs font-mono text-[#86868b] mt-3">
-        Real-time set choreography, camera rigging, ambient lighting studies, and color suite workflows.
-      </p>
-    </section>
-
-    <!-- UNCAGED DYNAMIC VIDEO TRIPTYCH -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mb-16">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 space-y-16">
+    
+    <!-- FREELY FLOWING HERO INTRO -->
+    <section class="pt-6 pb-16 border-b border-[#262626] space-y-10">
       
-      <!-- VIDEO 01: CREATIVE DIRECTION (NATURAL DYNAMIC RATIO) -->
-      <article class="video-triptych-card flex flex-col">
-        <div class="video-uncaged-container mb-4">
-          <button onclick="toggleMediaSound(event)" class="vid-btn z-20 absolute top-3 right-3 bg-black/80 p-2 rounded-full text-white border border-white/20">
-            <i class="material-icons text-sm">volume_off</i>
-          </button>
-          <video loop muted playsinline autoplay>
-            <source src="videos/bts-01.mp4" type="video/mp4" />
-          </video>
+      <!-- HERO STATEMENT & HEADLINE -->
+      <div class="space-y-8 max-w-5xl">
+        
+          <span class="text-[10px] font-mono text-[#86868b] uppercase tracking-widest hidden sm:inline-block">
+            DUBAI &bull; NEW YORK &bull; UGANDA
+          </span>
         </div>
-        <span class="text-[10px] font-mono text-[#d4af37] uppercase tracking-widest">CREATIVE DIRECTION </span>
-        <h3 class="text-lg font-serif text-[#f5f5f7] mt-1">Editorial | Styling Choreography</h3>
+
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif text-[#f5f5f7] leading-[1.05] tracking-tight">
+          "I don't edit images. <br />
+          <span class="text-[#d4af37] italic font-light">I architect high status perception."</span>
+        </h1>
+
+        <!-- DYNAMIC EDITORIAL MANIFESTO PROSE -->
+        <div class="space-y-6 text-base sm:text-lg font-sans text-[#86868b] leading-relaxed max-w-4xl font-light">
+          <p class="text-[#f5f5f7]/95 font-normal text-xl sm:text-2xl leading-snug">
+            In an era inundated with noise, true visual authority is defined by restraint, intentionality, and unyielding precision. Sedici 16 EDT is born out of a singular obsession: elevating digital captures into timeless luxury statements that command prestige before a single word is read.
+          </p>
+
+          <p class="text-base sm:text-lg text-[#86868b] leading-relaxed">
+            Operating at the intersection of haute couture editorial direction, DaVinci Resolve Studio color engineering, and cinematic motion architecture, Ollie16 crafts bespoke visual environments for discerning brands, executive directors, and global creators. Every frame undergoes custom node based color grading, ACEScct color space transforms, True skin tone geometry, and film emulsion emulation Kodak 2383 | Fuji 3513 tailored to the specific identity of the project.
+          </p>
+
+          <p class="text-sm sm:text-base text-[#86868b]/90 leading-relaxed font-mono uppercase tracking-wider text-[11px] pt-2 border-l-2 border-[#d4af37] pl-4">
+            SPECS: S LOG3 &bull; RED LOG &bull; ARRI LOGC3 &bull; 8K DCI CINEMA MASTERING &bull; 12 HR GLOBAL FAST TRACK
+          </p>
+        </div>
+
+        <!-- EXECUTIVE CALL TO ACTION TRIGGERS -->
+        <div class="flex flex-wrap items-center gap-4 pt-4">
+          <a href="index.html#audit" class="px-7 py-3.5 bg-[#d4af37] text-black hover:bg-white transition-all text-xs font-mono uppercase tracking-widest font-bold rounded-lg shadow-[0_0_20px_rgba(212,175,55,0.25)]">
+            Connect Directly with Ollie16 &rarr;
+          </a>
+          <a href="#editorial-stream" class="px-7 py-3.5 border border-[#262626] bg-[#121212] text-[#f5f5f7] hover:border-[#d4af37] hover:text-[#d4af37] transition-all text-xs font-mono uppercase tracking-widest rounded-lg">
+            Explore Portfolio Stills | Motion &darr;
+          </a>
+        </div>
+
+      </div>
+
+      <!-- TYPOGRAPHIC CATEGORY FILTER TABS -->
+      <div id="editorial-stream" class="flex items-center gap-8 pt-8 text-xs font-mono uppercase tracking-widest border-t border-[#262626] overflow-x-auto">
+        <button onclick="filterPortfolio('all', this)" class="filter-tab active cursor-pointer shrink-0"> All Masterworks</button>
+        <button onclick="filterPortfolio('editorial', this)" class="filter-tab cursor-pointer shrink-0"> Editorial </button>
+        <button onclick="filterPortfolio('motion', this)" class="filter-tab cursor-pointer shrink-0">  Motion | Video</button>
+      </div>
+
+    </section>
+
+    <!-- EDITORIAL STREAM LAYOUT -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 sm:gap-14">
+
+      <!-- ITEM 1: WOODS SERIES -->
+      <article class="work-item-frame editorial space-y-3">
+        <div class="media-container aspect-[4/5] rounded-xl overflow-hidden relative bg-[#121212] border border-[#262626] cursor-pointer">
+          <img src="images/woods-01.jpg" alt="Woods 1" class="active" data-raw="images/woods-01-raw.jpg" />
+          <img src="images/woods-02.jpg" alt="Woods 2" data-raw="images/woods-02-raw.jpg" />
+          <img src="images/woods-03.jpg" alt="Woods 3" data-raw="images/woods-03-raw.jpg" />
+          <img src="images/woods-04.jpg" alt="Woods 4" data-raw="images/woods-04-raw.jpg" />
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-lg font-serif text-[#f5f5f7] tracking-tight">WOODS SERIES</h3>
+        </div>
       </article>
 
-      <!-- VIDEO 02: CINEMATOGRAPHY -->
-      <article class="video-triptych-card flex flex-col">
-        <div class="video-uncaged-container mb-4">
-          <button onclick="toggleMediaSound(event)" class="vid-btn z-20 absolute top-3 right-3 bg-black/80 p-2 rounded-full text-white border border-white/20">
-            <i class="material-icons text-sm">volume_off</i>
-          </button>
-          <video loop muted playsinline autoplay>
-            <source src="videos/bts-02.mp4" type="video/mp4" />
-          </video>
+      <!-- ITEM 2: Light -->
+      <article class="work-item-frame editorial space-y-3">
+        <div class="media-container aspect-[4/5] rounded-xl overflow-hidden relative bg-[#121212] border border-[#262626] cursor-pointer">
+          <img src="images/portrait-01.jpg" alt="Light Editorial 1" class="active" data-raw="images/portrait-01-raw.jpg" />
+          <img src="images/portrait-02.jpg" alt="Light Editorial 2" data-raw="images/portrait-02-raw.jpg" />
+          <img src="images/portrait-03.jpg" alt="Light Editorial 3" data-raw="images/portrait-03-raw.jpg" />
         </div>
-        <span class="text-[10px] font-mono text-[#d4af37] uppercase tracking-widest">CINEMATOGRAPHY </span>
-        <h3 class="text-lg font-serif text-[#f5f5f7] mt-1">Motion Light | Visual Rhythm</h3>
+        <div class="space-y-1">
+          <h3 class="text-lg font-serif text-[#f5f5f7] tracking-tight">LIGHT: THE HUMAN FORM</h3>
+        </div>
       </article>
 
-      <!-- VIDEO 03: BRAND ARCHITECTURE -->
-      <article class="video-triptych-card flex flex-col">
-        <div class="video-uncaged-container mb-4">
-          <button onclick="toggleMediaSound(event)" class="vid-btn z-20 absolute top-3 right-3 bg-black/80 p-2 rounded-full text-white border border-white/20">
-            <i class="material-icons text-sm">volume_off</i>
-          </button>
-          <video loop muted playsinline autoplay>
-            <source src="videos/bts-03.mp4" type="video/mp4" />
-          </video>
+      <!-- ITEM 3: BURN -->
+      <article class="work-item-frame editorial space-y-3">
+        <div class="media-container aspect-[9/12] rounded-xl overflow-hidden relative bg-[#121212] border border-[#262626] cursor-pointer">
+          <img src="images/burn-01.jpg" alt="Burn 1" class="active" data-raw="images/burn-01-raw.jpg" />
+          <img src="images/burn-02.jpg" alt="Burn 2" data-raw="images/burn-02-raw.jpg" />
         </div>
-        <span class="text-[10px] font-mono text-[#d4af37] uppercase tracking-widest">BRAND ARCHITECTURE </span>
-        <h3 class="text-lg font-serif text-[#f5f5f7] mt-1">Funnels | Real-Time Sync</h3>
+        <div class="space-y-1">
+          <h3 class="text-lg font-serif text-[#f5f5f7] tracking-tight">BURN</h3>
+        </div>
+      </article>
+
+      <!-- ITEM 4: YAS MARINA AUD -->
+      <article class="work-item-frame editorial space-y-3">
+        <div class="media-container aspect-[9/12] rounded-xl overflow-hidden relative bg-[#121212] border border-[#262626] cursor-pointer">
+          <img src="images/f1-01.jpg" alt="F1 Slide 1" class="active" data-raw="images/f1-01-raw.jpg" />
+          <img src="images/f1-02.jpg" alt="F1 Slide 2" data-raw="images/f1-02-raw.jpg" />
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-lg font-serif text-[#f5f5f7] tracking-tight">YAS MARINA AUD</h3>
+        </div>
+      </article>
+
+      <!-- ITEM 5: HORIZON AT DUSK -->
+      <article class="work-item-frame editorial space-y-3">
+        <div class="media-container aspect-square rounded-xl overflow-hidden relative bg-[#121212] border border-[#262626] cursor-pointer">
+          <img src="images/landscape-01.jpg" alt="Horizon 1" class="active" data-raw="images/landscape-01-raw.jpg" />
+          <img src="images/landscape-02.jpg" alt="Horizon 2" data-raw="images/landscape-02-raw.jpg" />
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-lg font-serif text-[#f5f5f7] tracking-tight">HORIZON AT DUSK</h3>
+        </div>
+      </article>
+
+      <!-- ITEM 6: CHECK: EMPIRE STATES -->
+      <article class="work-item-frame editorial space-y-3">
+        <div class="media-container aspect-square rounded-xl overflow-hidden relative bg-[#121212] border border-[#262626] cursor-pointer">
+          <img src="images/check-01.jpg" alt="Check 1" class="active" data-raw="images/check-01-raw.jpg" />
+          <img src="images/check-02.jpg" alt="Check 2" data-raw="images/check-02-raw.jpg" />
+          <img src="images/check-03.jpg" alt="Check 3" data-raw="images/check-03-raw.jpg" />
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-lg font-serif text-[#f5f5f7] tracking-tight">CHECK: EMPIRE STATES</h3>
+        </div>
+      </article>
+
+      <!-- ITEM 7: TMS -->
+      <article class="work-item-frame editorial space-y-3">
+        <div class="media-container aspect-[4/5] rounded-xl overflow-hidden relative bg-[#121212] border border-[#262626] cursor-pointer">
+            <img src="images/tms-01.jpg" alt="TMS 1" data-raw="images/tms-01-raw.jpg" />
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-lg font-serif text-[#f5f5f7] tracking-tight">LIKE YOU</h3>
+        </div>
+      </article>
+
+
+      <!-- ITEM 9: DISEAL -->
+      <article class="work-item-frame editorial space-y-3">
+        <div class="media-container aspect-[4/5] rounded-xl overflow-hidden relative bg-[#121212] border border-[#262626] cursor-pointer">
+          <img src="images/diseal-01.jpg" alt="Diseal 1" class="active" data-raw="images/diseal-01-raw.jpg" />
+          <img src="images/diseal-02.jpg" alt="Diseal 2" data-raw="images/diseal-02-raw.jpg" />
+          <img src="images/diseal-03.jpg" alt="Diseal 3" data-raw="images/diseal-03-raw.jpg" />
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-lg font-serif text-[#f5f5f7] tracking-tight">DISEAL</h3>
+        </div>
+      </article>
+
+      <!-- ITEM 10: ARM -->
+      <article class="work-item-frame motion space-y-3">
+        <div class="media-container aspect-[9/12] rounded-xl overflow-hidden relative bg-[#121212] border border-[#262626] cursor-pointer">
+          <img src="images/arm-01.jpg" alt="ARM Slide 1" class="active" data-raw="images/arm-01-raw.jpg" />
+          <img src="images/arm-02.jpg" alt="ARM Slide 2" data-raw="images/arm-02-raw.jpg" />
+          <img src="images/arm-03.jpg" alt="ARM Slide 3" data-raw="images/arm-03-raw.jpg" />
+          <img src="images/arm-04.jpg" alt="ARM Slide 4" data-raw="images/arm-04-raw.jpg" />
+          <img src="images/arm-05.jpg" alt="ARM Slide 5" data-raw="images/arm-05-raw.jpg" />
+        </div>
+        <div class="space-y-1">
+          <h3 class="text-lg font-serif text-[#f5f5f7] tracking-tight">ARM</h3>
+        </div>
       </article>
 
     </section>
 
-    <!-- CREATIVE PHILOSOPHY BLOCK -->
-    <section class="border border-[#262626] bg-[#121212] p-8 md:p-12 rounded-lg text-center max-w-3xl mx-auto space-y-4">
-      <h2 class="text-2xl font-serif text-[#f5f5f7]">"I Make The Difference, Connecting Dots To Make Sure They Align."</h2>
-      <p class="text-xs font-mono text-[#86868b] leading-relaxed">
-        I produce, visualize, map, and create in timeless ways—implementing the use of AI strictly where it adds leverage. From on-set composition to post-production color grading in DaVinci Resolve.
-      </p>
+
+
+    <!-- ADDITIONAL GALLERY & MASTERPIECE SECTION -->
+    <section class="pt-16 pb-8 border-t border-[#262626] space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="text-[10px] font-mono text-[#d4af37] uppercase tracking-[0.3em] block">SEDICI 16 EDT</span>
+          <h2 class="text-2xl sm:text-3xl font-serif text-[#f5f5f7]">Masterpieces | Visual Cuts</h2>
+        </div>
+        <span class="text-[10px] font-mono text-[#86868b]">STANDALONE PRINTS </span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        
+      <!--  VIDEO f1 -->
+    <div class="group cursor-pointer space-y-2" onclick="openVideoModal('videos/f1-01.mp4', 'videos/f1-01.mp4', ' EAU DE 16')">
+    <div class="aspect-[4/5] bg-[#121212] rounded-xl overflow-hidden border border-[#262626] relative">
+    
+    <!-- AUTOPLAY PREVIEW LOOP -->
+    <video loop muted playsinline autoplay class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+      <source src="videos/f1-01.mp4" type="video/mp4" />
+    </video>
+
+    <!-- CINEMA BADGE -->
+    <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md border border-white/10 text-[#d4af37] text-[9px] font-mono px-2 py-1 rounded tracking-wider uppercase">
+      CINEMA REEL
+    </span>
+    </div>
+
+     </div>
+
+        <!-- GALLERY ITEM 1 -->
+        <div class="group cursor-pointer space-y-2" onclick="openCinemaModal('images/ger-01.jpg', 'Speak through Stills ')">
+          <div class="aspect-[9/9] bg-[#121212] rounded-xl overflow-hidden border border-[#262626] relative">
+            <img src="images/ger-01.jpg" alt="Dusk Horizon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null;" />
+            <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md border border-white/10 text-[#d4af37] text-[9px] font-mono px-2 py-1 rounded"> Dusk Horizon </span>
+          </div>
+        
+        </div>
+
+        <!-- GALLERY ITEM 3 -->
+        <div class="group cursor-pointer space-y-2" onclick="openCinemaModal('images/ger-03.jpg', 'Pearl Nights')">
+          <div class="aspect-[4/5] bg-[#121212] rounded-xl overflow-hidden border border-[#262626] relative">
+            <img src="images/ger-03.jpg" alt="Pearl Series" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null;" />
+            <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md border border-white/10 text-[#d4af37] text-[9px] font-mono px-2 py-1 rounded">Moonlight</span>
+          </div>
+    
+        </div>
+
+        <!-- GALLERY ITEM 4 -->
+        <div class="group cursor-pointer space-y-2" onclick="openCinemaModal('images/ger-04.jpg', 'What Can I Say?')">
+          <div class="aspect-[4/5] bg-[#121212] rounded-xl overflow-hidden border border-[#262626] relative">
+            <img src="images/ger-04.jpg" alt="NY Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null;" />
+            <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md border border-white/10 text-[#d4af37] text-[9px] font-mono px-2 py-1 rounded">Ohh Boy</span>
+          </div>
+
+      </div>
+
+        <!-- GALLERY ITEM 5 -->
+        <div class="group cursor-pointer space-y-2" onclick="openCinemaModal('images/ger-05.jpg', 'THE Streets Say Motion')">
+          <div class="aspect-[4/5] bg-[#121212] rounded-xl overflow-hidden border border-[#262626] relative">
+            <img src="images/ger-05.jpg" alt="NY Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null;" />
+            <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md border border-white/10 text-[#d4af37] text-[9px] font-mono px-2 py-1 rounded">Classy</span>
+          </div>
+
+      </div>
+
+        <!-- GALLERY ITEM 6 -->
+        <div class="group cursor-pointer space-y-2" onclick="openCinemaModal('images/ger-06.jpg', 'NIGHT PEARL there aint light')">
+          <div class="aspect-[4/5] bg-[#121212] rounded-xl overflow-hidden border border-[#262626] relative">
+            <img src="images/ger-06.jpg" alt="NY Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null;" />
+            <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md border border-white/10 text-[#d4af37] text-[9px] font-mono px-2 py-1 rounded">COLD NIGHTS</span>
+          </div>
+      </div>
+
+       <!-- GALLERY ITEM 7 -->
+        <div class="group cursor-pointer space-y-2" onclick="openCinemaModal('images/ger-07.jpg', 'Shine Bright | Grow Cool ')">
+          <div class="aspect-[4/5] bg-[#121212] rounded-xl overflow-hidden border border-[#262626] relative">
+            <img src="images/ger-07.jpg" alt="NY Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null;" />
+            <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md border border-white/10 text-[#d4af37] text-[9px] font-mono px-2 py-1 rounded">Thrive</span>
+          </div>
+      </div>
+
+       <!-- GALLERY ITEM 8 -->
+        <div class="group cursor-pointer space-y-2" onclick="openCinemaModal('images/ger-08.jpg', 'COCO Says Colors')">
+          <div class="aspect-[4/5] bg-[#121212] rounded-xl overflow-hidden border border-[#262626] relative">
+            <img src="images/ger-08.jpg" alt="NY Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null;" />
+            <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md border border-white/10 text-[#d4af37] text-[9px] font-mono px-2 py-1 rounded">Sometimes</span>
+          </div>
+      </div>
+
+      <!--  VIDEO arm -->
+    <div class="group cursor-pointer space-y-2" onclick="openVideoModal('videos/arm-01.mp4', 'videos/arm-01.mp4', 'Move Stills')">
+    <div class="aspect-[4/5] bg-[#121212] rounded-xl overflow-hidden border border-[#262626] relative">
+    
+    <!-- AUTOPLAY PREVIEW LOOP -->
+    <video loop muted playsinline autoplay class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+      <source src="videos/arm-01.mp4" type="video/mp4" />
+    </video>
+
+    <!-- CINEMA BADGE -->
+    <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md border border-white/10 text-[#d4af37] text-[9px] font-mono px-2 py-1 rounded tracking-wider uppercase">
+      Move Stills
+    </span>
+    </div>
+     </div>
+
+      <!-- GALLERY ITEM 9 -->
+        <div class="group cursor-pointer space-y-2" onclick="openCinemaModal('images/ger-09.jpg', 'It Aint Easy Just Love ')">
+          <div class="aspect-[10/10] bg-[#121212] rounded-xl overflow-hidden border border-[#262626] relative">
+            <img src="images/ger-09.jpg" alt="NY Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80';" />
+            <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md border border-white/10 text-[#d4af37] text-[9px] font-mono px-2 py-1 rounded">Love|Peace</span>
+          </div>
+      </div>
+
+      <!-- GALLERY ITEM 10 -->
+        <div class="group cursor-pointer space-y-2" onclick="openCinemaModal('images/ger-10.jpg', 'Wicked Love tells more')">
+          <div class="aspect-[4/5] bg-[#121212] rounded-xl overflow-hidden border border-[#262626] relative">
+            <img src="images/ger-10.jpg" alt="NY Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80';" />
+            <span class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md border border-white/10 text-[#d4af37] text-[9px] font-mono px-2 py-1 rounded">Thunder</span>
+          </div>
+      </div>
+
+
     </section>
+
   </main>
 
-  <!-- LIGHTBOX MODAL -->
-  <div id="portfolio-lightbox" class="lightbox" onclick="closeLightbox()">
-    <span class="lightbox-close">&times;</span>
-    <div id="lightbox-content-wrapper" style="position: relative;" onclick="event.stopPropagation()"></div>
+  <!-- SIGNATURE FOOTER -->
+  <footer class="mt-20 pt-16 pb-12 border-t border-[#262626] bg-[#08080a] text-center space-y-8">
+    <div class="max-w-2xl mx-auto space-y-4 px-4">
+      <span class="text-[10px] font-mono text-[#d4af37] uppercase tracking-[0.35em] block">CRAFTED & DIRECTED BY</span>
+      
+      <div class="w-64 sm:w-80 mx-auto opacity-90 py-2">
+        <svg viewBox="0 0 400 120" class="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 20,70 C 50,10 80,30 110,65 C 130,90 150,20 180,50 C 210,80 230,30 260,60 C 290,90 320,40 370,55" 
+                stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" class="signature-path" />
+          <text x="70" y="105" font-family="'Playfair Display', serif" font-style="italic" font-size="28" fill="#f5f5f7">Ollie16</text>
+        </svg>
+      </div>
+
+      <div class="flex items-center justify-center gap-3 text-xs font-mono text-[#86868b]">
+        <span>16 EDT</span>
+        <span>&bull;</span>
+        <span>DUBAI</span>
+        <span>&bull;</span>
+        <span>UGANDA</span>
+      </div>
+
+      <p class="text-[10px] font-mono text-[#86868b]/70 tracking-widest uppercase pt-2">
+        SEDICI 16 EDT APPROVED &bull; ALL RIGHTS RESERVED &copy; 2026
+      </p>
+
+      <div class="pt-4">
+        <a href="#top" class="inline-flex items-center gap-2 text-[10px] font-mono text-[#d4af37] uppercase tracking-widest hover:text-white transition-colors border border-[#262626] px-4 py-2 rounded-full bg-[#121212]">
+          <span>Return to Top</span>
+          <span>&uarr;</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PERFECT 1-TO-1 CLIP-PATH SPLIT WIPER MODAL -->
+  <div id="wiper-modal" class="fixed inset-0 z-[300] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <button onclick="closeWiperModal()" class="absolute top-6 right-6 text-white text-3xl cursor-pointer hover:text-[#d4af37] transition-colors z-50">&times;</button>
+
+    <div class="w-full max-w-4xl flex items-center justify-between text-[11px] font-mono text-[#86868b] mb-3 px-2 z-20 shrink-0">
+      <span class="text-[#d4af37] font-bold tracking-widest" id="wiper-title">16 EDT REVEAL</span>
+      <span class="uppercase tracking-wider">CLICK OR DRAG HANDLE TO WIPE RAW &rarr; EDITED</span>
+    </div>
+
+    <!-- STAGE CONTAINER (CLIP PATH ENGINE) -->
+    <div id="wiper-container-box" class="wiper-container-box">
+      <!-- UNDERLAY: EDITED MASTER -->
+      <img id="wiper-edited-img" class="wiper-base-img" src="" alt="Edited Master" />
+
+      <!-- OVERLAY: RAW SHOT (CLIPPED EXACTLY WITH 1-TO-1 BOUNDS) -->
+      <img id="wiper-raw-img" class="wiper-overlay-img" src="" alt="Raw Shot" />
+
+      <!-- DRAGGABLE DIVIDER LINE & HANDLE -->
+      <div id="wiper-handle-line" class="wiper-handle-line">
+        <div class="wiper-handle-knob">
+          <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7l-5 5 5 5M16 7l5 5-5 5" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full max-w-4xl flex justify-between text-[10px] font-mono text-[#86868b] mt-3 px-2 z-20 shrink-0">
+      <span> RAW CAPTURE </span>
+      <span> MASTER </span>
+    </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- STANDALONE CINEMA LIGHTBOX ZOOM MODAL -->
+  <div id="cinema-modal" class="fixed inset-0 z-[300] bg-black/98 backdrop-blur-2xl flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <button onclick="closeCinemaModal()" class="absolute top-6 right-6 text-white text-3xl cursor-pointer hover:text-[#d4af37] transition-colors z-50">&times;</button>
+
+    <div class="max-w-5xl w-full flex flex-col items-center space-y-3">
+      <img id="cinema-img" src="" class="max-h-[80vh] max-w-[90vw] object-contain rounded-xl border border-[#262626] shadow-2xl bg-black" />
+      <span id="cinema-title" class="text-xs font-mono text-[#d4af37] uppercase tracking-widest">16 EDT MASTERPIECE</span>
+    </div>
+  </div>
+
+  <!-- VIDEO PRODUCTION A/B REVEAL MODAL -->
+  <div id="video-modal" class="fixed inset-0 z-[300] bg-black/98 backdrop-blur-2xl flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <button onclick="closeVideoModal()" class="absolute top-6 right-6 text-white text-3xl cursor-pointer hover:text-[#d4af37] transition-colors z-50">&times;</button>
+
+    <div class="max-w-5xl w-full flex flex-col items-center space-y-4">
+      <div class="flex items-center gap-2 bg-[#121212] border border-[#262626] p-1.5 rounded-full text-[10px] font-mono uppercase tracking-widest shadow-xl">
+        <button id="video-tab-master" onclick="switchVideoMode('master')" class="filter-tab active px-4 py-1.5 rounded-full text-[#86868b] hover:text-white transition-all cursor-pointer">
+           02  MASTER GRADED REEL 
+        </button>
+        <button id="video-tab-raw" onclick="switchVideoMode('raw')" class="filter-tab px-4 py-1.5 rounded-full text-[#86868b] hover:text-white transition-all cursor-pointer">
+           01  RAW LOG REEL 
+        </button>
+      </div>
+
+      <video id="lightbox-video" controls autoplay playsinline class="max-h-[75vh] max-w-[90vw] w-auto h-auto rounded-xl border border-[#262626] shadow-2xl object-contain bg-black">
+        <source id="lightbox-video-src" src="" type="video/mp4" />
+      </video>
+
+      <span id="video-modal-title" class="text-xs font-mono text-[#d4af37] uppercase tracking-widest">CINEMATIC REEL // DAVINCI RESOLVE MOTION</span>
+    </div>
+  </div>
+
+  <!-- HIGH-STATUS INTERACTION ENGINE -->
+  <script>
+  let isWiperDragging = false;
+  let currentVideoMasterSrc = "";
+  let currentVideoRawSrc = "";
+
+  // HOLD-TO-COMPARE INSTANT PREVIEW STATE
+  let holdTimer = null;
+  let isHoldingCompare = false;
+  let activeHoldMedia = null;
+  let originalMediaSrc = "";
+
+  function initCarousels() {
+    document.querySelectorAll('.card-nav-bar, .card-arrow-btn, .camera-spec-pill').forEach(el => el.remove());
+
+    const containers = document.querySelectorAll('.media-container');
+
+    containers.forEach(container => {
+      const items = Array.from(container.querySelectorAll('img, video'));
+      if (items.length === 0) return;
+
+      let currentIndex = 0;
+      const vidBtn = container.querySelector('.vid-btn');
+
+      function updateSlide(index) {
+        if (index < 0) index = items.length - 1;
+        if (index >= items.length) index = 0;
+        currentIndex = index;
+
+        items.forEach((item, i) => {
+          if (i === currentIndex) {
+            item.classList.add('active');
+            if (item.tagName === 'VIDEO') {
+              item.play().catch(() => {});
+              if (vidBtn) vidBtn.style.display = 'block';
+            } else {
+              if (vidBtn) vidBtn.style.display = 'none';
+            }
+          } else {
+            item.classList.remove('active');
+            if (item.tagName === 'VIDEO') {
+              item.pause();
+            }
+          }
+        });
+
+        const dashes = container.querySelectorAll('.nav-dash');
+        dashes.forEach((d, i) => {
+          if (i === currentIndex) d.classList.add('active');
+          else d.classList.remove('active');
+        });
+      }
+
+      if (items.length > 1) {
+        const prevBtn = document.createElement('button');
+        prevBtn.type = 'button';
+        prevBtn.className = 'card-arrow-btn card-arrow-prev';
+        prevBtn.setAttribute('aria-label', 'Previous slide');
+        prevBtn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>`;
+        prevBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          updateSlide(currentIndex - 1);
+        });
+        container.appendChild(prevBtn);
+
+        const nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.className = 'card-arrow-btn card-arrow-next';
+        nextBtn.setAttribute('aria-label', 'Next slide');
+        nextBtn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>`;
+        nextBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          updateSlide(currentIndex + 1);
+        });
+        container.appendChild(nextBtn);
+
+        const navBar = document.createElement('div');
+        navBar.className = 'card-nav-bar';
+
+        items.forEach((_, idx) => {
+          const dash = document.createElement('div');
+          dash.className = `nav-dash ${idx === 0 ? 'active' : ''}`;
+          dash.addEventListener('click', (e) => {
+            e.stopPropagation();
+            updateSlide(idx);
+          });
+          navBar.appendChild(dash);
+        });
+
+        container.appendChild(navBar);
+      }
+
+      updateSlide(0);
+
+      // INSTANT "HOLD TO PREVIEW RAW" ENGINE ON GRID CARDS
+      const startHold = (e) => {
+        if (e.target.closest('.vid-btn') || e.target.closest('.card-nav-bar') || e.target.closest('.card-arrow-btn')) return;
+        isHoldingCompare = false;
+        const activeEl = items[currentIndex];
+        if (!activeEl) return;
+
+        holdTimer = setTimeout(() => {
+          isHoldingCompare = true;
+          activeHoldMedia = activeEl;
+
+          if (activeEl.tagName === 'VIDEO') {
+            const rawVideo = activeEl.getAttribute('data-video-raw');
+            if (rawVideo) {
+              originalMediaSrc = activeEl.querySelector('source')?.src || activeEl.src;
+              activeEl.src = rawVideo;
+              activeEl.play().catch(() => {});
+              specPill.textContent = 'RAW UNGRADED LOG';
+              specPill.style.background = 'rgba(212, 175, 55, 0.9)';
+              specPill.style.color = '#000000';
+            }
+          } else {
+            const rawImg = activeEl.getAttribute('data-raw');
+            if (rawImg && rawImg !== 'none') {
+              originalMediaSrc = activeEl.src;
+              activeEl.src = rawImg;
+              specPill.textContent = 'RAW UNGRADED CAPTURE';
+              specPill.style.background = 'rgba(212, 175, 55, 0.9)';
+              specPill.style.color = '#000000';
+            }
+          }
+        }, 180);
+      };
+
+      container.addEventListener('mousedown', startHold);
+      container.addEventListener('touchstart', startHold, { passive: true });
+
+      // Interactive Subtle 3D Card Tilt on Mousemove
+      container.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        container.style.transform = `perspective(1000px) rotateX(${-y / 25}deg) rotateY(${x / 25}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
+
+      container.addEventListener('mouseleave', () => {
+        container.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+
+      // CLICK HANDLER FOR MODAL TRIGGER (SKIPS IF USER WAS HOLDING TO PREVIEW RAW)
+      container.addEventListener('click', function(e) {
+        if (e.target.closest('.vid-btn') || e.target.closest('.card-nav-bar') || e.target.closest('.card-arrow-btn')) return;
+        if (isHoldingCompare) {
+          e.stopPropagation();
+          return;
+        }
+        triggerModalForContainer(container, currentIndex);
+      });
+    });
+
+    // GLOBAL RELEASE FOR HOLD-TO-COMPARE PREVIEW
+    const endHold = () => {
+      if (holdTimer) clearTimeout(holdTimer);
+      if (isHoldingCompare && activeHoldMedia) {
+        if (activeHoldMedia.tagName === 'VIDEO') {
+          activeHoldMedia.src = originalMediaSrc;
+          activeHoldMedia.play().catch(() => {});
+        } else {
+          activeHoldMedia.src = originalMediaSrc;
+        }
+
+        document.querySelectorAll('.camera-spec-pill').forEach(pill => {
+          const isVid = pill.closest('.media-container')?.querySelector('video') !== null;
+          pill.textContent = isVid ? '4K RAW // S-LOG3 • 24FPS' : '8K DCI // ACEScct • KODAK 2383';
+          pill.style.background = 'rgba(0, 0, 0, 0.75)';
+          pill.style.color = '#d4af37';
+        });
+
+        setTimeout(() => { isHoldingCompare = false; }, 60);
+      }
+    };
+
+    window.addEventListener('mouseup', endHold);
+    window.addEventListener('touchend', endHold);
+  }
+
+  function triggerModalForContainer(container, idx) {
+    const card = container.closest('.work-item-frame');
+    const title = card ? card.querySelector('h3')?.textContent : '16 EDT REVEAL';
+
+    const items = Array.from(container.querySelectorAll('img, video'));
+    const activeEl = items[idx] || items[0];
+    if (!activeEl) return;
+
+    if (activeEl.tagName === 'VIDEO' || activeEl.hasAttribute('data-video-master')) {
+      const masterSrc = activeEl.getAttribute('data-video-master') || activeEl.querySelector('source')?.src;
+      const rawSrc = activeEl.getAttribute('data-video-raw') || masterSrc;
+      openVideoModal(masterSrc, rawSrc, title);
+      return;
+    }
+
+    const editedSrc = activeEl.src;
+    const rawSrc = activeEl.getAttribute('data-raw');
+
+    if (!rawSrc || rawSrc === 'none') {
+      openCinemaModal(editedSrc, title);
+    } else {
+      openWiperModal(rawSrc, editedSrc, title);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initCarousels();
+
+    // 1. SCROLL REVEAL OBSERVER FOR CARDS
+    const cards = document.querySelectorAll('.work-item-frame');
+    cards.forEach(el => el.classList.add('reveal-on-scroll'));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    cards.forEach(el => observer.observe(el));
+
+    const wiperModalBox = document.getElementById('wiper-container-box');
+    if (wiperModalBox) {
+      wiperModalBox.addEventListener('click', (e) => {
+        updateWiperFromMouse(e.clientX);
+      });
+    }
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu-dropdown');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // PERFECT CLIP-PATH DRAG ENGINE
+    const wiperBox = document.getElementById('wiper-container-box');
+    if (wiperBox) {
+      wiperBox.addEventListener('mousedown', (e) => { 
+        e.preventDefault();
+        window.getSelection().removeAllRanges();
+        isWiperDragging = true; 
+        updateWiperFromMouse(e.clientX); 
+      });
+      window.addEventListener('mouseup', () => { isWiperDragging = false; });
+      window.addEventListener('mousemove', (e) => { 
+        if (isWiperDragging) {
+          e.preventDefault();
+          window.getSelection().removeAllRanges();
+          updateWiperFromMouse(e.clientX); 
+        }
+      });
+
+      wiperBox.addEventListener('touchstart', (e) => { 
+        if (e.touches[0]) { 
+          isWiperDragging = true; 
+          updateWiperFromMouse(e.touches[0].clientX); 
+        } 
+      }, { passive: true });
+      window.addEventListener('touchend', () => { isWiperDragging = false; });
+      window.addEventListener('touchmove', (e) => { 
+        if (isWiperDragging && e.touches[0]) updateWiperFromMouse(e.touches[0].clientX); 
+      }, { passive: true });
+    }
+  });
+  // Prevent context menu (right-click save) on all images and videos
+document.addEventListener('contextmenu', (e) => {
+  if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
+    e.preventDefault();
+  }
+});
+
+  // CATEGORY FILTER
+  function filterPortfolio(category, btnElement) {
+    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+    btnElement.classList.add('active');
+
+    const items = document.querySelectorAll('.work-item-frame');
+    items.forEach(item => {
+      if (category === 'all' || item.classList.contains(category)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  // OPEN WIPER MODAL
+  function openWiperModal(rawSrc, editedSrc, title) {
+    document.getElementById('wiper-title').textContent = title;
+    
+    const editedImg = document.getElementById('wiper-edited-img');
+    const rawImg = document.getElementById('wiper-raw-img');
+    const fallbackSrc = "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80";
+
+    editedImg.src = editedSrc || fallbackSrc;
+    rawImg.src = rawSrc || editedSrc || fallbackSrc;
+
+    setWiperPercentage(50);
+
+    const modal = document.getElementById('wiper-modal');
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+  }
+
+  function closeWiperModal() {
+    const modal = document.getElementById('wiper-modal');
+    modal.classList.add('opacity-0', 'pointer-events-none');
+  }
+
+  function setWiperPercentage(pct) {
+    pct = Math.max(1, Math.min(99, pct));
+    document.documentElement.style.setProperty('--wiper-pos', `${pct}%`);
+  }
+
+  function updateWiperFromMouse(xPos) {
+    const box = document.getElementById('wiper-container-box');
+    if (!box) return;
+
+    const rect = box.getBoundingClientRect();
+    let x = xPos - rect.left;
+    if (x < 0) x = 0;
+    if (x > rect.width) x = rect.width;
+
+    setWiperPercentage((x / rect.width) * 100);
+  }
+
+  // CINEMA ZOOM MODAL
+  function openCinemaModal(imgSrc, title) {
+    document.getElementById('cinema-title').textContent = title;
+    document.getElementById('cinema-img').src = imgSrc;
+
+    const modal = document.getElementById('cinema-modal');
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+  }
+
+  function closeCinemaModal() {
+    const modal = document.getElementById('cinema-modal');
+    modal.classList.add('opacity-0', 'pointer-events-none');
+  }
+
+  // NEW UPDATED CODE:
+function openVideoModal(masterSrc, rawSrc, title) {
+  currentVideoMasterSrc = masterSrc;
+  currentVideoRawSrc = rawSrc || masterSrc;
+
+  const tabMaster = document.getElementById('video-tab-master');
+  const tabRaw = document.getElementById('video-tab-raw');
+
+  // Hides the A/B comparison tabs if it's a single video (no separate RAW)
+  if (!rawSrc || rawSrc === masterSrc) {
+    if (tabMaster) tabMaster.style.display = 'none';
+    if (tabRaw) tabRaw.style.display = 'none';
+    document.getElementById('video-modal-title').textContent = `${title} // CINEMATIC REEL`;
+  } else {
+    if (tabMaster) tabMaster.style.display = 'inline-block';
+    if (tabRaw) tabRaw.style.display = 'inline-block';
+    document.getElementById('video-modal-title').textContent = `${title} // DAVINCI COLOR GRADE REVEAL`;
+  }
+
+  switchVideoMode('master');
+
+  const modal = document.getElementById('video-modal');
+  modal.classList.remove('opacity-0', 'pointer-events-none');
+}
+
+  function switchVideoMode(mode) {
+    const video = document.getElementById('lightbox-video');
+    const btnMaster = document.getElementById('video-tab-master');
+    const btnRaw = document.getElementById('video-tab-raw');
+
+    const currentTime = video.currentTime || 0;
+    const isPaused = video.paused;
+
+    if (mode === 'master') {
+      btnMaster.classList.add('active');
+      btnRaw.classList.remove('active');
+      video.src = currentVideoMasterSrc;
+    } else {
+      btnRaw.classList.add('active');
+      btnMaster.classList.remove('active');
+      video.src = currentVideoRawSrc;
+    }
+
+    video.load();
+    video.currentTime = currentTime;
+    if (!isPaused) video.play();
+  }
+
+  function closeVideoModal() {
+    const video = document.getElementById('lightbox-video');
+    if (video) video.pause();
+
+    const modal = document.getElementById('video-modal');
+    modal.classList.add('opacity-0', 'pointer-events-none');
+  }
+
+  function toggleMediaSound(event) {
+    event.stopPropagation();
+    const btn = event.currentTarget;
+    const container = btn.closest('.media-container');
+    const video = container.querySelector('video');
+    const icon = btn.querySelector('i');
+
+    if (video) {
+      video.muted = !video.muted;
+      icon.textContent = video.muted ? 'volume_off' : 'volume_up';
+    }
+  }
+  </script>
+  <!-- Link your external global JS file where the cookie engine lives -->
+ <script src="script.js"></script>
 </body>
 </html>

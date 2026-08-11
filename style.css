@@ -1470,3 +1470,137 @@ img, video {
     display: flex !important;
   }
 }
+/* ==========================================================================
+   ANUSHA RAISING FOUNDATION STYLES
+   ========================================================================== */
+.foundation-section {
+  padding: 100px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.foundation-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.foundation-subtitle {
+  font-size: 1.1rem;
+  color: #a0a0a0;
+  max-width: 650px;
+  margin: 15px auto 0;
+  line-height: 1.6;
+}
+
+.foundation-quote-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 4px solid #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.foundation-quote-card blockquote {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+.foundation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 60px;
+}
+
+.foundation-card {
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 35px 25px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.foundation-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.pillar-number {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #888;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.foundation-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.foundation-card p {
+  color: #999;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.foundation-cta-box {
+  background: linear-gradient(145deg, #141414, #0a0a0a);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 45px 30px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.foundation-cta-box h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.foundation-cta-box p {
+  color: #aaa;
+  margin-bottom: 30px;
+}
+
+.foundation-btn-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.foundation-btn {
+  padding: 14px 28px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.foundation-btn.primary {
+  background: #ffffff;
+  color: #000000;
+}
+
+.foundation-btn.primary:hover {
+  background: #e0e0e0;
+}
+
+.foundation-btn.secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.foundation-btn.secondary:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
