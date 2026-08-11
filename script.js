@@ -151,35 +151,35 @@ const personaData = {
     title: "Are you looking to fill a strategic or creative leadership role?",
     desc: "I bring a hybrid engine: high-fashion editorial execution paired with technical growth architecture (GA4, GTM server-side, Klaviyo workflows). Ready to step into a full-time dynamic team.",
     ctaText: "REQUEST COMPLETE CV & SCHEDULE SCREENING →",
-    ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=HR Inquiry: Talent Opportunity"
+    ctaMail: "mailto:sedici@ollie16.com?subject=HR Inquiry: Talent Opportunity"
   },
   creative: {
     badge: "CREATIVE DIRECTORS & PRODUCERS",
     title: "Need a vision-aligned co-director, photographer, or onset talent?",
     desc: "From lookbooks to set choreography and camera work. I step onto set prepared with fast composition, moodboard alignment, and disciplined visual rhythm.",
     ctaText: "INITIATE DIRECT CREATIVE BRIEF →",
-    ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Creative Brief / Set Collaboration"
+    ctaMail: "mailto:sedici@ollie16.com?subject=Creative Brief / Set Collaboration"
   },
   brand: {
     badge: "EDITORIAL BRAND CASTING (LUXURY RETAIL)",
     title: "Seeking modern, editorial modeling or visual brand representation?",
     desc: "Lean physique, controlled soft presence, and natural camera fluidity for luxury streetwear, high-fashion campaigns, and editorial stills.",
     ctaText: "BOOK FOR CAMPAIGN / MODELING COMMISSIONS →",
-    ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Brand Modeling & Campaign Inquiry"
+    ctaMail: "mailto:sedici@ollie16.com?subject=Brand Modeling & Campaign Inquiry"
   },
   strategy: {
     badge: "GROWTH STRATEGY & AUDITS",
     title: "Looking to map out customer journeys, funnels, and tracking?",
     desc: "I audit existing retention flows, build first-party data capture architectures, and craft custom lifecycle strategies that scale high-ticket retail and hospitality brands.",
     ctaText: "BOOK A STRATEGIC AUDIT & BLUEPRINT →",
-    ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Growth Audit & Blueprint Request"
+    ctaMail: "mailto:sedici@ollie16.com?subject=Growth Audit & Blueprint Request"
   },
   collab: {
     badge: "CREATIVE PEERS & DESIGN STUDENTS",
     title: "Want to build an experimental project or conceptual series together?",
     desc: "Let's innovate. Whether it's testing new visual media, short film concepts, or experimental direction, I'm always open to high-energy creative syncs.",
     ctaText: "SEND A COLLAB IDEA →",
-    ctaMail: "mailto:keiantrevorkaweesa@gmail.com?subject=Creative Collaboration Sync"
+    ctaMail: "mailto:sedici@ollie16.com?subject=Creative Collaboration Sync"
   }
 };
 
